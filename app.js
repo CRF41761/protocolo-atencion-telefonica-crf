@@ -1,4 +1,3 @@
-```javascript
 /*
 =========================================================
 ASISTENTE DE ATENCIÓN TELEFÓNICA
@@ -13,8 +12,7 @@ con el sistema de recogidas.
 */
 
 
-const app =
-  document.getElementById("app");
+const app = document.getElementById("app");
 
 const progressText =
   document.getElementById("progress-text");
@@ -27,70 +25,162 @@ let historial = [];
 
 let pantallaActual = "inicio";
 
-let especies = [];
-
-let especieSeleccionada = null;
-
 
 /*
 =========================================================
-CARGA DE ESPECIES DESDE JSON
+BASE DE ESPECIES
 =========================================================
 */
 
 
-async function cargarEspecies() {
+const especies = [
 
-  try {
+  {
+    nombre: "Jabalí",
+    categoria: "Caza mayor"
+  },
 
-    const respuesta =
-      await fetch("./especies.json", {
-        cache: "no-cache"
-      });
+  {
+    nombre: "Cabra montés",
+    categoria: "Caza mayor"
+  },
 
-    if (!respuesta.ok) {
+  {
+    nombre: "Corzo",
+    categoria: "Caza mayor"
+  },
 
-      throw new Error(
-        `Error HTTP ${respuesta.status}`
-      );
+  {
+    nombre: "Ciervo",
+    categoria: "Caza mayor"
+  },
 
-    }
+  {
+    nombre: "Gamo",
+    categoria: "Caza mayor"
+  },
 
-    const datos =
-      await respuesta.json();
+  {
+    nombre: "Pavo",
+    categoria: "Animal doméstico"
+  },
 
+  {
+    nombre: "Gallina",
+    categoria: "Animal doméstico"
+  },
 
-    if (!Array.isArray(datos)) {
+  {
+    nombre: "Faisán",
+    categoria: "Animal doméstico"
+  },
 
-      throw new Error(
-        "especies.json no contiene un array válido."
-      );
+  {
+    nombre: "Urrón / Urón",
+    categoria: "Animal doméstico"
+  },
 
-    }
+  {
+    nombre: "Paloma bravía",
+    categoria: "Animal doméstico"
+  },
 
+  {
+    nombre: "Cotorra",
+    categoria: "Animal catalogado como invasor"
+  },
 
-    especies =
-      datos;
+  {
+    nombre: "Galápago Trachemys scripta",
+    categoria: "Animal catalogado como invasor"
+  },
 
+  {
+    nombre: "Galápago Pseudemys",
+    categoria: "Animal catalogado como invasor"
+  },
 
-    console.log(
-      "Especies cargadas correctamente:",
-      especies.length
-    );
+  {
+    nombre: "Galápago Mauremys",
+    categoria: "Animal catalogado como invasor",
+    nota:
+      "Excepto Mauremys leprosa, que es autóctona."
+  },
 
+  {
+    nombre: "Mapache",
+    categoria: "Animal catalogado como invasor"
+  },
 
-  } catch (error) {
+  {
+    nombre: "Coipú",
+    categoria: "Animal catalogado como invasor"
+  },
 
-    console.error(
-      "Error cargando especies.json:",
-      error
-    );
+  {
+    nombre: "Pitón real",
+    categoria: "Animal catalogado como invasor"
+  },
 
-    especies = [];
+  {
+    nombre: "Tortuga de espolones africana",
+    categoria: "Animal exótico CITES"
+  },
 
+  {
+    nombre: "Águila de Harris",
+    categoria: "Animal exótico CITES"
+  },
+
+  {
+    nombre: "Lechuza",
+    categoria: "Animal silvestre autóctono",
+    nota:
+      "Tiene un caso especial cuando se trata de una cría."
+  },
+
+  {
+    nombre: "Vencejo",
+    categoria: "Animal silvestre autóctono",
+    nota:
+      "Las crías no se consideran volantones."
+  },
+
+  {
+    nombre: "Golondrina",
+    categoria: "Animal silvestre autóctono",
+    nota:
+      "Las crías no se consideran volantones."
+  },
+
+  {
+    nombre: "Avión",
+    categoria: "Animal silvestre autóctono",
+    nota:
+      "Las crías no se consideran volantones."
+  },
+
+  {
+    nombre: "Conejo",
+    categoria: "Animal silvestre autóctono"
+  },
+
+  {
+    nombre: "Liebre",
+    categoria: "Animal silvestre autóctono"
+  },
+
+  {
+    nombre: "Erizo",
+    categoria: "Animal silvestre autóctono"
+  },
+
+  {
+    nombre: "Murciélago",
+    categoria: "Animal silvestre autóctono"
   }
 
-}
+];
 
 
 /*
@@ -100,11 +190,18 @@ FUNCIONES GENERALES
 */
 
 
-function mostrarPantalla(id, guardarHistorial = true) {
+function mostrarPantalla(id) {
+
+  if (pantallaActual !== id) {
+
+    historial.push(pantallaActual);
+
+  }
+
+  pantallaActual = id;
 
   const pantalla =
     pantallas[id];
-
 
   if (!pantalla) {
 
@@ -117,300 +214,119 @@ function mostrarPantalla(id, guardarHistorial = true) {
 
   }
 
-
-  /*
-  Guardamos la pantalla actual
-  para poder volver atrás.
-  */
-
-  if (
-    guardarHistorial &&
-    pantallaActual !== id
-  ) {
-
-    historial.push(
-      pantallaActual
-    );
-
-  }
-
-
-  pantallaActual =
-    id;
-
-
-  renderActual();
-
-}
-
-
-/*
-=========================================================
-RENDERIZAR PANTALLA ACTUAL
-=========================================================
-*/
-
-
-function renderActual() {
-
-  const pantalla =
-    pantallas[pantallaActual];
-
-
-  if (!pantalla) {
-
-    console.error(
-      "Pantalla no encontrada:",
-      pantallaActual
-    );
-
-    return;
-
-  }
-
-
-  app.innerHTML =
-    "";
-
+  app.innerHTML = "";
 
   actualizarProgreso();
-
-
-  /*
-  =======================================================
-  TÍTULO
-  =======================================================
-  */
-
 
   const titulo =
     document.createElement("h2");
 
-
   titulo.textContent =
     pantalla.titulo;
 
-
-  app.appendChild(
-    titulo
-  );
+  app.appendChild(titulo);
 
 
-  /*
-  =======================================================
-  DESCRIPCIÓN
-  =======================================================
-  */
-
-
-  if (
-    pantalla.descripcion
-  ) {
+  if (pantalla.descripcion) {
 
     const descripcion =
       document.createElement("p");
 
-
     descripcion.className =
       "description";
-
 
     descripcion.innerHTML =
       pantalla.descripcion;
 
-
-    app.appendChild(
-      descripcion
-    );
+    app.appendChild(descripcion);
 
   }
 
 
-  /*
-  =======================================================
-  PANTALLA DE TIPO PREGUNTA
-  =======================================================
-  */
-
-
-  if (
-    pantalla.tipo === "pregunta"
-  ) {
+  if (pantalla.tipo === "pregunta") {
 
     const opciones =
       document.createElement("div");
-
 
     opciones.className =
       "options";
 
 
-    if (
-      Array.isArray(
-        pantalla.opciones
-      )
-    ) {
+    pantalla.opciones.forEach(opcion => {
 
-      pantalla.opciones.forEach(
-        opcion => {
+      const boton =
+        document.createElement("button");
 
-          const boton =
-            document.createElement("button");
+      boton.className =
+        "option-btn";
 
+      boton.innerHTML =
+        opcion.texto;
 
-          boton.className =
-            "option-btn";
+      boton.onclick =
+        () => mostrarPantalla(opcion.siguiente);
 
+      opciones.appendChild(boton);
 
-          boton.type =
-            "button";
+    });
 
 
-          boton.innerHTML =
-            opcion.texto ||
-            opcion.text ||
-            "";
-
-
-          boton.onclick =
-            () => {
-
-              mostrarPantalla(
-                opcion.siguiente
-              );
-
-            };
-
-
-          opciones.appendChild(
-            boton
-          );
-
-        }
-      );
-
-    }
-
-
-    app.appendChild(
-      opciones
-    );
+    app.appendChild(opciones);
 
   }
 
 
-  /*
-  =======================================================
-  PANTALLA DE TIPO RESULTADO
-  =======================================================
-  */
-
-
-  if (
-    pantalla.tipo === "resultado"
-  ) {
+  if (pantalla.tipo === "resultado") {
 
     const resultado =
       document.createElement("div");
 
-
     resultado.className =
       "result " +
-      (
-        pantalla.clase ||
-        ""
-      );
-
+      (pantalla.clase || "");
 
     resultado.innerHTML =
-      pantalla.contenido ||
-      "";
+      pantalla.contenido;
 
-
-    app.appendChild(
-      resultado
-    );
+    app.appendChild(resultado);
 
   }
 
 
-  /*
-  =======================================================
-  PANTALLA DE TIPO BUSCADOR
-  =======================================================
-  */
-
-
-  if (
-    pantalla.tipo === "buscador"
-  ) {
+  if (pantalla.tipo === "buscador") {
 
     crearBuscador();
 
   }
 
 
-  /*
-  =======================================================
-  PANTALLA DE TIPO FIN
-  =======================================================
-  */
-
-
-  if (
-    pantalla.tipo === "fin"
-  ) {
+  if (pantalla.tipo === "fin") {
 
     const resultado =
       document.createElement("div");
 
-
     resultado.className =
       "result " +
-      (
-        pantalla.clase ||
-        ""
-      );
-
+      (pantalla.clase || "");
 
     resultado.innerHTML =
-      pantalla.contenido ||
-      "";
+      pantalla.contenido;
 
-
-    app.appendChild(
-      resultado
-    );
+    app.appendChild(resultado);
 
 
     const fin =
       document.createElement("div");
 
-
     fin.className =
       "finish";
 
-
     fin.innerHTML =
-      `
-        <div class="finish-icon">
-          ✓
-        </div>
-      `;
+      `<div class="finish-icon">✓</div>`;
 
-
-    app.appendChild(
-      fin
-    );
+    app.appendChild(fin);
 
   }
-
-
-  /*
-  =======================================================
-  NAVEGACIÓN
-  =======================================================
-  */
 
 
   crearNavegacion();
@@ -430,43 +346,27 @@ function crearNavegacion() {
   const navegacion =
     document.createElement("div");
 
-
   navegacion.className =
     "navigation";
-
-
-  /*
-  BOTÓN ATRÁS
-  */
 
 
   const botonAtras =
     document.createElement("button");
 
-
   botonAtras.className =
     "btn btn-secondary";
 
-
-  botonAtras.type =
-    "button";
-
-
   botonAtras.textContent =
     "← Atrás";
-
 
   botonAtras.onclick =
     volverAtras;
 
 
-  if (
-    historial.length === 0
-  ) {
+  if (historial.length === 0) {
 
     botonAtras.disabled =
       true;
-
 
     botonAtras.style.opacity =
       "0.4";
@@ -474,26 +374,14 @@ function crearNavegacion() {
   }
 
 
-  /*
-  BOTÓN REINICIAR
-  */
-
-
   const botonInicio =
     document.createElement("button");
-
 
   botonInicio.className =
     "btn btn-secondary";
 
-
-  botonInicio.type =
-    "button";
-
-
   botonInicio.textContent =
     "↻ Reiniciar protocolo";
-
 
   botonInicio.onclick =
     reiniciar;
@@ -502,7 +390,6 @@ function crearNavegacion() {
   navegacion.appendChild(
     botonAtras
   );
-
 
   navegacion.appendChild(
     botonInicio
@@ -516,68 +403,151 @@ function crearNavegacion() {
 }
 
 
-/*
-=========================================================
-VOLVER ATRÁS
-=========================================================
-*/
-
-
 function volverAtras() {
 
-  if (
-    historial.length === 0
-  ) {
+  if (historial.length === 0) {
 
     return;
 
   }
 
-
   pantallaActual =
     historial.pop();
-
 
   renderActual();
 
 }
 
 
-/*
-=========================================================
-REINICIAR
-=========================================================
-*/
+function renderActual() {
+
+  const id =
+    pantallaActual;
+
+  const pantalla =
+    pantallas[id];
+
+  app.innerHTML = "";
+
+  actualizarProgreso();
+
+
+  const titulo =
+    document.createElement("h2");
+
+  titulo.textContent =
+    pantalla.titulo;
+
+  app.appendChild(titulo);
+
+
+  if (pantalla.descripcion) {
+
+    const descripcion =
+      document.createElement("p");
+
+    descripcion.className =
+      "description";
+
+    descripcion.innerHTML =
+      pantalla.descripcion;
+
+    app.appendChild(descripcion);
+
+  }
+
+
+  if (pantalla.tipo === "pregunta") {
+
+    const opciones =
+      document.createElement("div");
+
+    opciones.className =
+      "options";
+
+
+    pantalla.opciones.forEach(opcion => {
+
+      const boton =
+        document.createElement("button");
+
+      boton.className =
+        "option-btn";
+
+      boton.innerHTML =
+        opcion.texto;
+
+      boton.onclick =
+        () => mostrarPantalla(opcion.siguiente);
+
+      opciones.appendChild(boton);
+
+    });
+
+
+    app.appendChild(opciones);
+
+  }
+
+
+  if (pantalla.tipo === "resultado") {
+
+    const resultado =
+      document.createElement("div");
+
+    resultado.className =
+      "result " +
+      (pantalla.clase || "");
+
+    resultado.innerHTML =
+      pantalla.contenido;
+
+    app.appendChild(resultado);
+
+  }
+
+
+  if (pantalla.tipo === "buscador") {
+
+    crearBuscador();
+
+  }
+
+
+  if (pantalla.tipo === "fin") {
+
+    const resultado =
+      document.createElement("div");
+
+    resultado.className =
+      "result " +
+      (pantalla.clase || "");
+
+    resultado.innerHTML =
+      pantalla.contenido;
+
+    app.appendChild(resultado);
+
+  }
+
+
+  crearNavegacion();
+
+}
 
 
 function reiniciar() {
 
-  historial =
-    [];
-
+  historial = [];
 
   pantallaActual =
     "inicio";
 
-
-  especieSeleccionada =
-    null;
-
-
-  window.especieSeleccionada =
-    null;
-
-
-  renderActual();
+  mostrarPantalla(
+    "inicio"
+  );
 
 }
-
-
-/*
-=========================================================
-ACTUALIZAR PROGRESO
-=========================================================
-*/
 
 
 function actualizarProgreso() {
@@ -585,10 +555,6 @@ function actualizarProgreso() {
   const pasos = {
 
     inicio: 0,
-
-    identificacion: 0,
-
-    buscador: 0,
 
     tipoAnimal: 1,
 
@@ -610,188 +576,17 @@ function actualizarProgreso() {
 
 
   const porcentaje =
-    (
-      paso /
-      total
-    ) *
-    100;
+    (paso / total) * 100;
 
 
-  if (
-    progressFill
-  ) {
-
-    progressFill.style.width =
-      porcentaje +
-      "%";
-
-  }
+  progressFill.style.width =
+    porcentaje + "%";
 
 
-  if (
-    progressText
-  ) {
-
-    progressText.textContent =
-      paso === 0
-
-        ? "Inicio"
-
-        : `Paso ${paso} de ${total}`;
-
-  }
-
-}
-
-
-/*
-=========================================================
-OBTENER VALOR DE UN CAMPO
-=========================================================
-
-Permite que el buscador funcione aunque el JSON
-utilice diferentes nombres de campo.
-
-=========================================================
-*/
-
-
-function obtenerCampo(
-  objeto,
-  posiblesCampos
-) {
-
-  if (
-    !objeto ||
-    typeof objeto !== "object"
-  ) {
-
-    return "";
-
-  }
-
-
-  for (
-    const campo of posiblesCampos
-  ) {
-
-    if (
-      objeto[campo] !== undefined &&
-      objeto[campo] !== null &&
-      String(
-        objeto[campo]
-      ).trim() !== ""
-    ) {
-
-      return String(
-        objeto[campo]
-      ).trim();
-
-    }
-
-  }
-
-
-  return "";
-
-}
-
-
-/*
-=========================================================
-OBTENER NOMBRE COMÚN
-=========================================================
-*/
-
-
-function obtenerNombreComun(
-  especie
-) {
-
-  return obtenerCampo(
-    especie,
-    [
-      "nombre_comun",
-      "nombreComun",
-      "nombre",
-      "especie",
-      "common_name",
-      "commonName"
-    ]
-  );
-
-}
-
-
-/*
-=========================================================
-OBTENER NOMBRE CIENTÍFICO
-=========================================================
-*/
-
-
-function obtenerNombreCientifico(
-  especie
-) {
-
-  return obtenerCampo(
-    especie,
-    [
-      "nombre_cientifico",
-      "nombreCientifico",
-      "cientifico",
-      "nombre_cientifico",
-      "scientific_name",
-      "scientificName"
-    ]
-  );
-
-}
-
-
-/*
-=========================================================
-OBTENER GRUPO
-=========================================================
-*/
-
-
-function obtenerGrupo(
-  especie
-) {
-
-  return obtenerCampo(
-    especie,
-    [
-      "grupo",
-      "grupo_taxonomico",
-      "grupoTaxonomico",
-      "taxon",
-      "tipo"
-    ]
-  );
-
-}
-
-
-/*
-=========================================================
-OBTENER ORIGEN
-=========================================================
-*/
-
-
-function obtenerOrigen(
-  especie
-) {
-
-  return obtenerCampo(
-    especie,
-    [
-      "origen",
-      "procedencia"
-    ]
-  );
+  progressText.textContent =
+    paso === 0
+      ? "Inicio"
+      : `Paso ${paso} de ${total}`;
 
 }
 
@@ -805,253 +600,49 @@ BUSCADOR DE ESPECIES
 
 function crearBuscador() {
 
-  const contenedor =
-    document.createElement("div");
-
-
-  contenedor.className =
-    "species-search";
-
-
-  /*
-  CAMPO DE BÚSQUEDA
-  */
-
-
   const input =
     document.createElement("input");
-
 
   input.className =
     "search-box";
 
-
-  input.type =
-    "search";
-
-
   input.placeholder =
-    "Escribe el nombre común o científico...";
-
-
-  input.autocomplete =
-    "off";
-
-
-  /*
-  RESULTADOS
-  */
+    "Escribe el nombre del animal...";
 
 
   const resultados =
     document.createElement("div");
 
-
   resultados.className =
     "search-results";
 
 
-  /*
-  MENSAJE INICIAL
-  */
-
-
-  const mensaje =
-    document.createElement("p");
-
-
-  mensaje.className =
-    "small-note";
-
-
-  mensaje.textContent =
-    "Puedes buscar por nombre común o nombre científico.";
-
-
-  contenedor.appendChild(
-    input
-  );
-
-
-  contenedor.appendChild(
-    mensaje
-  );
-
-
-  contenedor.appendChild(
-    resultados
-  );
-
-
-  app.appendChild(
-    contenedor
-  );
-
-
-  /*
-  =======================================================
-  EVENTO DE BÚSQUEDA
-  =======================================================
-  */
-
-
   input.addEventListener(
     "input",
-    function () {
+    () => {
 
       const texto =
-        normalizar(
-          input.value
-        );
+        normalizar(input.value);
 
 
       resultados.innerHTML =
         "";
 
 
-      if (
-        !texto
-      ) {
+      if (!texto) {
 
         return;
 
       }
-
-
-      /*
-      COMPROBAMOS QUE EL JSON ESTÁ CARGADO
-      */
-
-
-      if (
-        !Array.isArray(especies) ||
-        especies.length === 0
-      ) {
-
-        resultados.innerHTML =
-          `
-
-            <div class="result warning">
-
-              <p>
-                No se ha podido cargar
-                la base de datos de especies.
-              </p>
-
-              <p class="small-note">
-
-                Comprueba que el archivo
-                <strong>especies.json</strong>
-                está en la misma carpeta que
-                <strong>app.js</strong>.
-
-              </p>
-
-            </div>
-
-          `;
-
-
-        return;
-
-      }
-
-
-      /*
-      =====================================================
-      FILTRAR ESPECIES
-      =====================================================
-      */
 
 
       const encontrados =
         especies.filter(
-          especie => {
-
-            const nombreComun =
-              normalizar(
-                obtenerNombreComun(
-                  especie
-                )
-              );
-
-
-            const nombreCientifico =
-              normalizar(
-                obtenerNombreCientifico(
-                  especie
-                )
-              );
-
-
-            const grupo =
-              normalizar(
-                obtenerGrupo(
-                  especie
-                )
-              );
-
-
-            return (
-
-              nombreComun.includes(
-                texto
-              )
-
-              ||
-
-              nombreCientifico.includes(
-                texto
-              )
-
-              ||
-
-              grupo.includes(
-                texto
-              )
-
-            );
-
-          }
+          especie =>
+            normalizar(
+              especie.nombre
+            ).includes(texto)
         );
-
-
-      /*
-      =====================================================
-      SIN RESULTADOS
-      =====================================================
-      */
-
-
-      if (
-        encontrados.length === 0
-      ) {
-
-        resultados.innerHTML =
-          `
-
-            <div class="result">
-
-              <p>
-                No se han encontrado especies
-                que coincidan con la búsqueda.
-              </p>
-
-            </div>
-
-          `;
-
-
-        return;
-
-      }
-
-
-      /*
-      =====================================================
-      MOSTRAR RESULTADOS
-      =====================================================
-      */
 
 
       encontrados.forEach(
@@ -1060,158 +651,29 @@ function crearBuscador() {
           const item =
             document.createElement("div");
 
-
           item.className =
             "species-result";
 
 
-          /*
-          DATOS DE LA ESPECIE
-          */
+          item.innerHTML = `
 
+            <strong>
+              ${especie.nombre}
+            </strong>
 
-          const nombreComun =
-            obtenerNombreComun(
-              especie
-            ) ||
-            "Nombre común no disponible";
+            <div class="species-category">
 
+              ${especie.categoria}
 
-          const nombreCientifico =
-            obtenerNombreCientifico(
-              especie
-            ) ||
-            "Nombre científico no disponible";
+            </div>
 
-
-          const grupo =
-            obtenerGrupo(
-              especie
-            ) ||
-            "No especificado";
-
-
-          const origen =
-            obtenerOrigen(
-              especie
-            ) ||
-            "No especificado";
-
-
-          const clasificacion =
-            obtenerClasificacion(
-              especie
-            );
-
-
-          const proteccion =
-            obtenerProteccion(
-              especie
-            );
-
-
-          /*
-          HTML DEL RESULTADO
-          */
-
-
-          item.innerHTML =
-            `
-
-              <div class="species-name">
-
-                <strong>
-                  ${nombreComun}
-                </strong>
-
-              </div>
-
-
-              <div class="species-scientific">
-
-                <em>
-                  ${nombreCientifico}
-                </em>
-
-              </div>
-
-
-              <div class="species-info">
-
-                <span>
-
-                  <strong>
-                    Grupo:
-                  </strong>
-
-                  ${grupo}
-
-                </span>
-
-
-                <span>
-
-                  <strong>
-                    Origen:
-                  </strong>
-
-                  ${origen}
-
-                </span>
-
-
-                <span>
-
-                  <strong>
-                    Clasificación:
-                  </strong>
-
-                  ${clasificacion}
-
-                </span>
-
-
-                ${
-                  proteccion
-
-                    ? `
-
-                      <span>
-
-                        <strong>
-                          Protección:
-                        </strong>
-
-                        ${proteccion}
-
-                      </span>
-
-                    `
-
-                    : ""
-
-                }
-
-              </div>
-
-            `;
-
-
-          /*
-          SELECCIONAR ESPECIE
-          */
-
-
-          item.addEventListener(
-            "click",
-            function () {
-
-              seleccionarEspecie(
-                especie
-              );
-
+            ${
+              especie.nota
+                ? `<p>${especie.nota}</p>`
+                : ""
             }
-          );
+
+          `;
 
 
           resultados.appendChild(
@@ -1219,799 +681,28 @@ function crearBuscador() {
           );
 
         }
+
       );
 
     }
+
   );
 
 
-  /*
-  =======================================================
-  PERMITIR ENTER
-  =======================================================
-  */
+  app.appendChild(
+    input
+  );
 
-
-  input.addEventListener(
-    "keydown",
-    function (evento) {
-
-      if (
-        evento.key === "Enter"
-      ) {
-
-        const primerResultado =
-          resultados.querySelector(
-            ".species-result"
-          );
-
-
-        if (
-          primerResultado
-        ) {
-
-          primerResultado.click();
-
-        }
-
-      }
-
-    }
+  app.appendChild(
+    resultados
   );
 
 }
 
 
-/*
-=========================================================
-SELECCIÓN DE ESPECIE
-=========================================================
-*/
+function normalizar(texto) {
 
-
-function seleccionarEspecie(
-  especie
-) {
-
-  especieSeleccionada =
-    especie;
-
-
-  window.especieSeleccionada =
-    especie;
-
-
-  const nombreComun =
-    obtenerNombreComun(
-      especie
-    ) ||
-    "Nombre común no disponible";
-
-
-  const nombreCientifico =
-    obtenerNombreCientifico(
-      especie
-    ) ||
-    "Nombre científico no disponible";
-
-
-  const grupo =
-    obtenerGrupo(
-      especie
-    ) ||
-    "No especificado";
-
-
-  const origen =
-    obtenerOrigen(
-      especie
-    ) ||
-    "No especificado";
-
-
-  const clasificacion =
-    obtenerClasificacion(
-      especie
-    );
-
-
-  const proteccion =
-    obtenerProteccion(
-      especie
-    );
-
-
-  app.innerHTML =
-    "";
-
-
-  actualizarProgreso();
-
-
-  const titulo =
-    document.createElement("h2");
-
-
-  titulo.textContent =
-    "Animal seleccionado";
-
-
-  app.appendChild(
-    titulo
-  );
-
-
-  const resultado =
-    document.createElement("div");
-
-
-  resultado.className =
-    "result";
-
-
-  resultado.innerHTML =
-    `
-
-      <h3>
-        ${nombreComun}
-      </h3>
-
-
-      <p>
-
-        <strong>
-          Nombre científico:
-        </strong>
-
-        <em>
-          ${nombreCientifico}
-        </em>
-
-      </p>
-
-
-      <p>
-
-        <strong>
-          Grupo:
-        </strong>
-
-        ${grupo}
-
-      </p>
-
-
-      <p>
-
-        <strong>
-          Origen:
-        </strong>
-
-        ${origen}
-
-      </p>
-
-
-      <p>
-
-        <strong>
-          Clasificación para el protocolo:
-        </strong>
-
-        ${clasificacion}
-
-      </p>
-
-
-      ${
-        proteccion
-
-          ? `
-
-            <p class="small-note">
-
-              <strong>
-                Grado de protección:
-              </strong>
-
-              ${proteccion}
-
-            </p>
-
-          `
-
-          : ""
-
-      }
-
-
-      <p class="small-note">
-
-        La especie ha sido identificada
-        en la base de datos del CRF.
-
-      </p>
-
-    `;
-
-
-  app.appendChild(
-    resultado
-  );
-
-
-  /*
-  =======================================================
-  BOTÓN VOLVER A BUSCAR
-  =======================================================
-  */
-
-
-  const botonBuscar =
-    document.createElement("button");
-
-
-  botonBuscar.className =
-    "btn btn-secondary";
-
-
-  botonBuscar.type =
-    "button";
-
-
-  botonBuscar.textContent =
-    "🔎 Buscar otra especie";
-
-
-  botonBuscar.onclick =
-    function () {
-
-      mostrarPantalla(
-        "buscador"
-      );
-
-    };
-
-
-  app.appendChild(
-    botonBuscar
-  );
-
-
-  /*
-  =======================================================
-  BOTÓN CONTINUAR
-  =======================================================
-  */
-
-
-  const botonContinuar =
-    document.createElement("button");
-
-
-  botonContinuar.className =
-    "btn btn-primary";
-
-
-  botonContinuar.type =
-    "button";
-
-
-  botonContinuar.textContent =
-    "Continuar con el protocolo";
-
-
-  botonContinuar.onclick =
-    function () {
-
-      continuarConEspecie(
-        especie
-      );
-
-    };
-
-
-  app.appendChild(
-    botonContinuar
-  );
-
-
-  crearNavegacion();
-
-}
-
-
-/*
-=========================================================
-CLASIFICACIÓN AUTOMÁTICA
-=========================================================
-
-Reglas:
-
-- Nativa → Animal silvestre autóctono
-- Doméstico → Animal doméstico
-- Exótico + Invasora → Animal catalogado como invasor
-- Exótico + CITES → Animal exótico CITES
-- Exótico → Animal exótico no catalogado como invasor
-
-=========================================================
-*/
-
-
-function obtenerClasificacion(
-  especie
-) {
-
-  const origen =
-    normalizar(
-      obtenerOrigen(
-        especie
-      )
-    );
-
-
-  const proteccion =
-    normalizar(
-      especie.grado_proteccion ||
-      especie.gradoProteccion ||
-      ""
-    );
-
-
-  const cites =
-    especie.cites === true ||
-    normalizar(
-      especie.cites
-    ) === "true" ||
-    normalizar(
-      especie.cites
-    ) === "si";
-
-
-  /*
-  ANIMAL DOMÉSTICO
-  */
-
-
-  if (
-    origen.includes(
-      "domestico"
-    )
-  ) {
-
-    return "Animal doméstico";
-
-  }
-
-
-  /*
-  ANIMAL EXÓTICO
-  */
-
-
-  if (
-    origen.includes(
-      "exotico"
-    )
-  ) {
-
-    /*
-    INVASORA
-    */
-
-
-    if (
-      proteccion.includes(
-        "invasora"
-      )
-    ) {
-
-      return "Animal catalogado como invasor";
-
-    }
-
-
-    /*
-    CITES
-    */
-
-
-    if (
-      cites
-    ) {
-
-      return "Animal exótico CITES";
-
-    }
-
-
-    /*
-    EXÓTICO NO INVASOR
-    */
-
-
-    return "Animal exótico no catalogado como invasor";
-
-  }
-
-
-  /*
-  ANIMAL NATIVO
-  */
-
-
-  if (
-    origen.includes(
-      "nativa"
-    ) ||
-    origen.includes(
-      "autoctono"
-    ) ||
-    origen.includes(
-      "autóctono"
-    )
-  ) {
-
-    return "Animal silvestre autóctono";
-
-  }
-
-
-  /*
-  CLASIFICACIÓN DESCONOCIDA
-  */
-
-
-  return "Clasificación no determinada";
-
-}
-
-
-/*
-=========================================================
-GRADO DE PROTECCIÓN
-=========================================================
-*/
-
-
-function obtenerProteccion(
-  especie
-) {
-
-  const proteccion =
-    especie.grado_proteccion ??
-    especie.gradoProteccion ??
-    "";
-
-
-  if (
-    !proteccion
-  ) {
-
-    return "";
-
-  }
-
-
-  if (
-    String(
-      proteccion
-    ) === "0"
-  ) {
-
-    return "";
-
-  }
-
-
-  return proteccion;
-
-}
-
-
-/*
-=========================================================
-CONTINUAR CON ESPECIE
-=========================================================
-
-Esta función busca primero si la especie tiene definida
-una rama concreta del protocolo.
-
-Campos admitidos en especies.json:
-
-- rama_protocolo
-- ramaProtocolo
-- protocolo
-- pantalla_protocolo
-- pantallaProtocolo
-
-Ejemplo:
-
-{
-  "nombre_comun": "Jabalí",
-  "nombre_cientifico": "Sus scrofa",
-  "origen": "Nativa",
-  "rama_protocolo": "cazaMayor"
-}
-
-Si existe esa rama y coincide con una pantalla válida,
-el sistema lleva directamente a ella.
-
-Si todavía no existe esa conexión en el JSON,
-se muestra la clasificación y se puede continuar
-manualmente por el protocolo.
-
-=========================================================
-*/
-
-
-function obtenerRamaProtocolo(
-  especie
-) {
-
-  const rama =
-    obtenerCampo(
-      especie,
-      [
-        "rama_protocolo",
-        "ramaProtocolo",
-        "protocolo",
-        "pantalla_protocolo",
-        "pantallaProtocolo"
-      ]
-    );
-
-
-  if (
-    !rama
-  ) {
-
-    return "";
-
-  }
-
-
-  return rama;
-
-}
-
-
-/*
-=========================================================
-CONTINUAR CON ESPECIE
-=========================================================
-*/
-
-
-function continuarConEspecie(
-  especie
-) {
-
-  /*
-  Primero comprobamos si la especie tiene
-  una rama específica del protocolo.
-  */
-
-
-  const rama =
-    obtenerRamaProtocolo(
-      especie
-    );
-
-
-  /*
-  Si la rama existe y está definida
-  en el objeto pantallas, vamos directamente
-  a ella.
-  */
-
-
-  if (
-    rama &&
-    pantallas[rama]
-  ) {
-
-    mostrarPantalla(
-      rama
-    );
-
-    return;
-
-  }
-
-
-  /*
-  Si todavía no hay rama específica,
-  mostramos la clasificación.
-  */
-
-
-  const clasificacion =
-    obtenerClasificacion(
-      especie
-    );
-
-
-  let mensaje =
-    "";
-
-
-  if (
-    clasificacion ===
-    "Animal doméstico"
-  ) {
-
-    mensaje =
-      "Esta especie corresponde a la categoría de animal doméstico.";
-
-  }
-
-
-  else if (
-    clasificacion ===
-    "Animal catalogado como invasor"
-  ) {
-
-    mensaje =
-      "Esta especie corresponde a la categoría de animal catalogado como invasor.";
-
-  }
-
-
-  else if (
-    clasificacion ===
-    "Animal exótico CITES"
-  ) {
-
-    mensaje =
-      "Esta especie corresponde a la categoría de animal exótico CITES.";
-
-  }
-
-
-  else if (
-    clasificacion ===
-    "Animal exótico no catalogado como invasor"
-  ) {
-
-    mensaje =
-      "Esta especie corresponde a la categoría de animal exótico no catalogado como invasor.";
-
-  }
-
-
-  else if (
-    clasificacion ===
-    "Animal silvestre autóctono"
-  ) {
-
-    mensaje =
-      "Esta especie corresponde a la categoría de animal silvestre autóctono.";
-
-  }
-
-
-  else {
-
-    mensaje =
-      "No se ha podido determinar automáticamente la categoría.";
-
-  }
-
-
-  app.innerHTML =
-    "";
-
-
-  actualizarProgreso();
-
-
-  const titulo =
-    document.createElement("h2");
-
-
-  titulo.textContent =
-    "Clasificación del animal";
-
-
-  app.appendChild(
-    titulo
-  );
-
-
-  const resultado =
-    document.createElement("div");
-
-
-  resultado.className =
-    "result";
-
-
-  resultado.innerHTML =
-    `
-
-      <h3>
-        ${obtenerNombreComun(especie)}
-      </h3>
-
-
-      <p>
-        ${mensaje}
-      </p>
-
-
-      <p class="small-note">
-
-        Esta especie todavía no tiene
-        una rama específica del protocolo
-        asignada en especies.json.
-
-      </p>
-
-    `;
-
-
-  app.appendChild(
-    resultado
-  );
-
-
-  /*
-  BOTÓN PARA CONTINUAR MANUALMENTE
-  */
-
-
-  const botonManual =
-    document.createElement("button");
-
-
-  botonManual.className =
-    "btn btn-primary";
-
-
-  botonManual.type =
-    "button";
-
-
-  botonManual.textContent =
-    "Continuar manualmente con el protocolo";
-
-
-  botonManual.onclick =
-    function () {
-
-      mostrarPantalla(
-        "tipoAnimal"
-      );
-
-    };
-
-
-  app.appendChild(
-    botonManual
-  );
-
-
-  crearNavegacion();
-
-}
-
-
-/*
-=========================================================
-NORMALIZACIÓN DE TEXTO
-=========================================================
-*/
-
-
-function normalizar(
-  texto
-) {
-
-  return String(
-    texto ||
-    ""
-  )
+  return texto
 
     .toLowerCase()
 
@@ -2022,9 +713,7 @@ function normalizar(
     .replace(
       /[\u0300-\u036f]/g,
       ""
-    )
-
-    .trim();
+    );
 
 }
 
@@ -2033,15 +722,11 @@ function normalizar(
 =========================================================
 PANTALLAS DEL PROTOCOLO
 =========================================================
-
-A PARTIR DE AQUÍ SE MANTIENE EL CONTENIDO
-DEL PROTOCOLO ORIGINAL.
-
-=========================================================
 */
 
 
 const pantallas = {
+
 
   inicio: {
 
@@ -2122,20 +807,6 @@ const pantallas = {
       </p>
 
     `
-
-  },
-
-
-  buscador: {
-
-    tipo:
-      "buscador",
-
-    titulo:
-      "🔎 Buscar animal",
-
-    descripcion:
-      "Busca el animal por su nombre común o científico. Selecciona el resultado que corresponda."
 
   },
 
@@ -2338,6 +1009,7 @@ const pantallas = {
     opciones: [
 
       {
+
         texto:
           "🦎 Animal exótico CITES encontrado",
 
@@ -2347,6 +1019,7 @@ const pantallas = {
       },
 
       {
+
         texto:
           "📋 Posee un animal exótico CITES",
 
@@ -2356,6 +1029,7 @@ const pantallas = {
       },
 
       {
+
         texto:
           "🏠 Animal exótico no catalogado como invasor",
 
@@ -2449,6 +1123,7 @@ const pantallas = {
     opciones: [
 
       {
+
         texto:
           "Sí, está cerca",
 
@@ -2458,6 +1133,7 @@ const pantallas = {
       },
 
       {
+
         texto:
           "No está cerca",
 
@@ -2659,6 +1335,7 @@ const pantallas = {
     opciones: [
 
       {
+
         texto:
           "⚫ Está muerto",
 
@@ -2668,6 +1345,7 @@ const pantallas = {
       },
 
       {
+
         texto:
           "🟢 Está vivo",
 
@@ -2692,6 +1370,7 @@ const pantallas = {
     opciones: [
 
       {
+
         texto:
           "Sí, es una cría aislada",
 
@@ -2701,6 +1380,7 @@ const pantallas = {
       },
 
       {
+
         texto:
           "No es una cría",
 
@@ -2776,6 +1456,7 @@ const pantallas = {
     opciones: [
 
       {
+
         texto:
           "🏠 Está suelto dentro de una vivienda",
 
@@ -2785,6 +1466,7 @@ const pantallas = {
       },
 
       {
+
         texto:
           "🦅 Está fuera de una vivienda y parece tener problemas",
 
@@ -2794,6 +1476,7 @@ const pantallas = {
       },
 
       {
+
         texto:
           "⚡ Posible causa antropogénica",
 
@@ -2803,6 +1486,7 @@ const pantallas = {
       },
 
       {
+
         texto:
           "🐢 Tortuga terrestre propiedad de alguien",
 
@@ -2812,6 +1496,7 @@ const pantallas = {
       },
 
       {
+
         texto:
           "🐢 Tortuga terrestre o galápago autóctono encontrado en el campo",
 
@@ -2821,6 +1506,7 @@ const pantallas = {
       },
 
       {
+
         texto:
           "🦇 Cría de murciélago",
 
@@ -2830,6 +1516,7 @@ const pantallas = {
       },
 
       {
+
         texto:
           "🪟 Ave que ha chocado contra un cristal",
 
@@ -2839,6 +1526,7 @@ const pantallas = {
       },
 
       {
+
         texto:
           "🐇 Cría de conejo o liebre",
 
@@ -2848,6 +1536,7 @@ const pantallas = {
       },
 
       {
+
         texto:
           "🐝 Panal de abejas o avispas",
 
@@ -2857,6 +1546,7 @@ const pantallas = {
       },
 
       {
+
         texto:
           "🪶 Cría de lechuza",
 
@@ -2866,6 +1556,7 @@ const pantallas = {
       },
 
       {
+
         texto:
           "🦔 Erizo",
 
@@ -2875,6 +1566,7 @@ const pantallas = {
       },
 
       {
+
         texto:
           "🐣 Cría de pajarito o rapaz",
 
@@ -2884,6 +1576,7 @@ const pantallas = {
       },
 
       {
+
         texto:
           "Ninguno de estos casos",
 
@@ -3046,6 +1739,7 @@ const pantallas = {
     opciones: [
 
       {
+
         texto:
           "Sí, se sabe",
 
@@ -3055,6 +1749,7 @@ const pantallas = {
       },
 
       {
+
         texto:
           "No se sabe",
 
@@ -3134,6 +1829,7 @@ const pantallas = {
     opciones: [
 
       {
+
         texto:
           "Han pasado menos de 2 horas",
 
@@ -3143,6 +1839,7 @@ const pantallas = {
       },
 
       {
+
         texto:
           "Han pasado más de 2 horas",
 
@@ -3202,6 +1899,7 @@ const pantallas = {
     opciones: [
 
       {
+
         texto:
           "No está herido",
 
@@ -3211,6 +1909,7 @@ const pantallas = {
       },
 
       {
+
         texto:
           "Está herido o debilitado",
 
@@ -3305,6 +2004,7 @@ const pantallas = {
     opciones: [
 
       {
+
         texto:
           "No tiene heridas",
 
@@ -3314,6 +2014,7 @@ const pantallas = {
       },
 
       {
+
         texto:
           "Tiene heridas",
 
@@ -3387,6 +2088,7 @@ const pantallas = {
     opciones: [
 
       {
+
         texto:
           "Es de día",
 
@@ -3396,6 +2098,7 @@ const pantallas = {
       },
 
       {
+
         texto:
           "Es de noche o últimas horas del día",
 
@@ -3476,6 +2179,7 @@ const pantallas = {
     opciones: [
 
       {
+
         texto:
           "Sí, es un volantón",
 
@@ -3485,6 +2189,7 @@ const pantallas = {
       },
 
       {
+
         texto:
           "No es un volantón",
 
@@ -3509,6 +2214,7 @@ const pantallas = {
     opciones: [
 
       {
+
         texto:
           "Sí, puede devolverlo",
 
@@ -3518,77 +2224,12 @@ const pantallas = {
       },
 
       {
+
         texto:
           "No puede devolverlo",
 
         siguiente:
           "volantónNoDevolver"
-
-      }
-
-    ]
-
-  },
-
-
-  volantónNoDevolver: {
-
-    tipo:
-      "pregunta",
-
-    titulo:
-      "🐣 Volantón que no puede devolverse",
-
-    opciones: [
-
-      {
-        texto:
-          "Está cerca de una unidad colaboradora",
-
-        siguiente:
-          "criaUnidad"
-
-      },
-
-      {
-        texto:
-          "No está cerca de una unidad colaboradora",
-
-        siguiente:
-          "criaCentro"
-
-      }
-
-    ]
-
-  },
-
-
-  volantónNoDevolver: {
-
-    tipo:
-      "pregunta",
-
-    titulo:
-      "🐣 Volantón que no puede devolverse",
-
-    opciones: [
-
-      {
-        texto:
-          "Está cerca de una unidad colaboradora",
-
-        siguiente:
-          "criaUnidad"
-
-      },
-
-      {
-        texto:
-          "No está cerca de una unidad colaboradora",
-
-        siguiente:
-          "criaCentro"
 
       }
 
@@ -3622,6 +2263,41 @@ const pantallas = {
   },
 
 
+  "volantónNoDevolver": {
+
+    tipo:
+      "pregunta",
+
+    titulo:
+      "🐣 Volantón que no puede devolverse",
+
+    opciones: [
+
+      {
+
+        texto:
+          "Está cerca de una unidad colaboradora",
+
+        siguiente:
+          "criaUnidad"
+
+      },
+
+      {
+
+        texto:
+          "No está cerca de una unidad colaboradora",
+
+        siguiente:
+          "criaCentro"
+
+      }
+
+    ]
+
+  },
+
+
   criaAveNoVolanton: {
 
     tipo:
@@ -3633,6 +2309,7 @@ const pantallas = {
     opciones: [
 
       {
+
         texto:
           "Está cerca de una unidad colaboradora",
 
@@ -3642,6 +2319,7 @@ const pantallas = {
       },
 
       {
+
         texto:
           "No está cerca de una unidad colaboradora",
 
@@ -3726,6 +2404,7 @@ const pantallas = {
     opciones: [
 
       {
+
         texto:
           "📅 Es entre semana",
 
@@ -3735,6 +2414,7 @@ const pantallas = {
       },
 
       {
+
         texto:
           "🗓️ Es fin de semana",
 
@@ -3759,6 +2439,7 @@ const pantallas = {
     opciones: [
 
       {
+
         texto:
           "Sí, hay una unidad cerca",
 
@@ -3768,6 +2449,7 @@ const pantallas = {
       },
 
       {
+
         texto:
           "No hay una unidad cerca",
 
@@ -3842,6 +2524,7 @@ const pantallas = {
     opciones: [
 
       {
+
         texto:
           "Sí, puede traerlo al centro",
 
@@ -3851,6 +2534,7 @@ const pantallas = {
       },
 
       {
+
         texto:
           "No puede traerlo",
 
@@ -3943,18 +2627,6 @@ INICIO DE LA APLICACIÓN
 */
 
 
-async function iniciarAplicacion() {
-
-  await cargarEspecies();
-
-
-  mostrarPantalla(
-    "inicio",
-    false
-  );
-
-}
-
-
-iniciarAplicacion();
-```
+mostrarPantalla(
+  "inicio"
+);
