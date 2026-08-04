@@ -1,0 +1,1739 @@
+[
+  {
+    "nombreCientifico": "Accipiter gentilis",
+    "nombreComun": "Azor común",
+    "grupo": "RAPACES DIURNAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Accipiter nisus",
+    "nombreComun": "Gavilán común",
+    "grupo": "RAPACES DIURNAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Acrocephalus scirpaceus",
+    "nombreComun": "Carricero común",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Aegypius monachus",
+    "nombreComun": "Buitre negro",
+    "grupo": "RAPACES DIURNAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "Vulnerable"
+  },
+  {
+    "nombreCientifico": "Alectoris rufa",
+    "nombreComun": "Perdiz roja",
+    "grupo": "GALLIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Anas platyrhynchos",
+    "nombreComun": "Ánade real",
+    "grupo": "ANATIDAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Anas platyrhynchos var domestica",
+    "nombreComun": "Ánade doméstico",
+    "grupo": "ANATIDAS",
+    "origen": "Doméstico",
+    "tipo": "doméstico",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Apodemus sylvaticus",
+    "nombreComun": "Ratón de campo",
+    "grupo": "MAMÍFEROS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Apus apus",
+    "nombreComun": "Vencejo común",
+    "grupo": "OTRAS AVES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Apus pallidus",
+    "nombreComun": "Vencejo pálido",
+    "grupo": "OTRAS AVES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Aquila chrysaetos",
+    "nombreComun": "Águila real",
+    "grupo": "RAPACES DIURNAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Aquila fasciata",
+    "nombreComun": "Águila perdicera",
+    "grupo": "RAPACES DIURNAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "en peligro de extinción"
+  },
+  {
+    "nombreCientifico": "Aquila pennata",
+    "nombreComun": "Águila calzada",
+    "grupo": "RAPACES DIURNAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Ardea cinerea",
+    "nombreComun": "Garza real",
+    "grupo": "CICONIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Asio otus",
+    "nombreComun": "Búho chico",
+    "grupo": "RAPACES NOCTURNAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Atelerix albiventris",
+    "nombreComun": "Erizo de vientre blanco / Erizo pigmeo europeo",
+    "grupo": "MAMÍFEROS",
+    "origen": "Exótico",
+    "tipo": "invasor",
+    "cites": false,
+    "gradoProteccion": "Invasora"
+  },
+  {
+    "nombreCientifico": "Atelerix algirus",
+    "nombreComun": "Erizo moruno",
+    "grupo": "MAMÍFEROS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Athene noctua",
+    "nombreComun": "Mochuelo común",
+    "grupo": "RAPACES NOCTURNAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Aves indet.",
+    "nombreComun": "Ave indeterminada",
+    "grupo": "OTRAS AVES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Bubo bubo",
+    "nombreComun": "Búho real",
+    "grupo": "RAPACES NOCTURNAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Bubulcus ibis",
+    "nombreComun": "Garcilla bueyera",
+    "grupo": "CICONIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Buteo buteo",
+    "nombreComun": "Ratonero común",
+    "grupo": "RAPACES DIURNAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Cairina moschata",
+    "nombreComun": "Pato mudo / Pato bragado",
+    "grupo": "ANATIDAS",
+    "origen": "Doméstico",
+    "tipo": "doméstico",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Calidris ferruginea",
+    "nombreComun": "Correlimos zarapitín",
+    "grupo": "LIMÍCOLAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Calidris pugnax",
+    "nombreComun": "Combatiente",
+    "grupo": "LIMÍCOLAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Capra pyrenaica",
+    "nombreComun": "Cabra montés",
+    "grupo": "UNGULADOS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Capreolus capreolus",
+    "nombreComun": "Corzo",
+    "grupo": "UNGULADOS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Caprimulgus europaeus",
+    "nombreComun": "Chotacabras europeo",
+    "grupo": "OTRAS AVES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Caprimulgus ruficollis",
+    "nombreComun": "Chotacabras pardo",
+    "grupo": "OTRAS AVES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Carduelis cannabina",
+    "nombreComun": "Pardillo común",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Carduelis carduelis",
+    "nombreComun": "Jilguero europeo",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Caretta caretta",
+    "nombreComun": "Tortuga boba",
+    "grupo": "REPTILES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "Vulnerable"
+  },
+  {
+    "nombreCientifico": "Carassius auratus",
+    "nombreComun": "Carpín dorado",
+    "grupo": "PECES",
+    "origen": "Exótico",
+    "tipo": "exótico",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Certhia brachydactyla",
+    "nombreComun": "Agateador común",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Chelydra serpentina",
+    "nombreComun": "Tortuga mordedora",
+    "grupo": "REPTILES",
+    "origen": "Exótico",
+    "tipo": "exótico",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Chloris chloris",
+    "nombreComun": "Verderón común",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Chroicocephalus ridibundus",
+    "nombreComun": "Gaviota reidora",
+    "grupo": "AVES MARINAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Ciconia ciconia",
+    "nombreComun": "Cigüeña blanca",
+    "grupo": "CICONIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Ciconia nigra",
+    "nombreComun": "Cigüeña negra",
+    "grupo": "CICONIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "Vulnerable"
+  },
+  {
+    "nombreCientifico": "Circaetus gallicus",
+    "nombreComun": "Águila culebrera",
+    "grupo": "RAPACES DIURNAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Circus aeruginosus",
+    "nombreComun": "Aguilucho lagunero occidental",
+    "grupo": "RAPACES DIURNAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "En peligro de extinción CV"
+  },
+  {
+    "nombreCientifico": "Coccothraustes coccothraustes",
+    "nombreComun": "Picogordo",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Columba livia var.domestica",
+    "nombreComun": "Paloma bravía var. doméstica",
+    "grupo": "OTRAS AVES",
+    "origen": "Doméstico",
+    "tipo": "doméstico",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Columba palumbus",
+    "nombreComun": "Paloma torcaz",
+    "grupo": "OTRAS AVES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Corvus corax",
+    "nombreComun": "Cuervo común",
+    "grupo": "CÓRVIDOS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Corvus corone",
+    "nombreComun": "Corneja",
+    "grupo": "CÓRVIDOS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Corvus monedula",
+    "nombreComun": "Grajilla",
+    "grupo": "CÓRVIDOS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Coturnix coturnix",
+    "nombreComun": "Codorniz",
+    "grupo": "GALLIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Crex crex",
+    "nombreComun": "Guión de codornices",
+    "grupo": "GRUIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Crocidura russula",
+    "nombreComun": "Musaraña gris",
+    "grupo": "MAMÍFEROS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "Protegida CV"
+  },
+  {
+    "nombreCientifico": "Cuculus canorus",
+    "nombreComun": "Cuco",
+    "grupo": "OTRAS AVES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Curruca iberae",
+    "nombreComun": "Curruca carrasqueña",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Delichon urbicum",
+    "nombreComun": "Avión común",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Egretta alba",
+    "nombreComun": "Garceta grande",
+    "grupo": "PELECANIFORME",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Egretta garzetta",
+    "nombreComun": "Garceta común",
+    "grupo": "PELECANIFORME",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Eliomys quercinus",
+    "nombreComun": "Lirón careto",
+    "grupo": "MAMÍFEROS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "Protegida CV"
+  },
+  {
+    "nombreCientifico": "Emberiza schoeniclus whiterby",
+    "nombreComun": "Escribano palustre",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "En peligro de extinción"
+  },
+  {
+    "nombreCientifico": "Emberiza schoeniclus lusitanica",
+    "nombreComun": "Escribano palustre",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "En peligro de extinción"
+  },
+  {
+    "nombreCientifico": "Emys orbicularis",
+    "nombreComun": "Galápago europeo",
+    "grupo": "REPTILES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "En peligro de extinción CV"
+  },
+  {
+    "nombreCientifico": "Eptesicus isabelinus",
+    "nombreComun": "Murciélago hortelano mediterráneo",
+    "grupo": "MURCIÉLAGOS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Erinaceus europaeus",
+    "nombreComun": "Erizo europeo",
+    "grupo": "INSECTÍVOROS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "Protegida CV"
+  },
+  {
+    "nombreCientifico": "Erithacus rubecula",
+    "nombreComun": "Petirrojo",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Estrilda astrild",
+    "nombreComun": "Estrilda o Pico de coral común",
+    "grupo": "PASSERIFORMES",
+    "origen": "Exótico",
+    "tipo": "invasor",
+    "cites": false,
+    "gradoProteccion": "Invasora"
+  },
+  {
+    "nombreCientifico": "Falco naumanni",
+    "nombreComun": "Cernícalo primilla",
+    "grupo": "RAPACES DIURNAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "Vulnerable CV"
+  },
+  {
+    "nombreCientifico": "Falco peregrinus",
+    "nombreComun": "Halcón peregrino",
+    "grupo": "RAPACES DIURNAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Falco subbuteo",
+    "nombreComun": "Alcotán europeo",
+    "grupo": "RAPACES DIURNAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Falco tinnunculus",
+    "nombreComun": "Cernícalo común",
+    "grupo": "RAPACES DIURNAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Felis catus",
+    "nombreComun": "Gato doméstico",
+    "grupo": "CARNÍVOROS",
+    "origen": "Doméstico",
+    "tipo": "doméstico",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Felis silvestris",
+    "nombreComun": "Gato montés",
+    "grupo": "CARNÍVOROS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Ficedula hypoleuca",
+    "nombreComun": "Papamoscas cerrojillo",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Fulica cristata",
+    "nombreComun": "Focha cornuda o moruna",
+    "grupo": "GRUIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "En peligro de extinción"
+  },
+  {
+    "nombreCientifico": "Gallinula chloropus",
+    "nombreComun": "Gallineta común o polla de agua",
+    "grupo": "GRUIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Gallotia sp.",
+    "nombreComun": "Lagarto canario",
+    "grupo": "REPTILES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Gelochelidon nilotica",
+    "nombreComun": "Pagaza piconegra",
+    "grupo": "AVES MARINAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Genetta genetta",
+    "nombreComun": "Gineta común",
+    "grupo": "CARNÍVOROS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Graptemys ouachitensis",
+    "nombreComun": "Tortuga mapa",
+    "grupo": "REPTILES",
+    "origen": "Exótico",
+    "tipo": "exótico",
+    "cites": true,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Graptemys pseudogeographica kohnii",
+    "nombreComun": "Tortuga mapa",
+    "grupo": "REPTILES",
+    "origen": "Exótico",
+    "tipo": "exótico",
+    "cites": true,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Graptemys pseudogeographica pseudogeographica",
+    "nombreComun": "Tortuga mapa",
+    "grupo": "REPTILES",
+    "origen": "Exótico",
+    "tipo": "exótico",
+    "cites": true,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Graptemys sp.",
+    "nombreComun": "Tortuga mapa sin identificar",
+    "grupo": "REPTILES",
+    "origen": "Exótico",
+    "tipo": "exótico",
+    "cites": true,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Grus grus",
+    "nombreComun": "Grulla común",
+    "grupo": "GRUIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Gyps fulvus",
+    "nombreComun": "Buitre leonado",
+    "grupo": "RAPACES DIURNAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Hemorrhois hippocrepis",
+    "nombreComun": "Culebra de herradura",
+    "grupo": "REPTILES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Himantopus himantopus",
+    "nombreComun": "Cigüeñuela común",
+    "grupo": "LIMÍCOLAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Hirundo rustica",
+    "nombreComun": "Golondrina común",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Ichthyaetus audouinii",
+    "nombreComun": "Gaviota de Audouin",
+    "grupo": "AVES MARINAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "Vulnerable"
+  },
+  {
+    "nombreCientifico": "Ixobrychus minutus",
+    "nombreComun": "Avetorillo común",
+    "grupo": "CICONIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Kinosternon flavescens",
+    "nombreComun": "Tortuga de pantano amarilla",
+    "grupo": "REPTILES",
+    "origen": "Exótico",
+    "tipo": "exótico",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Lanius excubitor",
+    "nombreComun": "Alcaudón norteño",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Lanius meridionalis",
+    "nombreComun": "Alcaudón real meridional",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Lanius senator",
+    "nombreComun": "Alcaudón común",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Larus fuscus",
+    "nombreComun": "Gaviota sombría",
+    "grupo": "AVES MARINAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Larus melanocephalus",
+    "nombreComun": "Gaviota cabecinegra",
+    "grupo": "AVES MARINAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Larus michahellis",
+    "nombreComun": "Gaviota patiamarilla",
+    "grupo": "AVES MARINAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Lepus granatensis",
+    "nombreComun": "Liebre ibérica",
+    "grupo": "LAGOMORFOS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Lophophanes cristatus",
+    "nombreComun": "Herrerillo capuchino",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Loxia curvirostra",
+    "nombreComun": "Piquituerto común",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Malpolon monspessulanum",
+    "nombreComun": "Culebra bastarda",
+    "grupo": "REPTILES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "Protegida CV"
+  },
+  {
+    "nombreCientifico": "Marmaronetta angustirostris",
+    "nombreComun": "Cerceta pardilla",
+    "grupo": "ANATIDAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "En peligro de extinción"
+  },
+  {
+    "nombreCientifico": "Martes foina",
+    "nombreComun": "Garduña",
+    "grupo": "CARNÍVOROS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "Protegida CV"
+  },
+  {
+    "nombreCientifico": "Mauremys leprosa",
+    "nombreComun": "Galápago leproso",
+    "grupo": "REPTILES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Mauremys reevesii",
+    "nombreComun": "Galápago chino de tres crestas",
+    "grupo": "REPTILES",
+    "origen": "Exótico",
+    "tipo": "exótico",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Mauremys sinensis",
+    "nombreComun": "Tortuga china de agua",
+    "grupo": "REPTILES",
+    "origen": "Exótico",
+    "tipo": "exótico",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Meles meles",
+    "nombreComun": "Tejón común, europeo o eurasiático",
+    "grupo": "CARNÍVOROS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "Protegida CV"
+  },
+  {
+    "nombreCientifico": "Merops apiaster",
+    "nombreComun": "Abejaruco común",
+    "grupo": "OTRAS AVES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Milvus migrans",
+    "nombreComun": "Milano negro",
+    "grupo": "RAPACES DIURNAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Misgurnus anguillicaudatus",
+    "nombreComun": "Dojo",
+    "grupo": "PECES",
+    "origen": "Exótico",
+    "tipo": "exótico",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Morelia spilota",
+    "nombreComun": "Pitón alfombra",
+    "grupo": "REPTILES",
+    "origen": "Exótico",
+    "tipo": "exótico",
+    "cites": true,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Morus bassanus",
+    "nombreComun": "Alcatraz atlántico",
+    "grupo": "AVES MARINAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Motacilla alba",
+    "nombreComun": "Lavandera blanca",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Muscicapa striata",
+    "nombreComun": "Papamoscas gris",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Mustela nivalis",
+    "nombreComun": "Comadreja",
+    "grupo": "MAMÍFEROS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "Protegida CV"
+  },
+  {
+    "nombreCientifico": "Myiopsitta monachus",
+    "nombreComun": "Cotorra argentina",
+    "grupo": "OTRAS AVES",
+    "origen": "Exótico",
+    "tipo": "invasor",
+    "cites": false,
+    "gradoProteccion": "Invasora/ Tutelada CV"
+  },
+  {
+    "nombreCientifico": "Neophron percnopterus",
+    "nombreComun": "Alimoche común",
+    "grupo": "RAPACES DIURNAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "Vulnerable"
+  },
+  {
+    "nombreCientifico": "Neovison vison",
+    "nombreComun": "Visón americano",
+    "grupo": "MAMÍFEROS",
+    "origen": "Exótico",
+    "tipo": "invasor",
+    "cites": false,
+    "gradoProteccion": "Invasora/ Tutelada CV"
+  },
+  {
+    "nombreCientifico": "Netta rufina",
+    "nombreComun": "Pato colorado",
+    "grupo": "ANATIDAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Nycticorax nycticorax",
+    "nombreComun": "Martinete común",
+    "grupo": "CICONIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Oriolus oriolus",
+    "nombreComun": "Oropéndola",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Oryctolagus cuniculus",
+    "nombreComun": "Conejo europeo",
+    "grupo": "LAGOMORFOS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Otus scops",
+    "nombreComun": "Autillo europeo",
+    "grupo": "RAPACES NOCTURNAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Oxyura leucocephala",
+    "nombreComun": "Malvasía cabeciblanca",
+    "grupo": "ANATIDAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "En peligro de extinción"
+  },
+  {
+    "nombreCientifico": "Panurus biarmicus",
+    "nombreComun": "Bigotudo",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "En peligro de extinción"
+  },
+  {
+    "nombreCientifico": "Parus major",
+    "nombreComun": "Carbonero común",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Passer domesticus",
+    "nombreComun": "Gorrión común",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "Tutelada CV"
+  },
+  {
+    "nombreCientifico": "Passer montanus",
+    "nombreComun": "Gorrión molinero",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Pelophylax perezi",
+    "nombreComun": "Rana verde o rana común",
+    "grupo": "ANFIBIOS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "Protegida CV"
+  },
+  {
+    "nombreCientifico": "Periparus ater",
+    "nombreComun": "Carbonero garrapinos",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Pernis apivorus",
+    "nombreComun": "Halcón abejero",
+    "grupo": "RAPACES DIURNAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Phalacrocorax carbo",
+    "nombreComun": "Cormorán grande",
+    "grupo": "AVES MARINAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Phasianus colchicus",
+    "nombreComun": "Faisán común",
+    "grupo": "GALLIFORMES",
+    "origen": "Doméstico",
+    "tipo": "doméstico",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Phoenicopterus roseus",
+    "nombreComun": "Flamenco común",
+    "grupo": "CICONIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Phoenicurus ochruros",
+    "nombreComun": "Colirrojo tizón",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Phylloscopus collybita",
+    "nombreComun": "Mosquitero común",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Phylloscopus trochilus",
+    "nombreComun": "Mosquitero musical",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Pica pica",
+    "nombreComun": "Urraca",
+    "grupo": "CÓRVIDOS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Picus viridis",
+    "nombreComun": "Pito real",
+    "grupo": "OTRAS AVES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Pipistrellus kuhlii",
+    "nombreComun": "Murciélago de borde claro",
+    "grupo": "MURCIÉLAGOS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Pipistrellus pipistrellus",
+    "nombreComun": "Murciélago común",
+    "grupo": "MURCIÉLAGOS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Pipistrellus pygmaeus",
+    "nombreComun": "Murciélago de Cabrera",
+    "grupo": "MURCIÉLAGOS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Plecotus austriacus",
+    "nombreComun": "Murciélago orejudo meridional",
+    "grupo": "MURCIÉLAGOS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Plegadis falcinellus",
+    "nombreComun": "Morito común",
+    "grupo": "PELECANIFORME",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Porphyrio porphyrio",
+    "nombreComun": "Calamón común",
+    "grupo": "GRUIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Psittacula krameri",
+    "nombreComun": "Cotorra de Kramer",
+    "grupo": "OTRAS AVES",
+    "origen": "Exótico",
+    "tipo": "invasor",
+    "cites": false,
+    "gradoProteccion": "Invasora/ Tutelada CV"
+  },
+  {
+    "nombreCientifico": "Psittacara erythrogenys",
+    "nombreComun": "Aratinga de Guayaquil",
+    "grupo": "PSITTACIFORMES",
+    "origen": "Exótico",
+    "tipo": "exótico",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Pseudemys concinna",
+    "nombreComun": "Tortuga jeroglífico",
+    "grupo": "REPTILES",
+    "origen": "Exótico",
+    "tipo": "exótico",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Pseudemys nelsoni",
+    "nombreComun": "Tortuga de vientre rojo",
+    "grupo": "REPTILES",
+    "origen": "Exótico",
+    "tipo": "exótico",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Pseudemys sp.",
+    "nombreComun": "Galápago exótico sin concretar",
+    "grupo": "REPTILES",
+    "origen": "Exótico",
+    "tipo": "exótico",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Ptyonoprogne rupestris",
+    "nombreComun": "Avión roquero",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Puffinus mauretanicus",
+    "nombreComun": "Pardela balear",
+    "grupo": "AVES MARINAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "En peligro de extinción"
+  },
+  {
+    "nombreCientifico": "Pycnonotus jocosus",
+    "nombreComun": "Bulbul orfeo",
+    "grupo": "PASSERIFORMES",
+    "origen": "Exótico",
+    "tipo": "invasor",
+    "cites": false,
+    "gradoProteccion": "Invasora"
+  },
+  {
+    "nombreCientifico": "Rattus rattus",
+    "nombreComun": "Rata negra o rata común",
+    "grupo": "MAMÍFEROS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Reptilia indet.",
+    "nombreComun": "Reptil indeterminado",
+    "grupo": "REPTILES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Rhinechis scalaris",
+    "nombreComun": "Culebra de escalera",
+    "grupo": "REPTILES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Sciurus vulgaris",
+    "nombreComun": "Ardilla roja",
+    "grupo": "ROEDORES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Scolopax rusticola",
+    "nombreComun": "Chocha perdiz o becada",
+    "grupo": "LIMÍCOLAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Serinus canaria",
+    "nombreComun": "Canario doméstico",
+    "grupo": "PASSERIFORMES",
+    "origen": "Doméstico",
+    "tipo": "doméstico",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Serinus serinus",
+    "nombreComun": "Verdecillo",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Spatula querquedula",
+    "nombreComun": "Cerceta carretona",
+    "grupo": "ANATIDAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Sterna hirundo",
+    "nombreComun": "Charrán común",
+    "grupo": "AVES MARINAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "Vulnerable CV"
+  },
+  {
+    "nombreCientifico": "Streptopelia decaocto",
+    "nombreComun": "Tórtola turca",
+    "grupo": "OTRAS AVES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Streptopelia turtur",
+    "nombreComun": "Tórtola europea",
+    "grupo": "OTRAS AVES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Strix aluco",
+    "nombreComun": "Cárabo común",
+    "grupo": "RAPACES NOCTURNAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Sturnus unicolor",
+    "nombreComun": "Estornino negro",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Sturnus vulgaris",
+    "nombreComun": "Estornino pinto",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Sus scrofa",
+    "nombreComun": "Jabalí",
+    "grupo": "UNGULADOS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Sylvia atricapilla",
+    "nombreComun": "Curruca capirotada",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Sylvia melanocephala",
+    "nombreComun": "Curruca cabecinegra",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Tachybaptus ruficollis",
+    "nombreComun": "Zampullín común",
+    "grupo": "SOMORMUJOS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Tachymarptis melba",
+    "nombreComun": "Vencejo real",
+    "grupo": "OTRAS AVES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Tadarida teniotis",
+    "nombreComun": "Murciélago rabudo",
+    "grupo": "MURCIÉLAGOS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Tadorna tadorna",
+    "nombreComun": "Tarro blanco",
+    "grupo": "ANATIDAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Taeniopygia guttata",
+    "nombreComun": "Diamante mandarín",
+    "grupo": "OTRAS AVES",
+    "origen": "Exótico",
+    "tipo": "exótico",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Tarentola mauritanica",
+    "nombreComun": "Salamanquesa común",
+    "grupo": "REPTILES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Testudo graeca",
+    "nombreComun": "Tortuga mora",
+    "grupo": "REPTILES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "Vulnerable"
+  },
+  {
+    "nombreCientifico": "Testudo hermanni hermanni",
+    "nombreComun": "Tortuga mediterránea",
+    "grupo": "REPTILES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "En peligro de extinción"
+  },
+  {
+    "nombreCientifico": "Testudo hermanni híbrida",
+    "nombreComun": "Tortuga mediterránea",
+    "grupo": "REPTILES",
+    "origen": "Exótico",
+    "tipo": "exótico",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Testudo horsfieldii",
+    "nombreComun": "Tortuga rusa",
+    "grupo": "REPTILES",
+    "origen": "Exótico",
+    "tipo": "exótico",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Thalasseus sandvicensis",
+    "nombreComun": "Charrán patinegro",
+    "grupo": "AVES MARINAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Timon lepidus",
+    "nombreComun": "Lagarto ocelado",
+    "grupo": "REPTILES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Timon nevadensis",
+    "nombreComun": "Lagarto bético",
+    "grupo": "REPTILES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Trachemys emolli",
+    "nombreComun": "Tortuga nicaragüense",
+    "grupo": "REPTILES",
+    "origen": "Exótico",
+    "tipo": "exótico",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Trachemys scripta elegans",
+    "nombreComun": "Tortuga de orejas rojas o galápago americano",
+    "grupo": "REPTILES",
+    "origen": "Exótico",
+    "tipo": "invasor",
+    "cites": false,
+    "gradoProteccion": "Invasora"
+  },
+  {
+    "nombreCientifico": "Trachemys scripta scripta",
+    "nombreComun": "Tortuga de orejas amarillas o galápago americano",
+    "grupo": "REPTILES",
+    "origen": "Exótico",
+    "tipo": "invasor",
+    "cites": false,
+    "gradoProteccion": "Invasora"
+  },
+  {
+    "nombreCientifico": "Trachemys scripta ssp.",
+    "nombreComun": "Galápago americano Híbrido",
+    "grupo": "REPTILES",
+    "origen": "Exótico",
+    "tipo": "invasor",
+    "cites": false,
+    "gradoProteccion": "Invasora"
+  },
+  {
+    "nombreCientifico": "Trachemys scripta troosti",
+    "nombreComun": "Tortuga de Cumberland o galápago americano",
+    "grupo": "REPTILES",
+    "origen": "Exótico",
+    "tipo": "invasor",
+    "cites": false,
+    "gradoProteccion": "Invasora"
+  },
+  {
+    "nombreCientifico": "Trachemys sp.",
+    "nombreComun": "Galápago americano sin concretar",
+    "grupo": "REPTILES",
+    "origen": "Exótico",
+    "tipo": "invasor",
+    "cites": false,
+    "gradoProteccion": "Invasora"
+  },
+  {
+    "nombreCientifico": "Trachemys venusta",
+    "nombreComun": "Hicotea",
+    "grupo": "REPTILES",
+    "origen": "Exótico",
+    "tipo": "exótico",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Tringa totanus",
+    "nombreComun": "Archibebe común",
+    "grupo": "LIMÍCOLAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Turdus merula",
+    "nombreComun": "Mirlo común",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Turdus philomelos",
+    "nombreComun": "Zorzal común",
+    "grupo": "PASSERIFORMES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Tyto alba alba",
+    "nombreComun": "Lechuza común",
+    "grupo": "RAPACES NOCTURNAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "Vulnerable CV"
+  },
+  {
+    "nombreCientifico": "Upupa epops",
+    "nombreComun": "Abubilla",
+    "grupo": "OTRAS AVES",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": "L.e.s.r.p.e"
+  },
+  {
+    "nombreCientifico": "Vanellus vanellus",
+    "nombreComun": "Avefría europea",
+    "grupo": "LIMÍCOLAS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  },
+  {
+    "nombreCientifico": "Vulpes vulpes",
+    "nombreComun": "Zorro común",
+    "grupo": "MAMÍFEROS",
+    "origen": "Nativa",
+    "tipo": "silvestre_autóctono",
+    "cites": false,
+    "gradoProteccion": null
+  }
+]
