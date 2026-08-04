@@ -16,10 +16,8 @@ con el sistema de recogidas.
 const app =
   document.getElementById("app");
 
-
 const progressText =
   document.getElementById("progress-text");
-
 
 const progressFill =
   document.getElementById("progress-fill");
@@ -30,6 +28,8 @@ let historial = [];
 let pantallaActual = "inicio";
 
 let especies = [];
+
+let especieSeleccionada = null;
 
 
 /*
@@ -44,7 +44,9 @@ async function cargarEspecies() {
   try {
 
     const respuesta =
-      await fetch("./especies.json");
+      await fetch("./especies.json", {
+        cache: "no-cache"
+      });
 
     if (!respuesta.ok) {
 
@@ -57,11 +59,6 @@ async function cargarEspecies() {
     const datos =
       await respuesta.json();
 
-
-    /*
-    Comprobamos que el JSON contiene
-    realmente una lista de especies.
-    */
 
     if (!Array.isArray(datos)) {
 
@@ -103,27 +100,7 @@ FUNCIONES GENERALES
 */
 
 
-function mostrarPantalla(id) {
-
-  /*
-  Evitamos guardar la misma pantalla
-  consecutivamente en el historial.
-  */
-
-  if (
-    pantallaActual !== id
-  ) {
-
-    historial.push(
-      pantallaActual
-    );
-
-  }
-
-
-  pantallaActual =
-    id;
-
+function mostrarPantalla(id, guardarHistorial = true) {
 
   const pantalla =
     pantallas[id];
@@ -141,11 +118,69 @@ function mostrarPantalla(id) {
   }
 
 
+  /*
+  Guardamos la pantalla actual
+  para poder volver atrás.
+  */
+
+  if (
+    guardarHistorial &&
+    pantallaActual !== id
+  ) {
+
+    historial.push(
+      pantallaActual
+    );
+
+  }
+
+
+  pantallaActual =
+    id;
+
+
+  renderActual();
+
+}
+
+
+/*
+=========================================================
+RENDERIZAR PANTALLA ACTUAL
+=========================================================
+*/
+
+
+function renderActual() {
+
+  const pantalla =
+    pantallas[pantallaActual];
+
+
+  if (!pantalla) {
+
+    console.error(
+      "Pantalla no encontrada:",
+      pantallaActual
+    );
+
+    return;
+
+  }
+
+
   app.innerHTML =
     "";
 
 
   actualizarProgreso();
+
+
+  /*
+  =======================================================
+  TÍTULO
+  =======================================================
+  */
 
 
   const titulo =
@@ -159,6 +194,13 @@ function mostrarPantalla(id) {
   app.appendChild(
     titulo
   );
+
+
+  /*
+  =======================================================
+  DESCRIPCIÓN
+  =======================================================
+  */
 
 
   if (
@@ -203,39 +245,51 @@ function mostrarPantalla(id) {
       "options";
 
 
-    pantalla.opciones.forEach(
-      opcion => {
+    if (
+      Array.isArray(
+        pantalla.opciones
+      )
+    ) {
 
-        const boton =
-          document.createElement("button");
+      pantalla.opciones.forEach(
+        opcion => {
 
-
-        boton.className =
-          "option-btn";
-
-
-        boton.innerHTML =
-          opcion.texto ||
-          opcion.text ||
-          "";
+          const boton =
+            document.createElement("button");
 
 
-        boton.onclick =
-          () => {
-
-            mostrarPantalla(
-              opcion.siguiente
-            );
-
-          };
+          boton.className =
+            "option-btn";
 
 
-        opciones.appendChild(
-          boton
-        );
+          boton.type =
+            "button";
 
-      }
-    );
+
+          boton.innerHTML =
+            opcion.texto ||
+            opcion.text ||
+            "";
+
+
+          boton.onclick =
+            () => {
+
+              mostrarPantalla(
+                opcion.siguiente
+              );
+
+            };
+
+
+          opciones.appendChild(
+            boton
+          );
+
+        }
+      );
+
+    }
 
 
     app.appendChild(
@@ -269,7 +323,8 @@ function mostrarPantalla(id) {
 
 
     resultado.innerHTML =
-      pantalla.contenido;
+      pantalla.contenido ||
+      "";
 
 
     app.appendChild(
@@ -319,7 +374,8 @@ function mostrarPantalla(id) {
 
 
     resultado.innerHTML =
-      pantalla.contenido;
+      pantalla.contenido ||
+      "";
 
 
     app.appendChild(
@@ -348,6 +404,13 @@ function mostrarPantalla(id) {
     );
 
   }
+
+
+  /*
+  =======================================================
+  NAVEGACIÓN
+  =======================================================
+  */
 
 
   crearNavegacion();
@@ -385,6 +448,10 @@ function crearNavegacion() {
     "btn btn-secondary";
 
 
+  botonAtras.type =
+    "button";
+
+
   botonAtras.textContent =
     "← Atrás";
 
@@ -418,6 +485,10 @@ function crearNavegacion() {
 
   botonInicio.className =
     "btn btn-secondary";
+
+
+  botonInicio.type =
+    "button";
 
 
   botonInicio.textContent =
@@ -474,220 +545,6 @@ function volverAtras() {
 
 /*
 =========================================================
-RENDERIZAR PANTALLA ACTUAL
-=========================================================
-*/
-
-
-function renderActual() {
-
-  const id =
-    pantallaActual;
-
-
-  const pantalla =
-    pantallas[id];
-
-
-  if (!pantalla) {
-
-    console.error(
-      "Pantalla no encontrada:",
-      id
-    );
-
-    return;
-
-  }
-
-
-  app.innerHTML =
-    "";
-
-
-  actualizarProgreso();
-
-
-  const titulo =
-    document.createElement("h2");
-
-
-  titulo.textContent =
-    pantalla.titulo;
-
-
-  app.appendChild(
-    titulo
-  );
-
-
-  if (
-    pantalla.descripcion
-  ) {
-
-    const descripcion =
-      document.createElement("p");
-
-
-    descripcion.className =
-      "description";
-
-
-    descripcion.innerHTML =
-      pantalla.descripcion;
-
-
-    app.appendChild(
-      descripcion
-    );
-
-  }
-
-
-  /*
-  PREGUNTA
-  */
-
-
-  if (
-    pantalla.tipo === "pregunta"
-  ) {
-
-    const opciones =
-      document.createElement("div");
-
-
-    opciones.className =
-      "options";
-
-
-    pantalla.opciones.forEach(
-      opcion => {
-
-        const boton =
-          document.createElement("button");
-
-
-        boton.className =
-          "option-btn";
-
-
-        boton.innerHTML =
-          opcion.texto ||
-          opcion.text ||
-          "";
-
-
-        boton.onclick =
-          () => {
-
-            mostrarPantalla(
-              opcion.siguiente
-            );
-
-          };
-
-
-        opciones.appendChild(
-          boton
-        );
-
-      }
-    );
-
-
-    app.appendChild(
-      opciones
-    );
-
-  }
-
-
-  /*
-  RESULTADO
-  */
-
-
-  if (
-    pantalla.tipo === "resultado"
-  ) {
-
-    const resultado =
-      document.createElement("div");
-
-
-    resultado.className =
-      "result " +
-      (
-        pantalla.clase ||
-        ""
-      );
-
-
-    resultado.innerHTML =
-      pantalla.contenido;
-
-
-    app.appendChild(
-      resultado
-    );
-
-  }
-
-
-  /*
-  BUSCADOR
-  */
-
-
-  if (
-    pantalla.tipo === "buscador"
-  ) {
-
-    crearBuscador();
-
-  }
-
-
-  /*
-  FIN
-  */
-
-
-  if (
-    pantalla.tipo === "fin"
-  ) {
-
-    const resultado =
-      document.createElement("div");
-
-
-    resultado.className =
-      "result " +
-      (
-        pantalla.clase ||
-        ""
-      );
-
-
-    resultado.innerHTML =
-      pantalla.contenido;
-
-
-    app.appendChild(
-      resultado
-    );
-
-  }
-
-
-  crearNavegacion();
-
-}
-
-
-/*
-=========================================================
 REINICIAR
 =========================================================
 */
@@ -703,9 +560,15 @@ function reiniciar() {
     "inicio";
 
 
-  mostrarPantalla(
-    "inicio"
-  );
+  especieSeleccionada =
+    null;
+
+
+  window.especieSeleccionada =
+    null;
+
+
+  renderActual();
 
 }
 
@@ -723,6 +586,10 @@ function actualizarProgreso() {
 
     inicio: 0,
 
+    identificacion: 0,
+
+    buscador: 0,
+
     tipoAnimal: 1,
 
     vivoMuerto: 2,
@@ -735,8 +602,7 @@ function actualizarProgreso() {
 
 
   const paso =
-    pasos[pantallaActual] ??
-    1;
+    pasos[pantallaActual] ?? 1;
 
 
   const total =
@@ -751,17 +617,181 @@ function actualizarProgreso() {
     100;
 
 
-  progressFill.style.width =
-    porcentaje +
-    "%";
+  if (
+    progressFill
+  ) {
+
+    progressFill.style.width =
+      porcentaje +
+      "%";
+
+  }
 
 
-  progressText.textContent =
-    paso === 0
+  if (
+    progressText
+  ) {
 
-      ? "Inicio"
+    progressText.textContent =
+      paso === 0
 
-      : `Paso ${paso} de ${total}`;
+        ? "Inicio"
+
+        : `Paso ${paso} de ${total}`;
+
+  }
+
+}
+
+
+/*
+=========================================================
+OBTENER VALOR DE UN CAMPO
+=========================================================
+
+Permite que el buscador funcione aunque el JSON
+utilice diferentes nombres de campo.
+
+=========================================================
+*/
+
+
+function obtenerCampo(
+  objeto,
+  posiblesCampos
+) {
+
+  if (
+    !objeto ||
+    typeof objeto !== "object"
+  ) {
+
+    return "";
+
+  }
+
+
+  for (
+    const campo of posiblesCampos
+  ) {
+
+    if (
+      objeto[campo] !== undefined &&
+      objeto[campo] !== null &&
+      String(
+        objeto[campo]
+      ).trim() !== ""
+    ) {
+
+      return String(
+        objeto[campo]
+      ).trim();
+
+    }
+
+  }
+
+
+  return "";
+
+}
+
+
+/*
+=========================================================
+OBTENER NOMBRE COMÚN
+=========================================================
+*/
+
+
+function obtenerNombreComun(
+  especie
+) {
+
+  return obtenerCampo(
+    especie,
+    [
+      "nombre_comun",
+      "nombreComun",
+      "nombre",
+      "especie",
+      "common_name",
+      "commonName"
+    ]
+  );
+
+}
+
+
+/*
+=========================================================
+OBTENER NOMBRE CIENTÍFICO
+=========================================================
+*/
+
+
+function obtenerNombreCientifico(
+  especie
+) {
+
+  return obtenerCampo(
+    especie,
+    [
+      "nombre_cientifico",
+      "nombreCientifico",
+      "cientifico",
+      "nombre_cientifico",
+      "scientific_name",
+      "scientificName"
+    ]
+  );
+
+}
+
+
+/*
+=========================================================
+OBTENER GRUPO
+=========================================================
+*/
+
+
+function obtenerGrupo(
+  especie
+) {
+
+  return obtenerCampo(
+    especie,
+    [
+      "grupo",
+      "grupo_taxonomico",
+      "grupoTaxonomico",
+      "taxon",
+      "tipo"
+    ]
+  );
+
+}
+
+
+/*
+=========================================================
+OBTENER ORIGEN
+=========================================================
+*/
+
+
+function obtenerOrigen(
+  especie
+) {
+
+  return obtenerCampo(
+    especie,
+    [
+      "origen",
+      "procedencia"
+    ]
+  );
 
 }
 
@@ -875,22 +905,13 @@ function crearBuscador() {
         );
 
 
-      /*
-      Limpiamos resultados anteriores.
-      */
-
-
       resultados.innerHTML =
         "";
 
 
-      /*
-      Si no hay texto,
-      no mostramos resultados.
-      */
-
-
-      if (!texto) {
+      if (
+        !texto
+      ) {
 
         return;
 
@@ -898,7 +919,7 @@ function crearBuscador() {
 
 
       /*
-      Si el JSON no se ha podido cargar.
+      COMPROBAMOS QUE EL JSON ESTÁ CARGADO
       */
 
 
@@ -949,13 +970,25 @@ function crearBuscador() {
 
             const nombreComun =
               normalizar(
-                especie.nombre_comun
+                obtenerNombreComun(
+                  especie
+                )
               );
 
 
             const nombreCientifico =
               normalizar(
-                especie.nombre_cientifico
+                obtenerNombreCientifico(
+                  especie
+                )
+              );
+
+
+            const grupo =
+              normalizar(
+                obtenerGrupo(
+                  especie
+                )
               );
 
 
@@ -968,6 +1001,12 @@ function crearBuscador() {
               ||
 
               nombreCientifico.includes(
+                texto
+              )
+
+              ||
+
+              grupo.includes(
                 texto
               )
 
@@ -1032,22 +1071,30 @@ function crearBuscador() {
 
 
           const nombreComun =
-            especie.nombre_comun ||
+            obtenerNombreComun(
+              especie
+            ) ||
             "Nombre común no disponible";
 
 
           const nombreCientifico =
-            especie.nombre_cientifico ||
+            obtenerNombreCientifico(
+              especie
+            ) ||
             "Nombre científico no disponible";
 
 
           const grupo =
-            especie.grupo ||
+            obtenerGrupo(
+              especie
+            ) ||
             "No especificado";
 
 
           const origen =
-            especie.origen ||
+            obtenerOrigen(
+              especie
+            ) ||
             "No especificado";
 
 
@@ -1064,9 +1111,7 @@ function crearBuscador() {
 
 
           /*
-          =================================================
           HTML DEL RESULTADO
-          =================================================
           */
 
 
@@ -1153,8 +1198,7 @@ function crearBuscador() {
 
 
           /*
-          Al pulsar sobre el resultado
-          seleccionamos la especie.
+          SELECCIONAR ESPECIE
           */
 
 
@@ -1180,6 +1224,41 @@ function crearBuscador() {
     }
   );
 
+
+  /*
+  =======================================================
+  PERMITIR ENTER
+  =======================================================
+  */
+
+
+  input.addEventListener(
+    "keydown",
+    function (evento) {
+
+      if (
+        evento.key === "Enter"
+      ) {
+
+        const primerResultado =
+          resultados.querySelector(
+            ".species-result"
+          );
+
+
+        if (
+          primerResultado
+        ) {
+
+          primerResultado.click();
+
+        }
+
+      }
+
+    }
+  );
+
 }
 
 
@@ -1194,23 +1273,39 @@ function seleccionarEspecie(
   especie
 ) {
 
+  especieSeleccionada =
+    especie;
+
+
+  window.especieSeleccionada =
+    especie;
+
+
   const nombreComun =
-    especie.nombre_comun ||
+    obtenerNombreComun(
+      especie
+    ) ||
     "Nombre común no disponible";
 
 
   const nombreCientifico =
-    especie.nombre_cientifico ||
+    obtenerNombreCientifico(
+      especie
+    ) ||
     "Nombre científico no disponible";
 
 
   const grupo =
-    especie.grupo ||
+    obtenerGrupo(
+      especie
+    ) ||
     "No especificado";
 
 
   const origen =
-    especie.origen ||
+    obtenerOrigen(
+      especie
+    ) ||
     "No especificado";
 
 
@@ -1224,17 +1319,6 @@ function seleccionarEspecie(
     obtenerProteccion(
       especie
     );
-
-
-  /*
-  Guardamos temporalmente la especie seleccionada.
-  Esto nos servirá para conectar posteriormente
-  con la rama correspondiente del protocolo.
-  */
-
-
-  window.especieSeleccionada =
-    especie;
 
 
   app.innerHTML =
@@ -1358,7 +1442,7 @@ function seleccionarEspecie(
 
   /*
   =======================================================
-  BOTÓN PARA VOLVER A BUSCAR
+  BOTÓN VOLVER A BUSCAR
   =======================================================
   */
 
@@ -1369,6 +1453,10 @@ function seleccionarEspecie(
 
   botonBuscar.className =
     "btn btn-secondary";
+
+
+  botonBuscar.type =
+    "button";
 
 
   botonBuscar.textContent =
@@ -1403,6 +1491,10 @@ function seleccionarEspecie(
 
   botonContinuar.className =
     "btn btn-primary";
+
+
+  botonContinuar.type =
+    "button";
 
 
   botonContinuar.textContent =
@@ -1452,20 +1544,28 @@ function obtenerClasificacion(
 
   const origen =
     normalizar(
-      especie.origen ||
-      ""
+      obtenerOrigen(
+        especie
+      )
     );
 
 
   const proteccion =
     normalizar(
       especie.grado_proteccion ||
+      especie.gradoProteccion ||
       ""
     );
 
 
   const cites =
-    especie.cites === true;
+    especie.cites === true ||
+    normalizar(
+      especie.cites
+    ) === "true" ||
+    normalizar(
+      especie.cites
+    ) === "si";
 
 
   /*
@@ -1543,6 +1643,12 @@ function obtenerClasificacion(
   if (
     origen.includes(
       "nativa"
+    ) ||
+    origen.includes(
+      "autoctono"
+    ) ||
+    origen.includes(
+      "autóctono"
     )
   ) {
 
@@ -1573,7 +1679,9 @@ function obtenerProteccion(
 ) {
 
   const proteccion =
-    especie.grado_proteccion;
+    especie.grado_proteccion ??
+    especie.gradoProteccion ??
+    "";
 
 
   if (
@@ -1606,14 +1714,71 @@ function obtenerProteccion(
 CONTINUAR CON ESPECIE
 =========================================================
 
-TEMPORALMENTE:
+Esta función busca primero si la especie tiene definida
+una rama concreta del protocolo.
 
-Solo mostramos la clasificación.
+Campos admitidos en especies.json:
 
-En el siguiente paso conectaremos
-cada clasificación con la pantalla
-correspondiente del protocolo.
+- rama_protocolo
+- ramaProtocolo
+- protocolo
+- pantalla_protocolo
+- pantallaProtocolo
 
+Ejemplo:
+
+{
+  "nombre_comun": "Jabalí",
+  "nombre_cientifico": "Sus scrofa",
+  "origen": "Nativa",
+  "rama_protocolo": "cazaMayor"
+}
+
+Si existe esa rama y coincide con una pantalla válida,
+el sistema lleva directamente a ella.
+
+Si todavía no existe esa conexión en el JSON,
+se muestra la clasificación y se puede continuar
+manualmente por el protocolo.
+
+=========================================================
+*/
+
+
+function obtenerRamaProtocolo(
+  especie
+) {
+
+  const rama =
+    obtenerCampo(
+      especie,
+      [
+        "rama_protocolo",
+        "ramaProtocolo",
+        "protocolo",
+        "pantalla_protocolo",
+        "pantallaProtocolo"
+      ]
+    );
+
+
+  if (
+    !rama
+  ) {
+
+    return "";
+
+  }
+
+
+  return rama;
+
+}
+
+
+/*
+=========================================================
+CONTINUAR CON ESPECIE
 =========================================================
 */
 
@@ -1621,6 +1786,45 @@ correspondiente del protocolo.
 function continuarConEspecie(
   especie
 ) {
+
+  /*
+  Primero comprobamos si la especie tiene
+  una rama específica del protocolo.
+  */
+
+
+  const rama =
+    obtenerRamaProtocolo(
+      especie
+    );
+
+
+  /*
+  Si la rama existe y está definida
+  en el objeto pantallas, vamos directamente
+  a ella.
+  */
+
+
+  if (
+    rama &&
+    pantallas[rama]
+  ) {
+
+    mostrarPantalla(
+      rama
+    );
+
+    return;
+
+  }
+
+
+  /*
+  Si todavía no hay rama específica,
+  mostramos la clasificación.
+  */
+
 
   const clasificacion =
     obtenerClasificacion(
@@ -1727,7 +1931,7 @@ function continuarConEspecie(
     `
 
       <h3>
-        ${especie.nombre_comun || ""}
+        ${obtenerNombreComun(especie)}
       </h3>
 
 
@@ -1738,9 +1942,9 @@ function continuarConEspecie(
 
       <p class="small-note">
 
-        La conexión automática con el flujo
-        específico del protocolo se incorporará
-        en el siguiente paso.
+        Esta especie todavía no tiene
+        una rama específica del protocolo
+        asignada en especies.json.
 
       </p>
 
@@ -1749,6 +1953,42 @@ function continuarConEspecie(
 
   app.appendChild(
     resultado
+  );
+
+
+  /*
+  BOTÓN PARA CONTINUAR MANUALMENTE
+  */
+
+
+  const botonManual =
+    document.createElement("button");
+
+
+  botonManual.className =
+    "btn btn-primary";
+
+
+  botonManual.type =
+    "button";
+
+
+  botonManual.textContent =
+    "Continuar manualmente con el protocolo";
+
+
+  botonManual.onclick =
+    function () {
+
+      mostrarPantalla(
+        "tipoAnimal"
+      );
+
+    };
+
+
+  app.appendChild(
+    botonManual
   );
 
 
@@ -1802,7 +2042,6 @@ DEL PROTOCOLO ORIGINAL.
 
 
 const pantallas = {
-
 
   inicio: {
 
@@ -3283,36 +3522,11 @@ const pantallas = {
           "No puede devolverlo",
 
         siguiente:
-          "volantonNoDevolver"
+          "volantónNoDevolver"
 
       }
 
     ]
-
-  },
-
-
-  volantonDevolver: {
-
-    tipo:
-      "fin",
-
-    titulo:
-      "🐣 Volantón",
-
-    contenido: `
-
-      <p>
-        Si ha transcurrido menos de una hora y media,
-        pedir que lo deje en el sitio donde lo encontró.
-      </p>
-
-      <p>
-        Si estaba en la carretera,
-        dejarlo en la acera.
-      </p>
-
-    `
 
   },
 
@@ -3346,6 +3560,64 @@ const pantallas = {
       }
 
     ]
+
+  },
+
+
+  volantónNoDevolver: {
+
+    tipo:
+      "pregunta",
+
+    titulo:
+      "🐣 Volantón que no puede devolverse",
+
+    opciones: [
+
+      {
+        texto:
+          "Está cerca de una unidad colaboradora",
+
+        siguiente:
+          "criaUnidad"
+
+      },
+
+      {
+        texto:
+          "No está cerca de una unidad colaboradora",
+
+        siguiente:
+          "criaCentro"
+
+      }
+
+    ]
+
+  },
+
+
+  volantonDevolver: {
+
+    tipo:
+      "fin",
+
+    titulo:
+      "🐣 Volantón",
+
+    contenido: `
+
+      <p>
+        Si ha transcurrido menos de una hora y media,
+        pedir que lo deje en el sitio donde lo encontró.
+      </p>
+
+      <p>
+        Si estaba en la carretera,
+        dejarlo en la acera.
+      </p>
+
+    `
 
   },
 
@@ -3668,11 +3940,6 @@ const pantallas = {
 =========================================================
 INICIO DE LA APLICACIÓN
 =========================================================
-
-Primero cargamos el JSON.
-Después mostramos la pantalla inicial.
-
-=========================================================
 */
 
 
@@ -3682,7 +3949,8 @@ async function iniciarAplicacion() {
 
 
   mostrarPantalla(
-    "inicio"
+    "inicio",
+    false
   );
 
 }
