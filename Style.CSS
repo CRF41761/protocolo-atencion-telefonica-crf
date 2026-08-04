@@ -1,0 +1,519 @@
+* {
+  box-sizing: border-box;
+}
+
+
+body {
+
+  margin: 0;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background: #f3f5f7;
+
+  color: #263238;
+
+}
+
+
+.app-header {
+
+  background: #1f4d3a;
+
+  color: white;
+
+  padding: 18px 25px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 20px;
+
+}
+
+
+.app-header h1 {
+
+  margin: 0 0 5px;
+
+  font-size: 25px;
+
+}
+
+
+.app-header p {
+
+  margin: 0;
+
+  opacity: 0.9;
+
+}
+
+
+.btn-header {
+
+  background: white;
+
+  color: #1f4d3a;
+
+  border: none;
+
+  padding: 12px 18px;
+
+  border-radius: 8px;
+
+  font-size: 15px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+}
+
+
+.btn-header:hover {
+
+  opacity: 0.9;
+
+}
+
+
+.app-container {
+
+  width: 100%;
+
+  max-width: 950px;
+
+  margin: 0 auto;
+
+  padding: 25px 20px 40px;
+
+}
+
+
+.progress-container {
+
+  margin-bottom: 20px;
+
+}
+
+
+.progress-info {
+
+  margin-bottom: 8px;
+
+  font-size: 14px;
+
+  font-weight: bold;
+
+  color: #546e7a;
+
+}
+
+
+.progress-bar {
+
+  height: 8px;
+
+  background: #dfe5e8;
+
+  border-radius: 10px;
+
+  overflow: hidden;
+
+}
+
+
+.progress-fill {
+
+  height: 100%;
+
+  width: 0%;
+
+  background: #4c8c6a;
+
+  transition: width 0.3s ease;
+
+}
+
+
+.card {
+
+  background: white;
+
+  border-radius: 14px;
+
+  padding: 30px;
+
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.08);
+
+}
+
+
+.card h2 {
+
+  margin-top: 0;
+
+  font-size: 27px;
+
+  line-height: 1.3;
+
+}
+
+
+.card h3 {
+
+  font-size: 21px;
+
+}
+
+
+.description {
+
+  font-size: 17px;
+
+  line-height: 1.6;
+
+  color: #455a64;
+
+}
+
+
+.options {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(240px, 1fr));
+
+  gap: 14px;
+
+  margin-top: 25px;
+
+}
+
+
+.option-btn {
+
+  border: 2px solid #d7dee2;
+
+  background: white;
+
+  padding: 18px;
+
+  border-radius: 10px;
+
+  font-size: 17px;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+
+}
+
+
+.option-btn:hover {
+
+  border-color: #4c8c6a;
+
+  background: #f1f8f4;
+
+  transform: translateY(-2px);
+
+}
+
+
+.result {
+
+  border-left: 6px solid #4c8c6a;
+
+  background: #f1f8f4;
+
+  padding: 20px;
+
+  border-radius: 8px;
+
+  margin-top: 20px;
+
+}
+
+
+.result.warning {
+
+  border-left-color: #d98b24;
+
+  background: #fff8ed;
+
+}
+
+
+.result.danger {
+
+  border-left-color: #c84b4b;
+
+  background: #fff2f2;
+
+}
+
+
+.result h3 {
+
+  margin-top: 0;
+
+}
+
+
+.contact-box {
+
+  background: #eef3f5;
+
+  padding: 16px;
+
+  border-radius: 8px;
+
+  margin-top: 15px;
+
+}
+
+
+.contact-box strong {
+
+  display: block;
+
+  margin-bottom: 5px;
+
+}
+
+
+.search-box {
+
+  width: 100%;
+
+  padding: 15px;
+
+  font-size: 17px;
+
+  border: 2px solid #d7dee2;
+
+  border-radius: 8px;
+
+  margin-top: 10px;
+
+}
+
+
+.search-results {
+
+  margin-top: 15px;
+
+  display: grid;
+
+  gap: 10px;
+
+}
+
+
+.species-result {
+
+  padding: 15px;
+
+  border: 1px solid #d7dee2;
+
+  border-radius: 8px;
+
+  background: #fafafa;
+
+}
+
+
+.species-result strong {
+
+  display: block;
+
+  font-size: 18px;
+
+  margin-bottom: 5px;
+
+}
+
+
+.species-category {
+
+  color: #546e7a;
+
+}
+
+
+.navigation {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-top: 30px;
+
+}
+
+
+.btn {
+
+  border: none;
+
+  padding: 13px 20px;
+
+  border-radius: 8px;
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+}
+
+
+.btn-primary {
+
+  background: #4c8c6a;
+
+  color: white;
+
+}
+
+
+.btn-secondary {
+
+  background: #e6ebed;
+
+  color: #37474f;
+
+}
+
+
+.btn-danger {
+
+  background: #c84b4b;
+
+  color: white;
+
+}
+
+
+.btn:hover {
+
+  opacity: 0.9;
+
+}
+
+
+.small-note {
+
+  font-size: 14px;
+
+  color: #607d8b;
+
+  margin-top: 15px;
+
+}
+
+
+.finish {
+
+  text-align: center;
+
+}
+
+
+.finish-icon {
+
+  font-size: 55px;
+
+}
+
+
+@media (max-width: 650px) {
+
+  .app-header {
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+  }
+
+
+  .btn-header {
+
+    width: 100%;
+
+  }
+
+
+  .app-container {
+
+    padding: 15px 10px 30px;
+
+  }
+
+
+  .card {
+
+    padding: 20px;
+
+  }
+
+
+  .card h2 {
+
+    font-size: 23px;
+
+  }
+
+
+  .option-btn {
+
+    padding: 20px;
+
+    font-size: 17px;
+
+  }
+
+
+  .navigation {
+
+    flex-direction: column;
+
+  }
+
+
+  .navigation .btn {
+
+    width: 100%;
+
+  }
+
+}
+
+
+footer {
+
+  text-align: center;
+
+  padding: 20px;
+
+  color: #78909c;
+
+  font-size: 13px;
+
+}
