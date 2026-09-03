@@ -707,7 +707,7 @@ const pantallas = {
   danos: {
     tipo: "fin",
     titulo: "️ Daños a la fauna o destrucción de nidos",
-    contenido: `<p>Pueden llamar al 112 o enviar un correo.</p><div class="contact-box"><strong>📞 112</strong><strong>✉️ espaciosnaturales_valencia@gva.es</strong></div>`
+    contenido: `<p>Pueden llamar al 112 o enviar un correo.</p><div class="contact-box"><strong>📞 112</strong><strong>✉️ espaciosnaturales_valencia@listas.gva.es</strong></div>`
   },
 
   huevosPlaya: {
