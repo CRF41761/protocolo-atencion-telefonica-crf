@@ -502,7 +502,7 @@ const pantallas = {
   titulo: "¿Sabe la persona qué tipo de animal es?",
   descripcion: "Si no sabe identificarlo, puede solicitarse una fotografía para ayudar a identificarlo.",
   opciones: [
-    { texto: "🔎 Buscar un animal (recomendado)", siguiente: "buscador" },
+    { texto: "🔎 Buscar un animal", siguiente: "buscador" },
     { texto: "📷 No lo sabe", siguiente: "identificacion" },
     { texto: " Ayuda según tipo de animal", siguiente: "tipoAnimal" }  // ← Cambiado
   ]
