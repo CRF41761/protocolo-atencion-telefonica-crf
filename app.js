@@ -504,7 +504,7 @@ const pantallas = {
   opciones: [
     { texto: "🔎 Buscar un animal", siguiente: "buscador" },
     { texto: "📷 No lo sabe", siguiente: "identificacion" },
-    { texto: " Ayuda según tipo de animal", siguiente: "tipoAnimal" }  // ← Cambiado
+    { texto: "📋 Ayuda según tipo de animal", siguiente: "tipoAnimal" }  // ← Cambiado
   ]
 },
 
