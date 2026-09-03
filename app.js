@@ -279,6 +279,10 @@ function renderContenidoPantalla(pantalla) {
     opcionesAMostrar.forEach(opcion => {
       const boton = document.createElement("button");
       boton.className = "option-btn";
+      // Si es la pantalla de inicio, añadir clase para texto más grande
+if (pantallaActual === "inicio") {
+  boton.classList.add("option-btn-large");
+}
       boton.innerHTML = opcion.texto;
       boton.onclick = () => {
         if (pantallaActual !== opcion.siguiente) historial.push(pantallaActual);
