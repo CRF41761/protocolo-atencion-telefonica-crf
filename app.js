@@ -632,26 +632,32 @@ const pantallas = {
     contenido: `<h3>Indicar que se dirija a su Ayuntamiento.</h3><p class="small-note">⚠️ <strong>Excepción:</strong> los galápagos exóticos se tratan como invasores.</p>`
   },
 
-  citesPregunta: {
-    tipo: "pregunta",
+   citesConsulta: {
+    tipo: "fin",
     titulo: "📜 Animal exótico CITES",
-    descripcion: "Especie protegida por el convenio CITES.",
+    contenido: `<h3>Indicar que describa su caso por correo para recibir instrucciones.</h3><div class="contact-box"><strong>✉️ bzn-cites@miteco.es</strong><strong>✉️ bzn-tifies@miteco.es</strong></div>`
+  },
+
+  citesGraptemysPregunta: {
+    tipo: "pregunta",
+    titulo: "📜 Tortuga mapa (Graptemys) - CITES",
+    descripcion: "Excepción: Esta especie CITES la gestionamos nosotros. ¿Es de su propiedad o la han encontrado?",
     opciones: [
-      { texto: "📋 Posee este animal", siguiente: "citesConsulta" },
-      { texto: " Lo ha encontrado", siguiente: "citesEncontrado" }
+      { texto: "📋 Es de su propiedad", siguiente: "citesGraptemysPosee" },
+      { texto: "🦎 La han encontrado", siguiente: "citesGraptemysEncontrado" }
     ]
   },
 
-  citesEncontrado: {
+  citesGraptemysPosee: {
     tipo: "fin",
-    titulo: "🦎 Animal exótico CITES encontrado",
-    contenido: `<h3>Indicar que se dirija a su Ayuntamiento.</h3>`
+    titulo: " Tortuga mapa (Graptemys) en propiedad",
+    contenido: `<h3>Han de traerla al centro.</h3><p>Si tienen dudas, pueden enviarnos una fotografía previamente.</p><div class="contact-box"><strong>📱 WhatsApp: 686 680 254</strong></div>`
   },
 
-  citesConsulta: {
+  citesGraptemysEncontrado: {
     tipo: "fin",
-    titulo: " Animal exótico CITES",
-    contenido: `<h3>Indicar que describa su caso por correo.</h3><div class="contact-box"><strong>✉️ bzn-cites@miteco.es</strong><strong>✉️ bzn-tifies@miteco.es</strong></div>`
+    titulo: "📜 Tortuga mapa (Graptemys) encontrada",
+    contenido: `<h3>Pueden traerla al centro o llevarla a una unidad colaboradora.</h3><p>Si la llevan a una unidad colaboradora entre semana, <strong>se ha de apuntar como recogida pendiente</strong>.</p><div class="contact-box"><strong>📱 WhatsApp: 686 680 254</strong></div>`
   },
 
   invasor: {
