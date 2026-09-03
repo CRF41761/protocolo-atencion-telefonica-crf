@@ -214,7 +214,18 @@ if (nombre.includes("panal") || nombre.includes("abeja") || nombre.includes("avi
 }
 
   if (especie.tipo === "doméstico") { mostrarPantalla("domestico"); return; }
-  if (especie.cites === true) { mostrarPantalla("citesPregunta"); return; }
+    // CITES -> Excepción Graptemys vs Resto
+  if (especie.cites === true) {
+    const nombre = especie.nombreCientifico.toLowerCase();
+    if (nombre.startsWith("graptemys")) {
+      // Excepción: Graptemys se gestiona en el centro
+      mostrarPantalla("citesGraptemysPregunta");
+      return;
+    }
+    // Resto de CITES (Águila de Harris, Tortuga de espolones, etc.) -> Correo MITECO
+    mostrarPantalla("citesConsulta");
+    return;
+  }
   if (especie.tipo === "invasor") { mostrarPantalla("invasor"); return; }
   if (especie.tipo === "exótico") {
     if (esGalapagoInvasor(especie)) { mostrarPantalla("invasor"); return; }
