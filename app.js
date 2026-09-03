@@ -1184,7 +1184,7 @@ const pantallas = {
   cerdoVietnamitaRetenido: {
     tipo: "fin",
     titulo: " Cerdo vietnamita retenido",
-    contenido: `<h3>Es posible que podamos acudir a recogerlo.</h3><p>Avisen al centro por WhatsApp para valorar la recogida.</p><div class="contact-box"><strong>📱 WhatsApp: 686 680 254</strong></div>`
+    contenido: `<h3>Es posible que podamos acudir a recogerlo.</h3><p>Hablar con la veterinaria para saber cómo proceder.</p>`
   },
 
   cerdoVietnamitaNoRetenido: {
