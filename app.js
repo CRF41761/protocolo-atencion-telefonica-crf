@@ -1154,6 +1154,43 @@ const pantallas = {
     tipo: "fin",
     titulo: "🗓️ Iremos el lunes",
     contenido: `<h3>Indicar que iremos el lunes.</h3><p>Dejar en caja con agujero. <strong>Sin comida/agua/medicamentos.</strong></p><p class="small-note"><strong>Apuntar recogida pendiente.</strong></p>`
+  },
+   cerdoVietnamita: {
+    tipo: "pregunta",
+    titulo: "🐷 Cerdo vietnamita",
+    descripcion: "Animal exótico invasor. ¿Es de su propiedad o lo han encontrado?",
+    opciones: [
+      { texto: " Es de su propiedad", siguiente: "cerdoVietnamitaPropiedad" },
+      { texto: "🌳 Lo han encontrado", siguiente: "cerdoVietnamitaEncontrado" }
+    ]
+  },
+
+  cerdoVietnamitaPropiedad: {
+    tipo: "fin",
+    titulo: "🐷 Cerdo vietnamita en propiedad",
+    contenido: `<h3>Han de traerlo al centro.</h3><p>Si tienen dudas, pueden enviarnos una fotografía previamente.</p><div class="contact-box"><strong>📱 WhatsApp: 686 680 254</strong></div>`
+  },
+
+  cerdoVietnamitaEncontrado: {
+    tipo: "pregunta",
+    titulo: "🐷 Cerdo vietnamita encontrado",
+    descripcion: "¿El animal está retenido o confinado en un lugar seguro?",
+    opciones: [
+      { texto: "Sí, está retenido", siguiente: "cerdoVietnamitaRetenido" },
+      { texto: "No está retenido", siguiente: "cerdoVietnamitaNoRetenido" }
+    ]
+  },
+
+  cerdoVietnamitaRetenido: {
+    tipo: "fin",
+    titulo: " Cerdo vietnamita retenido",
+    contenido: `<h3>Es posible que podamos acudir a recogerlo.</h3><p>Avisen al centro por WhatsApp para valorar la recogida.</p><div class="contact-box"><strong>📱 WhatsApp: 686 680 254</strong></div>`
+  },
+
+  cerdoVietnamitaNoRetenido: {
+    tipo: "fin",
+    titulo: "🐷 Cerdo vietnamita suelto",
+    contenido: `<h3>Deben intentar retenerlo en un lugar seguro.</h3><p>Si no pueden retenerlo, llévelo a la policía local de su municipio y avísenos para que vayamos a recogerlo allí.</p><div class="contact-box"><strong> WhatsApp: 686 680 254</strong></div>`
   }
 
 };
