@@ -212,7 +212,11 @@ if (nombre.includes("panal") || nombre.includes("abeja") || nombre.includes("avi
   }
   return;
 }
-
+  // Interceptamos el Cerdo vietnamita (flujo especial)
+  if (nombre.includes("cerdo") || nombre.includes("vietnamita")) {
+    mostrarPantalla("cerdoVietnamita");
+    return;
+  }
   if (especie.tipo === "doméstico") { mostrarPantalla("domestico"); return; }
     // CITES -> Excepción Graptemys vs Resto
   if (especie.cites === true) {
