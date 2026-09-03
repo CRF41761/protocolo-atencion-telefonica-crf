@@ -180,6 +180,18 @@ body {
 .option-btn:active {
   transform: translateY(-1px);
 }
+/* Botones de la pantalla de inicio - texto más grande */
+.option-btn-large {
+  font-size: 20px !important;
+  padding: 28px 24px !important;
+  min-height: 100px;
+  font-weight: 700;
+}
+
+.option-btn-large strong,
+.option-btn-large span {
+  font-size: 20px;
+}
 
 /* =========================================
    RESULTADOS Y ESTADOS
