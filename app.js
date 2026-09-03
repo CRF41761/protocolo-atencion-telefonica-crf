@@ -143,7 +143,8 @@ function obtenerOpcionesPaso4() {
     { texto: " Problema por causa antropogénica probable", siguiente: "causaAntropogenica" }
   );
 
-  if (esReptil(especie)) {
+  // QUELONIOS (solo tortugas y galápagos)
+  if (esTortuga(especie)) {
     opciones.push(
       { texto: "🐢 Tortuga terrestre propiedad de alguien", siguiente: "tortugaPropiedad" },
       { texto: "🐢 Tortuga terrestre o galápago autóctono en el campo", siguiente: "tortugaCampo" }
