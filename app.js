@@ -26,10 +26,11 @@ async function cargarEspecies() {
     const respuesta = await fetch("especies.json");
     especiesLista = await respuesta.json();
     
-    // Inyectar casos especiales (Panal y Avispa asiática) para que aparezcan en el buscador
+    // Inyectar casos especiales
     especiesLista.push(
       { nombreCientifico: "Apis mellifera / Vespidae", nombreComun: "Panal de abejas o avispas", grupo: "INSECTOS", origen: "Nativa", tipo: "silvestre_autóctono", cites: false, gradoProteccion: null },
-      { nombreCientifico: "Vespa velutina", nombreComun: "Avispa asiática", grupo: "INSECTOS", origen: "Exótico", tipo: "invasor", cites: false, gradoProteccion: "Invasora" }
+      { nombreCientifico: "Vespa velutina", nombreComun: "Avispa asiática", grupo: "INSECTOS", origen: "Exótico", tipo: "invasor", cites: false, gradoProteccion: "Invasora" },
+      { nombreCientifico: "Sus scrofa domesticus", nombreComun: "Cerdo vietnamita", grupo: "MAMÍFEROS", origen: "Exótico", tipo: "invasor", cites: false, gradoProteccion: "Invasora" } // <-- Añadido
     );
     
     console.log("Especies cargadas:", especiesLista.length);
