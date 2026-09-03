@@ -1190,7 +1190,7 @@ const pantallas = {
   cerdoVietnamitaNoRetenido: {
     tipo: "fin",
     titulo: "🐷 Cerdo vietnamita suelto",
-    contenido: `<h3>No cazamos animales.</h3><p>Si no pueden retenerlo, puededn contactar con el 112.</p>`
+    contenido: `<h3>No cazamos animales.</h3><p>Si no pueden retenerlo, pueden contactar con el 112.</p>`
   }
 
 };
