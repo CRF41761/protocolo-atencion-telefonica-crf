@@ -497,16 +497,16 @@ PANTALLAS
 */
 const pantallas = {
 
-  inicio: {
-    tipo: "pregunta",
-    titulo: "¿Sabe la persona qué tipo de animal es?",
-    descripcion: "Si no sabe identificarlo, puede solicitarse una fotografía para ayudar a identificarlo.",
-    opciones: [
-      { texto: "📷 No lo sabe", siguiente: "identificacion" },
-      { texto: " Sí lo sabe", siguiente: "tipoAnimal" },
-      { texto: "🔎 Buscar un animal (recomendado)", siguiente: "buscador" }
-    ]
-  },
+ inicio: {
+  tipo: "pregunta",
+  titulo: "¿Sabe la persona qué tipo de animal es?",
+  descripcion: "Si no sabe identificarlo, puede solicitarse una fotografía para ayudar a identificarlo.",
+  opciones: [
+    { texto: "🔎 Buscar un animal (recomendado)", siguiente: "buscador" },
+    { texto: "📷 No lo sabe", siguiente: "identificacion" },
+    { texto: " Ayuda según tipo de animal", siguiente: "tipoAnimal" }  // ← Cambiado
+  ]
+},
 
   buscador: {
     tipo: "buscador",
