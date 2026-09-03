@@ -74,11 +74,9 @@ function esGalapagoInvasor(especie) {
   const nombre =
     especie.nombreCientifico.toLowerCase();
 
-  // Pseudemys sp → invasor
   if (nombre.startsWith("pseudemys"))
     return true;
 
-  // Mauremys sp excepto M. leprosa → invasor
   if (
     nombre.startsWith("mauremys") &&
     nombre !== "mauremys leprosa"
@@ -138,8 +136,7 @@ function esAve(especie) {
          grupo.includes("ANATIDAS") ||
          grupo.includes("GALLIFORMES") ||
          grupo.includes("CÓRVIDOS") ||
-         grupo.includes("LIMÍCOLAS") ||
-         grupo.includes("MURCIÉLAGOS");
+         grupo.includes("LIMÍCOLAS");
 
 }
 
@@ -166,7 +163,8 @@ function esMamifero(especie) {
          grupo.includes("LAGOMORFOS") ||
          grupo.includes("ROEDORES") ||
          grupo.includes("CARNÍVOROS") ||
-         grupo.includes("INSECTÍVOROS");
+         grupo.includes("INSECTÍVOROS") ||
+         grupo.includes("MURCIÉLAGOS");
 
 }
 
@@ -242,23 +240,19 @@ OBTENER OPCIONES FILTRADAS DEL PASO 4
 function obtenerOpcionesPaso4() {
 
   if (!especieSeleccionada) {
-    // Si no hay especie seleccionada, mostrar todas (caso genérico)
     return obtenerTodasOpcionesPaso4();
   }
 
   const opciones = [];
   const especie = especieSeleccionada;
 
-  // Opciones comunes a todos los animales
   opciones.push(
-    { texto: " Animal suelto dentro de una vivienda", siguiente: "animalVivienda" },
+    { texto: "🏠 Animal suelto dentro de una vivienda", siguiente: "animalVivienda" },
     { texto: "🦅 Animal no atrapado con problemas (fuera de vivienda)", siguiente: "animalProblemas" },
-    { texto: " Problema por causa antropogénica probable", siguiente: "causaAntropogenica" }
+    { texto: "⚡ Problema por causa antropogénica probable", siguiente: "causaAntropogenica" }
   );
 
-  // Filtrar según tipo de animal
   if (esReptil(especie)) {
-    // Solo reptiles/tortugas ven estas opciones
     opciones.push(
       { texto: "🐢 Tortuga terrestre propiedad de alguien", siguiente: "tortugaPropiedad" },
       { texto: "🐢 Tortuga terrestre o galápago autóctono en el campo", siguiente: "tortugaCampo" }
@@ -266,13 +260,11 @@ function obtenerOpcionesPaso4() {
   }
 
   if (esAve(especie)) {
-    // Solo aves ven estas opciones
     opciones.push(
       { texto: "🪟 Ave estrellada contra un cristal", siguiente: "cristal" }
     );
     
     if (esRapaz(especie)) {
-      // Solo rapaces
       const nombre = especie.nombreComun.toLowerCase();
       if (nombre.includes("lechuza") || nombre.includes("cernícalo")) {
         opciones.push(
@@ -283,17 +275,14 @@ function obtenerOpcionesPaso4() {
           { texto: "🦅 Cría de rapaz (diferente de lechuza/cernícalo)", siguiente: "criaRapazOtra" }
         );
       }
+    } else {
+      opciones.push(
+        { texto: "🐣 Cría de pajarito (volantón o no)", siguiente: "criaAve" }
+      );
     }
-    
-    // Todas las aves pueden ser crías
-    opciones.push(
-      { texto: "🐣 Cría de pajarito o rapaz (volantón o no)", siguiente: "criaAve" }
-    );
   }
 
   if (esMamifero(especie)) {
-    // Solo mamíferos
-    
     if (esConejoLiebre(especie)) {
       opciones.push(
         { texto: "🐇 Cría de conejo o liebre", siguiente: "conejoLiebre" }
@@ -302,15 +291,11 @@ function obtenerOpcionesPaso4() {
     
     if (esErizo(especie)) {
       opciones.push(
-        { texto: "🦔 Erizo", siguiente: "erizo" }
+        { texto: " Erizo", siguiente: "erizo" }
       );
     }
   }
 
-  // Insectos (abejas/avispas) - caso especial
-  // Esto se detectaría mejor por búsqueda directa, pero lo dejamos genérico
-  
-  // Siempre añadir "Ninguno de estos casos"
   opciones.push(
     { texto: "Ninguno de estos casos → Paso 5", siguiente: "paso5" }
   );
@@ -353,25 +338,21 @@ function ejecutarAtajo(especie) {
 
   especieSeleccionada = especie;
 
-  // DOMÉSTICO → Ayuntamiento
   if (especie.tipo === "doméstico") {
     mostrarPantalla("domestico");
     return;
   }
 
-  // CITES → preguntar si la posee o la encuentra
   if (especie.cites === true) {
     mostrarPantalla("citesPregunta");
     return;
   }
 
-  // INVASOR → Rama invasor
   if (especie.tipo === "invasor") {
     mostrarPantalla("invasor");
     return;
   }
 
-  // EXÓTICO (con excepción de galápagos)
   if (especie.tipo === "exótico") {
     if (esGalapagoInvasor(especie)) {
       mostrarPantalla("invasor");
@@ -381,40 +362,33 @@ function ejecutarAtajo(especie) {
     return;
   }
 
-  // SILVESTRE AUTÓCTONO
   if (especie.tipo === "silvestre_autóctono") {
 
-    // Caza mayor → 112
     if (esCazaMayor(especie)) {
       mostrarPantalla("cazaMayor");
       return;
     }
 
-    // Tortuga marina → 112
     if (esTortugaMarina(especie)) {
       mostrarPantalla("tortugaMarina");
       return;
     }
 
-    // Galápago autóctono → rama tortuga/galápago
     if (esGalapagoAutoctono(especie)) {
       mostrarPantallaConEspecie("tortugaCampo");
       return;
     }
 
-    // Casos especiales con aviso
     if (tieneCasoEspecialAviso(especie)) {
       mostrarPantallaConEspecie("casosEspeciales");
       return;
     }
 
-    // Silvestre genérico → vivo/muerto
     mostrarPantallaConEspecie("vivoMuerto");
     return;
 
   }
 
-  // Por defecto → tipo de animal
   mostrarPantalla("tipoAnimal");
 
 }
@@ -439,7 +413,6 @@ function mostrarPantallaConEspecie(id) {
 
   actualizarProgreso();
 
-  // Ficha de especie seleccionada
   if (especieSeleccionada) {
     const ficha = document.createElement("div");
     ficha.className = "selected-species-card";
@@ -455,12 +428,10 @@ function mostrarPantallaConEspecie(id) {
     app.appendChild(ficha);
   }
 
-  // Título
   const titulo = document.createElement("h2");
   titulo.textContent = pantalla.titulo;
   app.appendChild(titulo);
 
-  // Descripción
   if (pantalla.descripcion) {
     const descripcion = document.createElement("p");
     descripcion.className = "description";
@@ -468,7 +439,6 @@ function mostrarPantallaConEspecie(id) {
     app.appendChild(descripcion);
   }
 
-  // Contenido según tipo
   renderContenidoPantalla(pantalla);
 
   crearNavegacion();
@@ -498,7 +468,6 @@ function renderContenidoPantalla(pantalla) {
     const opciones = document.createElement("div");
     opciones.className = "options";
 
-    // Obtener opciones (filtradas si es PASO 4)
     let opcionesAMostrar = pantalla.opciones;
     
     if (pantallaActual === "casosEspeciales") {
@@ -516,6 +485,12 @@ function renderContenidoPantalla(pantalla) {
         }
         pantallaActual = opcion.siguiente;
         const sig = pantallas[opcion.siguiente];
+        
+        if (!sig) {
+          console.error("Pantalla destino no existe:", opcion.siguiente);
+          return;
+        }
+        
         app.innerHTML = "";
         actualizarProgreso();
 
@@ -830,7 +805,7 @@ const pantallas = {
         siguiente: "identificacion"
       },
       {
-        texto: "🐾 Sí lo sabe",
+        texto: " Sí lo sabe",
         siguiente: "tipoAnimal"
       },
       {
@@ -842,15 +817,25 @@ const pantallas = {
   },
 
 
+  buscador: {
+
+    tipo: "buscador",
+    titulo: "🔎 Buscar especie",
+    descripcion:
+      "Escribe parte del nombre común o científico del animal. Al seleccionarlo, el sistema te llevará directamente al protocolo correspondiente."
+
+  },
+
+
   identificacion: {
 
     tipo: "resultado",
-    titulo: " Identificación del animal",
+    titulo: "📷 Identificación del animal",
     contenido: `
       <h3>Pide al ciudadano que envíe una fotografía.</h3>
       <p>WhatsApp de La Granja:</p>
       <div class="contact-box">
-        <strong> 686 680 254</strong>
+        <strong>📱 686 680 254</strong>
         Identificación y ubicación.
       </div>
       <p class="small-note">
@@ -862,12 +847,7 @@ const pantallas = {
     `
 
   },
-buscador: {
-  tipo: "buscador",
-  titulo: "🔎 Buscar especie",
-  descripcion:
-    "Escribe parte del nombre común o científico del animal. Al seleccionarlo, el sistema te llevará directamente al protocolo correspondiente."
-},
+
 
   tipoAnimal: {
 
@@ -877,15 +857,15 @@ buscador: {
       "Si tienes dudas sobre la clasificación, utiliza el buscador de animales.",
 
     opciones: [
-      { texto: " Caza mayor", siguiente: "cazaMayor" },
-      { texto: " Tortuga marina o cetáceo", siguiente: "tortugaMarina" },
-      { texto: "🏠 Animal doméstico", siguiente: "domestico" },
+      { texto: "🦌 Caza mayor", siguiente: "cazaMayor" },
+      { texto: "🐢 Tortuga marina o cetáceo", siguiente: "tortugaMarina" },
+      { texto: " Animal doméstico", siguiente: "domestico" },
       { texto: "🦎 Animal exótico", siguiente: "exotico" },
-      { texto: " Animal catalogado como invasor", siguiente: "invasor" },
-      { texto: " Colonias de murciélagos o nidos", siguiente: "murcielagos" },
-      { texto: "⚠️ Daños a la fauna o destrucción de nidos", siguiente: "danos" },
+      { texto: "🚨 Animal catalogado como invasor", siguiente: "invasor" },
+      { texto: "🦇 Colonias de murciélagos o nidos", siguiente: "murcielagos" },
+      { texto: "️ Daños a la fauna o destrucción de nidos", siguiente: "danos" },
       { texto: "🥚 Huevos en la playa", siguiente: "huevosPlaya" },
-      { texto: " Animal silvestre autóctono", siguiente: "vivoMuerto" },
+      { texto: "🐦 Animal silvestre autóctono", siguiente: "vivoMuerto" },
       { texto: "📚 Ver listas de referencia", siguiente: "listasReferencia" }
     ]
 
@@ -895,7 +875,7 @@ buscador: {
   listasReferencia: {
 
     tipo: "resultado",
-    titulo: " Listas de referencia",
+    titulo: "📚 Listas de referencia",
     contenido: `
       <div class="reference-list">
         <h4>🏠 Animales domésticos que generan consultas</h4>
@@ -952,7 +932,7 @@ buscador: {
   tortugaMarina: {
 
     tipo: "fin",
-    titulo: "🐢 Tortuga marina o cetáceo",
+    titulo: " Tortuga marina o cetáceo",
     contenido: `
       <h3>Indicar que llame al 112.</h3>
       <div class="contact-box">
@@ -987,15 +967,15 @@ buscador: {
     titulo: "¿Qué situación se presenta?",
     opciones: [
       {
-        texto: "🦎 Animal exótico CITES (posee o Policía Local consulta)",
+        texto: " Animal exótico CITES (posee o Policía Local consulta)",
         siguiente: "citesConsulta"
       },
       {
-        texto: "🦎 Animal exótico CITES encontrado en la naturaleza",
+        texto: " Animal exótico CITES encontrado en la naturaleza",
         siguiente: "citesEncontrado"
       },
       {
-        texto: "🏠 Animal exótico NO invasor (excepto galápagos)",
+        texto: " Animal exótico NO invasor (excepto galápagos)",
         siguiente: "exoticoNoInvasor"
       }
     ]
@@ -1026,7 +1006,7 @@ buscador: {
   citesPregunta: {
 
     tipo: "pregunta",
-    titulo: " Animal exótico CITES",
+    titulo: "📜 Animal exótico CITES",
     descripcion:
       "Especie protegida por el convenio CITES.",
     opciones: [
@@ -1066,7 +1046,7 @@ buscador: {
       <h3>Indicar que describa su caso por correo.</h3>
       <p>Recibirá instrucciones.</p>
       <div class="contact-box">
-        <strong>✉️ bzn-cites@miteco.es</strong>
+        <strong>️ bzn-cites@miteco.es</strong>
         <strong>✉️ bzn-tifies@miteco.es</strong>
       </div>
     `
@@ -1137,7 +1117,7 @@ buscador: {
         Enviar la ubicación por WhatsApp si es necesario.
       </p>
       <div class="contact-box">
-        <strong>📱 686 680 254</strong>
+        <strong> 686 680 254</strong>
       </div>
     `
 
@@ -1251,7 +1231,7 @@ buscador: {
   cadaverCausa: {
 
     tipo: "pregunta",
-    titulo: "⚫ Animal muerto — Causa de la muerte",
+    titulo: " Animal muerto — Causa de la muerte",
     descripcion:
       "¿Probablemente se trata de una causa antropogénica? (Electrocución, ahogamiento, envenenamiento, colisión contra tendido eléctrico, choque contra cristalera)",
     opciones: [
@@ -1286,7 +1266,7 @@ buscador: {
   cadaverNatural: {
 
     tipo: "fin",
-    titulo: "⚫ Cadáver sin causa antropogénica",
+    titulo: " Cadáver sin causa antropogénica",
     contenido: `
       <h3>No es necesario recoger el cadáver.</h3>
       <p>Se informa al ciudadano y finaliza la llamada.</p>
@@ -1301,8 +1281,7 @@ buscador: {
     titulo: "Casos especiales — Comprobar en este orden",
     descripcion:
       "Si ninguno aplica, continuar al Paso 5.",
-
-    opciones: []  // ← Las opciones se generan dinámicamente
+    opciones: []
 
   },
 
@@ -1310,7 +1289,7 @@ buscador: {
   animalVivienda: {
 
     tipo: "fin",
-    titulo: "🏠 Animal dentro de una vivienda",
+    titulo: " Animal dentro de una vivienda",
     contenido: `
       <h3>No cazamos animales.</h3>
       <p>
@@ -1352,7 +1331,7 @@ buscador: {
   causaAntropogenica: {
 
     tipo: "fin",
-    titulo: " Problema por causa antropogénica",
+    titulo: "⚡ Problema por causa antropogénica",
     contenido: `
       <h3>Llamar al CPIF.</h3>
       <p>
@@ -1396,7 +1375,7 @@ buscador: {
   tortugaCampo: {
 
     tipo: "pregunta",
-    titulo: "🐢 Tortuga terrestre o galápago autóctono en el campo",
+    titulo: " Tortuga terrestre o galápago autóctono en el campo",
     descripcion:
       "¿El animal tiene alguna herida o un comportamiento/síntoma que haga pensar que puede estar enfermo?",
     opciones: [
@@ -1410,7 +1389,7 @@ buscador: {
   tortugaCampoPeligro: {
 
     tipo: "pregunta",
-    titulo: "🐢 Tortuga sin heridas — ¿Peligro inminente?",
+    titulo: " Tortuga sin heridas — ¿Peligro inminente?",
     descripcion:
       "¿Existe un peligro inminente? (Ej: va a pasar un tractor por el camino)",
     opciones: [
@@ -1482,7 +1461,7 @@ buscador: {
   conejoLiebre: {
 
     tipo: "pregunta",
-    titulo: "🐇 Cría de conejo o liebre",
+    titulo: " Cría de conejo o liebre",
     opciones: [
       { texto: "No está herida", siguiente: "conejoSano" },
       { texto: "Está herida, debilitada, con ojos cerrados o poco pelo", siguiente: "conejoHerido" }
@@ -1550,7 +1529,7 @@ buscador: {
   criaLechuzaCernicalo: {
 
     tipo: "pregunta",
-    titulo: "🪶 Cría de lechuza o cernícalo",
+    titulo: " Cría de lechuza o cernícalo",
     opciones: [
       { texto: "No tiene heridas", siguiente: "lechuzaSana" },
       { texto: "Tiene heridas", siguiente: "lechuzaHerida" }
@@ -1609,7 +1588,7 @@ buscador: {
   rapazNatural: {
 
     tipo: "pregunta",
-    titulo: "🦅 Cría de rapaz en medio natural",
+    titulo: " Cría de rapaz en medio natural",
     descripcion:
       "¿Tiene signos de enfermedad o heridas?",
     opciones: [
@@ -1691,7 +1670,7 @@ buscador: {
   erizoNochePeligro: {
 
     tipo: "fin",
-    titulo: " Erizo con peligro inminente",
+    titulo: "🦔 Erizo con peligro inminente",
     contenido: `
       <h3>Retíralo de donde está y ponlo en un lugar seguro.</h3>
       <p>
@@ -1763,7 +1742,7 @@ buscador: {
   volantonMenos90: {
 
     tipo: "pregunta",
-    titulo: "🐣 Volantón — Menos de 1h 30min",
+    titulo: " Volantón — Menos de 1h 30min",
     descripcion:
       "¿Puede devolverlo al sitio donde lo encontró?",
     opciones: [
@@ -1777,7 +1756,7 @@ buscador: {
   volantonDevolver: {
 
     tipo: "fin",
-    titulo: " Devolver el volantón",
+    titulo: "🐣 Devolver el volantón",
     contenido: `
       <h3>Pedir que lo deje en el sitio donde lo encontró.</h3>
       <p>
@@ -1820,7 +1799,7 @@ buscador: {
   criaAveNoVolanton: {
 
     tipo: "pregunta",
-    titulo: "🐣 Cría que no es volantón",
+    titulo: " Cría que no es volantón",
     descripcion:
       "Vencejo, golondrina, avión, otra especie sin plumas o herido.",
     opciones: [
@@ -1876,8 +1855,8 @@ buscador: {
     descripcion:
       "Sin causa antropogénica evidente. ¿Qué día es?",
     opciones: [
-      { texto: " Es entre semana", siguiente: "entreSemana" },
-      { texto: "️ Es fin de semana", siguiente: "finSemana" }
+      { texto: "📅 Es entre semana", siguiente: "entreSemana" },
+      { texto: "🗓️ Es fin de semana", siguiente: "finSemana" }
     ]
 
   },
@@ -1898,7 +1877,7 @@ buscador: {
   unidadCerca: {
 
     tipo: "fin",
-    titulo: "📍 Unidad colaboradora",
+    titulo: " Unidad colaboradora",
     contenido: `
       <h3>Enviar al ciudadano a la unidad colaboradora.</h3>
       <p><strong>Anotar recogida pendiente.</strong></p>
@@ -1922,7 +1901,7 @@ buscador: {
   finSemana: {
 
     tipo: "pregunta",
-    titulo: "️ Fin de semana",
+    titulo: "🗓️ Fin de semana",
     descripcion:
       "Informar: no tenemos servicio de recogida en fin de semana. Pedir que lo traiga al centro.",
     opciones: [
@@ -1947,7 +1926,7 @@ buscador: {
   finSemanaNoPuede: {
 
     tipo: "pregunta",
-    titulo: "️ Fin de semana — No puede traerlo",
+    titulo: "🗓️ Fin de semana — No puede traerlo",
     descripcion:
       "Llamamos al CPIF para ver si puede recogerlo un Agente Medioambiental. ¿El agente puede traerlo?",
     opciones: [
@@ -1995,13 +1974,6 @@ buscador: {
   }
 
 };
-
-
-/*
-=========================================================
-INICIO DE LA APLICACIÓN
-=========================================================
-*/
 
 
 cargarEspecies().then(() => {
