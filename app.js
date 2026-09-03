@@ -845,10 +845,10 @@ const pantallas = {
   },
 
   avispaAsiatica: {
-    tipo: "fin",
-    titulo: "🪰 Avispa asiática",
-    contenido: `<h3>Indicar que llame al 112.</h3><div class="contact-box"><strong>📞 112</strong></div>`
-  },
+  tipo: "fin",
+  titulo: "🪰 Avispa asiática (Vespa velutina)",
+  contenido: `<h3>Indicar que llame al 112.</h3><p>Especie invasora. Los servicios de emergencia se encargan de la retirada.</p><div class="contact-box"><strong>📞 112</strong></div>`
+},
 
   criaLechuzaCernicalo: {
     tipo: "pregunta",
