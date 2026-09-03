@@ -49,6 +49,13 @@ function esGalapagoInvasor(especie) {
   if (nombre.startsWith("mauremys") && nombre !== "mauremys leprosa") return true;
   return false;
 }
+function esTortuga(especie) {
+  const nombre = especie.nombreCientifico.toLowerCase();
+  const comun = especie.nombreComun.toLowerCase();
+  // Lista de géneros de tortugas/galápagos
+  const tortugas = ["testudo", "emys", "mauremys", "trachemys", "pseudemys", "graptemys", "kinosternon", "chelydra", "caretta"];
+  return tortugas.some(t => nombre.startsWith(t)) || comun.includes("tortuga") || comun.includes("galápago");
+}
 
 function esCazaMayor(especie) {
   const cazaMayor = ["Sus scrofa", "Capra pyrenaica", "Capreolus capreolus", "Cervus elaphus", "Dama dama"];
