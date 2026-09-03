@@ -644,7 +644,7 @@ const pantallas = {
     descripcion: "Excepción: Esta especie CITES la gestionamos nosotros. ¿Es de su propiedad o la han encontrado?",
     opciones: [
       { texto: "📋 Es de su propiedad", siguiente: "citesGraptemysPosee" },
-      { texto: "🦎 La han encontrado", siguiente: "citesGraptemysEncontrado" }
+      { texto: "🐢 La han encontrado", siguiente: "citesGraptemysEncontrado" }
     ]
   },
 
