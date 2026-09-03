@@ -838,11 +838,11 @@ const pantallas = {
     `
   },
 
-  panal: {
-    tipo: "fin",
-    titulo: "🐝 Panal de abejas/avispas",
-    contenido: `<h3>Indicar que llame al 112.</h3><div class="contact-box"><strong>📞 112</strong></div>`
-  },
+ panal: {
+  tipo: "fin",
+  titulo: "🐝 Panal de abejas o avispas",
+  contenido: `<h3>Indicar que llame al 112.</h3><p>Los servicios de emergencia se encargan de la retirada de panales.</p><div class="contact-box"><strong>📞 112</strong></div>`
+},
 
   avispaAsiatica: {
   tipo: "fin",
