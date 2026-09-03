@@ -657,7 +657,7 @@ const pantallas = {
   citesGraptemysEncontrado: {
     tipo: "fin",
     titulo: "📜 Tortuga mapa (Graptemys) encontrada",
-    contenido: `<h3>Pueden traerla al centro o llevarla a una unidad colaboradora.</h3><p>Si la llevan a una unidad colaboradora entre semana, <strong>se ha de apuntar como recogida pendiente</strong>.</p><div class="contact-box"><strong>📱 WhatsApp: 686 680 254</strong></div>`
+    contenido: `<h3>Pueden traerla al centro o llevarla a una unidad colaboradora.</h3><p>Si la llevan a una unidad colaboradora, <strong>se ha de apuntar como recogida pendiente, <strong>Los fines de semana no recogemos</strong>.</p><div class="contact-box"><strong>📱 WhatsApp: 686 680 254</strong></div>`
   },
 
   invasor: {
