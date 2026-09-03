@@ -195,10 +195,14 @@ function ejecutarAtajo(especie) {
   const nombre = especie.nombreComun.toLowerCase();
 
   // Interceptamos Panal y Avispa asiática para ir directos al 112
-  if (nombre.includes("panal") || nombre.includes("avispa") || nombre.includes("abeja")) {
+if (nombre.includes("panal") || nombre.includes("abeja") || nombre.includes("avispa")) {
+  if (nombre.includes("asiática") || nombre.includes("velutina")) {
+    mostrarPantalla("avispaAsiatica");
+  } else {
     mostrarPantalla("panal");
-    return;
   }
+  return;
+}
 
   if (especie.tipo === "doméstico") { mostrarPantalla("domestico"); return; }
   if (especie.cites === true) { mostrarPantalla("citesPregunta"); return; }
