@@ -1190,7 +1190,7 @@ const pantallas = {
   cerdoVietnamitaNoRetenido: {
     tipo: "fin",
     titulo: "🐷 Cerdo vietnamita suelto",
-    contenido: `<h3>Deben intentar retenerlo en un lugar seguro.</h3><p>Si no pueden retenerlo, llévelo a la policía local de su municipio y avísenos para que vayamos a recogerlo allí.</p><div class="contact-box"><strong> WhatsApp: 686 680 254</strong></div>`
+    contenido: `<h3>No capturamos animales.</h3><p>Si no pueden retenerlo, llévelo a la policía local de su municipio y avísenos para que vayamos a recogerlo allí.</p><div class="contact-box"><strong> WhatsApp: 686 680 254</strong></div>`
   }
 
 };
