@@ -146,7 +146,14 @@ function obtenerOpcionesPaso4() {
       { texto: "☀️ De día", siguiente: "erizoDia" }
     ];
   }
-
+  // 2. CASO ESPECIAL: CHOTACABRAS (Nocturno, pero descansa de día)
+  if (esChotacabras(especie)) {
+    return [
+      { texto: "🌿 En el suelo, entre vegetación o maleza (posible descanso diurno)", siguiente: "chotacabrasDescanso" },
+      { texto: "️ En lugar expuesto (carretera, acera, patio, jardín sin vegetación)", siguiente: "chotacabrasExpuesto" },
+      { texto: "🤕 Tiene heridas visibles o signos de enfermedad", siguiente: "chotacabrasHerido" }
+    ];
+  }
   // 2. OPCIONES GENÉRICAS (Para el resto de animales)
   const opciones = [];
   opciones.push(
