@@ -805,7 +805,7 @@ const pantallas = {
   animalProblemas: {
     tipo: "fin",
     titulo: " Animal con problemas fuera de vivienda",
-    contenido: `<h3>Llamar al CPIF.</h3><p class="small-note"><strong>NOTA CPIF:</strong> Si no envían agente, registrar incidencia.</p>`
+    contenido: `<h3>Que llame al 112 o nos ponemos en contacto con el CPIF.</h3><p class="small-note"><strong>NOTA CPIF:</strong> Si no envían agente, registrar incidencia.</p>`
   },
 
   causaAntropogenica: {
