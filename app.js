@@ -780,7 +780,7 @@ const pantallas = {
     tipo: "fin",
     titulo: "⚡ Cadáver con causa antropogénica",
     clase: "warning",
-    contenido: `<h3>Llamar al CPIF.</h3><p class="small-note"><strong>NOTA CPIF:</strong> Si no envían agente, registrar la incidencia.</p>`
+    contenido: `<h3>Que llame al 112 o nos ponemos en contacto con el CPIF.</h3><p class="small-note"><strong>NOTA CPIF:</strong> Si no envían agente, registrar la incidencia.</p>`
   },
 
   cadaverNatural: {
