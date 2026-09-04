@@ -344,10 +344,11 @@ if (pantallaActual === "inicio") {
         titulo.textContent = sig.titulo;
         app.appendChild(titulo);
 
-        if (especieSeleccionada && ["vivoMuerto", "casosEspeciales", "tortugaCampo"].includes(opcion.siguiente)) {
+                // Muestra la ficha en TODAS las pantallas de preguntas si hay especie seleccionada
+        if (especieSeleccionada && sig.tipo === "pregunta") {
           const ficha = document.createElement("div");
           ficha.className = "selected-species-card";
-                    ficha.innerHTML = `
+          ficha.innerHTML = `
             <div class="selected-species-info">
               <h4>🐾 ${especieSeleccionada.nombreComun}</h4>
               <p>${especieSeleccionada.nombreCientifico}</p>
