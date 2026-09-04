@@ -1293,7 +1293,28 @@ const pantallas = {
   }
 
 };
+function lanzarCelebracion() {
+  const elementos = ['🪶', '🍃', '✨', '🌿', ''];
+  for (let i = 0; i < 60; i++) {
+    const el = document.createElement('div');
+    el.innerText = elementos[Math.floor(Math.random() * elementos.length)];
+    el.style.position = 'fixed';
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.top = '-50px';
+    el.style.fontSize = (Math.random() * 20 + 15) + 'px';
+    el.style.zIndex = '10000';
+    el.style.pointerEvents = 'none'; // Importante: para que no bloquee los clics
+    el.style.transition = `top ${Math.random() * 2 + 2}s linear, transform ${Math.random() * 2 + 2}s linear`;
+    document.body.appendChild(el);
 
+    setTimeout(() => {
+      el.style.top = '110vh';
+      el.style.transform = `rotate(${Math.random() * 720 - 360}deg)`;
+    }, 100);
+
+    setTimeout(() => el.remove(), 4500);
+  }
+}
 cargarEspecies().then(() => {
   mostrarPantalla("inicio");
 });
