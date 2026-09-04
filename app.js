@@ -18,10 +18,219 @@ let especieSeleccionada = null;
 /*
 =========================================================
 IDENTIFICACIÓN POR IMAGEN CON IA LOCAL (TensorFlow.js)
+CON DICCIONARIO DE TRADUCCIÓN AL ESPAÑOL
 =========================================================
 */
 let modeloIA = null;
 let modeloCargando = false;
+
+// DICCIONARIO: Mapeo de nombres en inglés (MobileNet) a español (vuestras especies)
+// Puedes añadir más entradas según las especies que más recibáis
+const diccionarioEspecies = {
+  // Aves
+  "barn owl": "Lechuza común",
+  "great grey owl": "Cárabo común",
+  "screech owl": "Autillo europeo",
+  "horned owl": "Búho real",
+  "eagle": "Águila",
+  "bald eagle": "Águila calva",
+  "kite": "Milano",
+  "buzzard": "Ratonero",
+  "harrier": "Aguilucho",
+  "falcon": "Halcón",
+  "peregrine": "Halcón peregrino",
+  "kestrel": "Cernícalo",
+  "vulture": "Buitre",
+  "stork": "Cigüeña",
+  "white stork": "Cigüeña blanca",
+  "black stork": "Cigüeña negra",
+  "heron": "Garza",
+  "great blue heron": "Garza real",
+  "egret": "Garceta",
+  "ibis": "Ibis",
+  "spoonbill": "Espátula",
+  "flamingo": "Flamenco",
+  "pelican": "Pelícano",
+  "goose": "Ganso",
+  "black swan": "Cisne negro",
+  "duck": "Pato",
+  "mallard": "Pato real",
+  "goose": "Oca",
+  "swan": "Cisne",
+  "quail": "Codorniz",
+  "partridge": "Perdiz",
+  "grouse": "Urogallo",
+  "pheasant": "Faisán",
+  "peacock": "Pavo real",
+  "cockatoo": "Cacatúa",
+  "macaw": "Guacamayo",
+  "parrot": "Loro",
+  "african grey": "Loro gris",
+  "cockatiel": "Cockatiel",
+  "budgerigar": "Periquito",
+  "hummingbird": "Colibrí",
+  "woodpecker": "Pico carpintero",
+  "kingfisher": "Martín pescador",
+  "bee eater": "Abejaruco",
+  "roller": "Carraca",
+  "hoopoe": "Abubilla",
+  "wren": "Chochín",
+  "robin": "Petirrojo",
+  "nightingale": "Ruiseñor",
+  "blackbird": "Mirlo",
+  "thrush": "Zorzal",
+  "sparrow": "Gorrión",
+  "finch": "Pinzón",
+  "canary": "Canario",
+  "goldfinch": "Jilguero",
+  "greenfinch": "Verderón",
+  "chaffinch": "Pinzón vulgar",
+  "bullfinch": "Camachuelo",
+  "wagtail": "Lavandera",
+  "pipit": "Bisbita",
+  "lark": "Alondra",
+  "skylark": "Alondra común",
+  "swallow": "Golondrina",
+  "martin": "Avión",
+  "warbler": "Curruca",
+  "chiffchaff": "Mosquitero común",
+  "willow warbler": "Mosquitero ibérico",
+  "blackcap": "Curruca capirotada",
+  "whitethroat": "Curruca zarcera",
+  "reed warbler": "Carricero común",
+  "flycatcher": "Papamoscas",
+  "pied flycatcher": "Papamoscas cerrojillo",
+  "collared flycatcher": "Papamoscas collarino",
+  "nuthatch": "Trepador",
+  "creeper": "Agateador",
+  "tit": "Herrerillo",
+  "blue tit": "Herrerillo común",
+  "great tit": "Carbonero común",
+  "coal tit": "Carbonero garrapinos",
+  "long-tailed tit": "Mito",
+  "jay": "Arrendajo",
+  "magpie": "Urraca",
+  "jackdaw": "Grajilla",
+  "rook": "Grajo",
+  "crow": "Cuervo",
+  "raven": "Cuervo",
+  "starling": "Estornino",
+  "oriole": "Oropéndola",
+  "shrike": "Alcaudón",
+  "great grey shrike": "Alcaudón real",
+  "woodchat shrike": "Alcaudón común",
+  "red-backed shrike": "Alcaudón dorsirrojo",
+  
+  // Reptiles y anfibios
+  "turtle": "Tortuga",
+  "box turtle": "Tortuga",
+  "terrapin": "Galápago",
+  "mud turtle": "Galápago",
+  "leatherback turtle": "Tortuga laúd",
+  "loggerhead": "Tortuga boba",
+  "lizard": "Lagarto",
+  "green lizard": "Lagarto verde",
+  "common lizard": "Lagartija",
+  "gecko": "Salamanquesa",
+  "chameleon": "Camaleón",
+  "iguana": "Iguana",
+  "snake": "Serpiente",
+  "cobra": "Cobra",
+  "viper": "Víbora",
+  "adder": "Víbora",
+  "grass snake": "Culebra",
+  "water snake": "Culebra de agua",
+  "green snake": "Culebra verde",
+  "king snake": "Culebra",
+  "garter snake": "Culebra",
+  "frog": "Rana",
+  "bullfrog": "Rana americana",
+  "tree frog": "Rana arbórea",
+  "salamander": "Salamandra",
+  "newt": "Tritón",
+  "toad": "Sapo",
+  "common toad": "Sapo común",
+  "natterjack toad": "Sapo corredor",
+  
+  // Mamíferos
+  "hedgehog": "Erizo",
+  "European hedgehog": "Erizo común",
+  "bat": "Murciélago",
+  "rabbit": "Conejo",
+  "hare": "Liebre",
+  "squirrel": "Ardilla",
+  "red squirrel": "Ardilla roja",
+  "chipmunk": "Ardilla",
+  "beaver": "Castor",
+  "rat": "Rata",
+  "mouse": "Ratón",
+  "vole": "Topillo",
+  "mole": "Topo",
+  "shrew": "Musaraña",
+  "fox": "Zorro",
+  "red fox": "Zorro rojo",
+  "wolf": "Lobo",
+  "coyote": "Coyote",
+  "jackal": "Chacal",
+  "dog": "Perro",
+  "cat": "Gato",
+  "wildcat": "Gato montés",
+  "lynx": "Lince",
+  "bear": "Oso",
+  "brown bear": "Oso pardo",
+  "polar bear": "Oso polar",
+  "badger": "Tejón",
+  "weasel": "Comadreja",
+  "ferret": "Hurón",
+  "polecat": "Turón",
+  "marten": "Marta",
+  "pine marten": "Marta",
+  "stone marten": "Garduña",
+  "otter": "Nutria",
+  "skunk": "Mofeta",
+  "raccoon": "Mapache",
+  "boar": "Jabalí",
+  "wild boar": "Jabalí",
+  "pig": "Cerdo",
+  "deer": "Ciervo",
+  "red deer": "Ciervo",
+  "roe deer": "Corzo",
+  "fallow deer": "Gamo",
+  "moose": "Alce",
+  "elk": "Alce",
+  "ibex": "Cabra montés",
+  "chamois": "Rebeco",
+  "goat": "Cabra",
+  "sheep": "Oveja",
+  "ram": "Carnero",
+  "cow": "Vaca",
+  "bull": "Toro",
+  "horse": "Caballo",
+  "donkey": "Burro",
+  "mule": "Mula",
+  "zebra": "Cebra",
+  
+  // Insectos y otros
+  "bee": "Abeja",
+  "wasp": "Avispa",
+  "hornet": "Avispón",
+  "ant": "Hormiga",
+  "butterfly": "Mariposa",
+  "moth": "Polilla",
+  "dragonfly": "Libélula",
+  "damselfly": "Caballito del diablo",
+  "beetle": "Escarabajo",
+  "ladybug": "Mariquita",
+  "grasshopper": "Saltamontes",
+  "cricket": "Grillo",
+  "cicada": "Cigarra",
+  "mantis": "Mantis",
+  "cockroach": "Cucaracha",
+  "spider": "Araña",
+  "scorpion": "Escorpión",
+  "snail": "Caracol",
+  "slug": "Babosa"
+};
 
 async function cargarModeloIA() {
   if (modeloIA) return modeloIA;
@@ -63,10 +272,21 @@ async function analizarImagenLocal(imagenBase64) {
     const predicciones = await modelo.classify(img, 5);
 
     return predicciones.map(pred => {
-      const nombreIngles = pred.className.split(',')[0].trim();
+      const nombreIngles = pred.className.split(',')[0].trim().toLowerCase();
+      
+      // Buscar en el diccionario
+      let nombreEspanol = null;
+      for (const [key, value] of Object.entries(diccionarioEspecies)) {
+        if (nombreIngles.includes(key.toLowerCase()) || key.toLowerCase().includes(nombreIngles)) {
+          nombreEspanol = value;
+          break;
+        }
+      }
+      
       return {
         nombreCientifico: "Por confirmar",
-        nombreComun: nombreIngles,
+        nombreComun: nombreEspanol || nombreIngles, // Usar español si existe, si no el inglés
+        nombreInglesOriginal: nombreIngles,
         grupo: "Identificado por IA",
         confianza: Math.round(pred.probability * 100) + '%',
         tipo: 'silvestre_autóctono'
@@ -99,11 +319,13 @@ async function procesarFoto(input) {
         let html = '<h4 style="margin-bottom: 15px; color: #1f4d3a;"> La IA sugiere que es:</h4>';
         resultados.forEach((esp, index) => {
           const nombreSeguro = esp.nombreComun.replace(/'/g, "\\'");
+          const indicador = esp.nombreComun !== esp.nombreInglesOriginal ? ' ✅' : '';
           html += `
             <div class="species-result" onclick="seleccionarEspecieIdentificada('${nombreSeguro}')" 
                  style="cursor: pointer; margin-bottom: 10px;">
               <div class="species-result-info">
-                <strong>${index + 1}. ${esp.nombreComun}</strong>
+                <strong>${index + 1}. ${esp.nombreComun}${indicador}</strong>
+                ${esp.nombreComun !== esp.nombreInglesOriginal ? `<span class="species-scientific" style="font-size: 11px;">(IA: ${esp.nombreInglesOriginal})</span>` : ''}
                 <span style="font-size: 12px; color: #16a34a; font-weight: bold;">
                   Precisión: ${esp.confianza}
                 </span>
@@ -111,7 +333,7 @@ async function procesarFoto(input) {
             </div>
           `;
         });
-        html += `<p class="small-note" style="margin-top:15px;"> Si el nombre no coincide exactamente, úsalo como pista y búscalo en el Buscador de la app.</p>`;
+        html += `<p class="small-note" style="margin-top:15px;">💡 El símbolo ✅ indica que la IA ha identificado la especie en español. Si no coincide exactamente, úsalo como pista y búscalo en el Buscador de la app.</p>`;
         resultadoDiv.innerHTML = html;
       } else {
         resultadoDiv.innerHTML = '<p style="color: #ef4444; text-align: center;">No se pudo identificar. Prueba con otra foto más clara.</p>';
@@ -140,7 +362,6 @@ function seleccionarEspecieIdentificada(nombreComun) {
     ejecutarAtajo(especieGenerica);
   }
 }
-
 /*
 =========================================================
 CARGA DE ESPECIES
