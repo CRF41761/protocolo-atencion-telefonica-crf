@@ -1031,7 +1031,58 @@ const pantallas = {
       </div>
     `
   },
+  chotacabrasDescanso: {
+    tipo: "pregunta",
+    titulo: "🌿 Chotacabras en posible descanso diurno",
+    descripcion: "Los chotacabras descansan de día camuflados en el suelo. ¿Parece tener algún problema?",
+    opciones: [
+      { texto: "No, parece estar descansando", siguiente: "chotacabrasSano" },
+      { texto: "Sí, parece estar herido o enfermo", siguiente: "chotacabrasNocheHerido" }
+    ]
+  },
 
+  chotacabrasSano: {
+    tipo: "fin",
+    titulo: "🌿 Chotacabras en descanso",
+    contenido: `<h3>Déjalo donde está.</h3><p>Es su comportamiento normal. Los chotacabras descansan de día camuflados en el suelo y son muy difíciles de ver.</p>`
+  },
+
+  chotacabrasExpuesto: {
+    tipo: "resultado",
+    titulo: "🛣️ Chotacabras en lugar expuesto",
+    contenido: `
+      <h3>Es anormal encontrar un chotacabras en un lugar expuesto de día.</h3>
+      <p>Lo más probable es que esté herido, enfermo o desorientado.</p>
+      <p>Mételo en una caja con agujeros, en un lugar <strong>oscuro y muy tranquilo</strong> para reducir el estrés.</p>
+      <div style="text-align: center; margin-top: 25px;">
+        <button class="btn btn-primary" onclick="mostrarPantalla('paso5')">➡️ Continuar al Paso 5</button>
+      </div>
+    `
+  },
+
+  chotacabrasHerido: {
+    tipo: "resultado",
+    titulo: "🤕 Chotacabras con heridas o signos de enfermedad",
+    contenido: `
+      <h3>Mételo en una caja con agujeros.</h3>
+      <p>Mantenlo en un lugar <strong>oscuro y tranquilo</strong> para minimizar el estrés.</p>
+      <div style="text-align: center; margin-top: 25px;">
+        <button class="btn btn-primary" onclick="mostrarPantalla('paso5')">➡️ Continuar al Paso 5</button>
+      </div>
+    `
+  },
+
+  chotacabrasNocheHerido: {
+    tipo: "resultado",
+    titulo: " Chotacabras con problemas",
+    contenido: `
+      <h3>Mételo en una caja con agujeros.</h3>
+      <p>Mantenlo en un lugar <strong>oscuro y tranquilo</strong> para minimizar el estrés.</p>
+      <div style="text-align: center; margin-top: 25px;">
+        <button class="btn btn-primary" onclick="mostrarPantalla('paso5')">➡️ Continuar al Paso 5</button>
+      </div>
+    `
+  },
   criaAve: {
     tipo: "pregunta",
     titulo: "🐣 Cría de pajarito",
