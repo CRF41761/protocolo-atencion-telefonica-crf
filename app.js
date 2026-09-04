@@ -718,34 +718,39 @@ const pantallas = {
     descripcion: "Escribe parte del nombre común o científico del animal."
   },
 
-    identificacion: {
+      identificacion: {
     tipo: "resultado",
     titulo: "🔍 Identificación del animal",
     contenido: `
       <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
-        <h3 style="margin-top: 0; color: #166534; font-size: 18px;">✅ Método Recomendado (100% fiable y rápido)</h3>
+        <h3 style="margin-top: 0; color: #166534; font-size: 18px;">✅ Opción 1: Tengo una foto (Recomendado)</h3>
         <ol style="margin: 10px 0; padding-left: 20px; color: #166534; line-height: 1.6;">
-          <li>Guarda la foto que te ha enviado el ciudadano.</li>
-          <li>Abre <a href="https://www.inaturalist.org/observations" target="_blank" style="color: #15803d; font-weight: bold; text-decoration: underline;">iNaturalist.org</a> en una pestaña nueva (mantén tu sesión iniciada).</li>
-          <li>Usa la herramienta "Identificar" (o sube la foto a una observación nueva) para que la IA te dé el nombre.</li>
-          <li>Vuelve a esta app y <strong>escribe ese nombre en el Buscador</strong> para iniciar el protocolo automáticamente.</li>
+          <li>Abre <a href="https://www.inaturalist.org/observations" target="_blank" style="color: #15803d; font-weight: bold; text-decoration: underline;">iNaturalist.org</a> en una pestaña nueva.</li>
+          <li>Sube la foto o usa su herramienta de identificación.</li>
+          <li>Copia el nombre que te dé y <strong>pégalo en el Buscador de esta app</strong> para ver el protocolo.</li>
         </ol>
       </div>
-      
-      <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 25px 0;">
-      
-      <h3 style="font-size: 18px; color: #1e293b;">💡 Alternativa: Búsqueda por descripción</h3>
-      <p style="color: #475569; margin-bottom: 15px;">Si no tienes la foto, describe al animal (ej: "ave rapaz pequeña", "reptil verde") y busca en nuestra base de datos:</p>
-      <button class="btn btn-primary" onclick="mostrarPantalla('buscador')" style="width: 100%; padding: 15px; font-size: 16px; display: flex; align-items: center; justify-content: center; gap: 10px;">
-        🔎 Ir al Buscador de Especies
-      </button>
 
-      <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 25px 0;">
+      <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
+        <h3 style="margin-top: 0; color: #1e40af; font-size: 18px;">💡 Opción 2: No tengo foto, solo una descripción</h3>
+        <p style="color: #1e3a8a; margin-bottom: 15px;">
+          Nuestro buscador local necesita el nombre exacto. Si solo tienes una descripción (ej: "reptil verde", "ave pequeña"), usa el buscador web de iNaturalist, que sí entiende descripciones:
+        </p>
+        <button class="btn btn-primary" onclick="window.open('https://www.inaturalist.org/taxa?q=', '_blank')" 
+                style="width: 100%; padding: 15px; font-size: 16px; display: flex; align-items: center; justify-content: center; gap: 10px; background-color: #2563eb; border: none;">
+          🌐 Buscar por descripción en iNaturalist (Nueva pestaña)
+        </button>
+        <p class="small-note" style="margin-top: 10px; color: #1e40af;">
+          💡 Una vez obtengas el nombre aproximado, vuelve a esta app y búscalo aquí para que se active el protocolo.
+        </p>
+      </div>
 
-      <h3 style="font-size: 18px; color: #1e293b;">📞 ¿Dudas complejas o especies protegidas?</h3>
-      <div class="contact-box">
-        <strong>📱 WhatsApp: 686 680 254</strong><br>
-        Envía la foto al grupo de veterinarios del centro para validación.
+      <div style="background: #fff7ed; border: 1px solid #fed7aa; border-radius: 8px; padding: 20px;">
+        <h3 style="margin-top: 0; color: #9a3412; font-size: 18px;">📞 Opción 3: Duda compleja o especie protegida</h3>
+        <div class="contact-box" style="background: transparent; border: 1px solid #fdba74; margin-top: 10px;">
+          <strong>📱 WhatsApp: 686 680 254</strong><br>
+          Envía la foto o descripción al grupo de veterinarios del centro para validación.
+        </div>
       </div>
     `
   },
