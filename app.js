@@ -107,7 +107,9 @@ function esErizo(especie) {
 function esMurcielago(especie) {
   return especie.grupo.toUpperCase() === "MURCIÉLAGOS";
 }
-
+function esChotacabras(especie) {
+  return especie.nombreComun.toLowerCase().includes("chotacabras");
+}
 function tieneCasoEspecialAviso(especie) {
   const nombre = especie.nombreComun.toLowerCase();
   return nombre.includes("lechuza") || nombre.includes("cernícalo") || nombre.includes("vencejo") ||
