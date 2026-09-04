@@ -457,6 +457,25 @@ function volverAtras() {
   app.innerHTML = "";
   actualizarProgreso();
 
+  // --- NUEVO: Dibujar la ficha del animal si corresponde ---
+  if (especieSeleccionada && pantalla.tipo === "pregunta") {
+    const ficha = document.createElement("div");
+    ficha.className = "selected-species-card";
+    ficha.innerHTML = `
+      <div class="selected-species-info">
+        <h4>🐾 ${especieSeleccionada.nombreComun}</h4>
+        <p>${especieSeleccionada.nombreCientifico}</p>
+        <p style="font-size: 12px; color: #64748b; font-style: normal; margin-top: 4px;">
+          <strong>${especieSeleccionada.grupo}</strong> · 
+          <span style="text-transform: capitalize;">${especieSeleccionada.tipo.replace("_", " ")}</span>
+        </p>
+      </div>
+      <button class="btn-change-species" onclick="cambiarEspecie()">Cambiar</button>
+    `;
+    app.appendChild(ficha);
+  }
+  // --- FIN NUEVO ---
+
   const titulo = document.createElement("h2");
   titulo.textContent = pantalla.titulo;
   app.appendChild(titulo);
