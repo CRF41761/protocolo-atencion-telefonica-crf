@@ -718,46 +718,37 @@ const pantallas = {
     descripcion: "Escribe parte del nombre común o científico del animal."
   },
 
-  identificacion: {
+    identificacion: {
     tipo: "resultado",
-    titulo: " Identificación del animal",
+    titulo: "🔍 Identificación del animal",
     contenido: `
-      <h3>🅰️ Opción A: Identificación Rápida con el Móvil (Recomendado)</h3>
-      <p>1. Guarda la foto que te ha enviado el ciudadano.</p>
-      <p>2. Ábrela en tu galería y usa:</p>
-      <ul style="margin: 10px 0; padding-left: 20px; color: #475569;">
-        <li><strong>iPhone:</strong> Mantén pulsada la foto y selecciona "Buscar" (🔍).</li>
-        <li><strong>Android:</strong> Toca el botón "Google Lens" (📷) o "Circular Search".</li>
-      </ul>
-      <p>3. Anota el nombre que te dé y <strong>búscalo en el buscador de esta app</strong>.</p>
-      
-      <hr style="margin: 25px 0; border: 0; border-top: 1px solid #e2e8f0;">
-      
-      <h3>🅱️ Opción B: Prueba la IA de la Web</h3>
-      <div style="margin: 20px 0;">
-        <input type="file" id="fotoIdentificacion" accept="image/*" capture="environment" 
-               style="display: none;" onchange="procesarFoto(this)">
-        <button class="btn btn-primary" onclick="document.getElementById('fotoIdentificacion').click()"
-                style="width: 100%; padding: 15px; font-size: 16px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 10px;">
-          📸 Subir foto para identificar (IA Web)
-        </button>
+      <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
+        <h3 style="margin-top: 0; color: #166534; font-size: 18px;">✅ Método Recomendado (100% fiable y rápido)</h3>
+        <ol style="margin: 10px 0; padding-left: 20px; color: #166534; line-height: 1.6;">
+          <li>Guarda la foto que te ha enviado el ciudadano.</li>
+          <li>Abre <a href="https://www.inaturalist.org/observations" target="_blank" style="color: #15803d; font-weight: bold; text-decoration: underline;">iNaturalist.org</a> en una pestaña nueva (mantén tu sesión iniciada).</li>
+          <li>Usa la herramienta "Identificar" (o sube la foto a una observación nueva) para que la IA te dé el nombre.</li>
+          <li>Vuelve a esta app y <strong>escribe ese nombre en el Buscador</strong> para iniciar el protocolo automáticamente.</li>
+        </ol>
       </div>
-      <div id="resultadoIdentificacion" style="display: none; margin-top: 20px;"></div>
       
-      <hr style="margin: 25px 0; border: 0; border-top: 1px solid #e2e8f0;">
+      <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 25px 0;">
       
-      <h3> Opción C: Consulta directa al equipo</h3>
+      <h3 style="font-size: 18px; color: #1e293b;">💡 Alternativa: Búsqueda por descripción</h3>
+      <p style="color: #475569; margin-bottom: 15px;">Si no tienes la foto, describe al animal (ej: "ave rapaz pequeña", "reptil verde") y busca en nuestra base de datos:</p>
+      <button class="btn btn-primary" onclick="mostrarPantalla('buscador')" style="width: 100%; padding: 15px; font-size: 16px; display: flex; align-items: center; justify-content: center; gap: 10px;">
+        🔎 Ir al Buscador de Especies
+      </button>
+
+      <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 25px 0;">
+
+      <h3 style="font-size: 18px; color: #1e293b;">📞 ¿Dudas complejas o especies protegidas?</h3>
       <div class="contact-box">
         <strong>📱 WhatsApp: 686 680 254</strong><br>
-        Envía la foto al grupo de veterinarios del centro.
+        Envía la foto al grupo de veterinarios del centro para validación.
       </div>
-      
-      <p class="small-note">
-        💡 <strong>Consejo:</strong> La Opción A suele ser la más rápida y precisa para fauna local.
-      </p>
     `
   },
-
   tipoAnimal: {
     tipo: "pregunta",
     titulo: "¿Qué tipo de animal es?",
