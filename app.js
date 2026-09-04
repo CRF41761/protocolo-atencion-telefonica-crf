@@ -395,6 +395,8 @@ if (pantallaActual === "inicio") {
     fin.className = "finish";
     fin.innerHTML = `<div class="finish-icon">✓</div>`;
     app.appendChild(fin);
+    // 🎉 ¡Lanzar la lluvia de plumas y hojas!
+    lanzarCelebracion();
   }
 }
 
