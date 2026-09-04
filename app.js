@@ -258,14 +258,12 @@ if (nombre.includes("panal") || nombre.includes("abeja") || nombre.includes("avi
     mostrarPantalla("exoticoNoInvasor"); return;
   }
 
-  if (especie.tipo === "silvestre_autóctono") {
+    if (especie.tipo === "silvestre_autóctono") {
     if (esCazaMayor(especie)) { mostrarPantalla("cazaMayor"); return; }
     if (esTortugaMarina(especie)) { mostrarPantalla("tortugaMarina"); return; }
     if (esGalapagoAutoctono(especie)) { mostrarPantallaConEspecie("tortugaCampo"); return; }
-    if (tieneCasoEspecialAviso(especie)) { mostrarPantallaConEspecie("casosEspeciales"); return; }
     mostrarPantallaConEspecie("vivoMuerto"); return;
   }
-
   mostrarPantalla("tipoAnimal");
 }
 
