@@ -135,16 +135,25 @@ FILTRADO DE OPCIONES DEL PASO 4
 function obtenerOpcionesPaso4() {
   if (!especieSeleccionada) return obtenerTodasOpcionesPaso4();
 
-  const opciones = [];
   const especie = especieSeleccionada;
 
+  // 1. CASO ESPECIAL: ERIZO (Prioridad máxima, salta las opciones genéricas)
+  if (esErizo(especie)) {
+    return [
+      { texto: "🌙 Noche o últimas horas del día", siguiente: "erizoNoche" },
+      { texto: "☀️ De día", siguiente: "erizoDia" }
+    ];
+  }
+
+  // 2. OPCIONES GENÉRICAS (Para el resto de animales)
+  const opciones = [];
   opciones.push(
     { texto: "🏠 Animal suelto dentro de una vivienda", siguiente: "animalVivienda" },
     { texto: "🦅 Animal no atrapado con problemas (fuera de vivienda)", siguiente: "animalProblemas" },
-    { texto: " Problema por causa antropogénica probable", siguiente: "causaAntropogenica" }
+    { texto: "⚡ Problema por causa antropogénica probable", siguiente: "causaAntropogenica" }
   );
 
-  // QUELONIOS (solo tortugas y galápagos)
+  // 3. QUELONIOS (solo tortugas y galápagos)
   if (esTortuga(especie)) {
     opciones.push(
       { texto: "🐢 Tortuga terrestre propiedad de alguien", siguiente: "tortugaPropiedad" },
@@ -152,12 +161,13 @@ function obtenerOpcionesPaso4() {
     );
   }
 
+  // 4. AVES
   if (esAve(especie)) {
-    opciones.push({ texto: " Ave estrellada contra un cristal", siguiente: "cristal" });
+    opciones.push({ texto: "🪟 Ave estrellada contra un cristal", siguiente: "cristal" });
     if (esRapaz(especie)) {
       const nombre = especie.nombreComun.toLowerCase();
       if (nombre.includes("lechuza") || nombre.includes("cernícalo")) {
-        opciones.push({ texto: " Cría de rapaz (lechuza o cernícalo)", siguiente: "criaLechuzaCernicalo" });
+        opciones.push({ texto: "🪶 Cría de rapaz (lechuza o cernícalo)", siguiente: "criaLechuzaCernicalo" });
       } else {
         opciones.push({ texto: "🦅 Cría de rapaz (diferente de lechuza/cernícalo)", siguiente: "criaRapazOtra" });
       }
@@ -166,15 +176,18 @@ function obtenerOpcionesPaso4() {
     }
   }
 
+  // 5. MAMÍFEROS (Conejos/Liebres)
   if (esMamifero(especie)) {
-    if (esConejoLiebre(especie)) opciones.push({ texto: " Cría de conejo o liebre", siguiente: "conejoLiebre" });
-    if (esErizo(especie)) opciones.push({ texto: "🦔 Erizo", siguiente: "erizo" });
+    if (esConejoLiebre(especie)) {
+      opciones.push({ texto: "🐇 Cría de conejo o liebre", siguiente: "conejoLiebre" });
+    }
   }
 
+  // 6. OPCIÓN FINAL: IR AL PASO 5
   opciones.push({ texto: "Ninguno de estos casos → Paso 5 (Animal herido/enfermo sin causa antropogénica)", siguiente: "paso5" });
+  
   return opciones;
 }
-
 function obtenerTodasOpcionesPaso4() {
   return [
     { texto: "🏠 Animal suelto dentro de una vivienda", siguiente: "animalVivienda" },
