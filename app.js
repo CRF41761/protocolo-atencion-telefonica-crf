@@ -17,7 +17,7 @@ let especieSeleccionada = null;
 
 /*
 =========================================================
-IDENTIFICACIÓN CON iNATURALIST (NUEVO)
+IDENTIFICACIÓN CON iNATURALIST (VÍA PROXY CORS)
 =========================================================
 */
 async function identificarConImagen(imagenBase64) {
@@ -27,10 +27,17 @@ async function identificarConImagen(imagenBase64) {
     formData.append('image', blob, 'foto.jpg');
     formData.append('without_taxon', 'true');
     
-    const respuesta = await fetch('https://api.inaturalist.org/v1/computervision/score_image', {
+    // URL original de iNaturalist
+    const targetUrl = 'https://api.inaturalist.org/v1/computervision/score_image';
+    // Proxy gratuito para evitar el bloqueo CORS del navegador
+    const proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent(targetUrl);
+    
+    const respuesta = await fetch(proxyUrl, {
       method: 'POST',
       body: formData
     });
+    
+    if (!respuesta.ok) throw new Error("Error en la API");
     
     const datos = await respuesta.json();
     
@@ -38,9 +45,9 @@ async function identificarConImagen(imagenBase64) {
       return datos.results.slice(0, 5).map(r => ({
         nombreCientifico: r.taxon.name,
         nombreComun: r.taxon.preferred_common_name || r.taxon.name,
-        grupo: r.taxon.rank === 'species' ? 'Especie identificada' : r.taxon.rank,
+        grupo: r.taxon.rank === 'species' ? 'Especie' : r.taxon.rank,
         confianza: Math.round(r.score * 100) + '%',
-        tipo: 'silvestre_autóctono' 
+        tipo: 'silvestre_autóctono'
       }));
     }
     return [];
@@ -57,7 +64,7 @@ async function procesarFoto(input) {
   const resultadoDiv = document.getElementById('resultadoIdentificacion');
   if (resultadoDiv) {
     resultadoDiv.style.display = 'block';
-    resultadoDiv.innerHTML = '<p style="text-align: center; padding: 20px; color: #4c8c6a; font-weight: bold;">🔍 Analizando imagen con iNaturalist...</p>';
+    resultadoDiv.innerHTML = '<p style="text-align: center; padding: 20px; color: #4c8c6a; font-weight: bold;"> Analizando imagen con iNaturalist (puede tardar unos segundos)...</p>';
   }
   
   const reader = new FileReader();
@@ -67,9 +74,8 @@ async function procesarFoto(input) {
     
     if (resultadoDiv) {
       if (resultados.length > 0) {
-        let html = '<h4 style="margin-bottom: 15px; color: #1f4d3a;">🦉 Especies sugeridas por IA:</h4>';
+        let html = '<h4 style="margin-bottom: 15px; color: #1f4d3a;"> Especies sugeridas por IA:</h4>';
         resultados.forEach((esp, index) => {
-          // Escapamos comillas simples para evitar errores en el onclick
           const nombreSeguro = esp.nombreComun.replace(/'/g, "\\'");
           html += `
             <div class="species-result" onclick="seleccionarEspecieIdentificada('${nombreSeguro}')" 
@@ -86,7 +92,7 @@ async function procesarFoto(input) {
         });
         resultadoDiv.innerHTML = html;
       } else {
-        resultadoDiv.innerHTML = '<p style="color: #ef4444; text-align: center;">No se pudo identificar con claridad. Intenta con otra foto o usa el WhatsApp.</p>';
+        resultadoDiv.innerHTML = '<p style="color: #ef4444; text-align: center;">No se pudo identificar con claridad. Prueba con la Opción A (IA del móvil) o usa WhatsApp.</p>';
       }
     }
   };
@@ -102,7 +108,6 @@ function seleccionarEspecieIdentificada(nombreComun) {
   if (especie) {
     ejecutarAtajo(especie);
   } else {
-    // Si no está en la lista local, creamos una genérica para que el protocolo pueda continuar
     const especieGenerica = {
       nombreComun: nombreComun,
       nombreCientifico: "Por confirmar",
@@ -124,7 +129,6 @@ async function cargarEspecies() {
     const respuesta = await fetch("especies.json");
     especiesLista = await respuesta.json();
     
-    // Inyectar casos especiales
     especiesLista.push(
       { nombreCientifico: "Apis mellifera / Vespidae", nombreComun: "Panal de abejas o avispas", grupo: "INSECTOS", origen: "Nativa", tipo: "silvestre_autóctono", cites: false, gradoProteccion: null },
       { nombreCientifico: "Vespa velutina", nombreComun: "Avispa asiática", grupo: "INSECTOS", origen: "Exótico", tipo: "invasor", cites: false, gradoProteccion: "Invasora" },
@@ -239,7 +243,6 @@ function obtenerOpcionesPaso4() {
 
   const especie = especieSeleccionada;
 
-  // 1. CASO ESPECIAL: ERIZO
   if (esErizo(especie)) {
     return [
       { texto: "🌙 Noche o últimas horas del día", siguiente: "erizoNoche" },
@@ -247,24 +250,21 @@ function obtenerOpcionesPaso4() {
     ];
   }
 
-  // 2. CASO ESPECIAL: CHOTACABRAS
   if (esChotacabras(especie)) {
     return [
       { texto: "🌿 En el suelo, entre vegetación o maleza (posible descanso diurno)", siguiente: "chotacabrasDescanso" },
       { texto: "🛣️ En lugar expuesto (carretera, acera, patio, jardín sin vegetación)", siguiente: "chotacabrasExpuesto" },
-      { texto: "🤕 Tiene heridas visibles o signos de enfermedad", siguiente: "chotacabrasHerido" }
+      { texto: " Tiene heridas visibles o signos de enfermedad", siguiente: "chotacabrasHerido" }
     ];
   }
 
-  // 3. OPCIONES GENÉRICAS
   const opciones = [];
   opciones.push(
     { texto: "🏠 Animal suelto dentro de una vivienda", siguiente: "animalVivienda" },
-    { texto: "🦅 Animal no atrapado con problemas (fuera de vivienda)", siguiente: "animalProblemas" },
+    { texto: " Animal no atrapado con problemas (fuera de vivienda)", siguiente: "animalProblemas" },
     { texto: "⚡ Problema por causa antropogénica probable", siguiente: "causaAntropogenica" }
   );
 
-  // 4. QUELONIOS
   if (esTortuga(especie)) {
     opciones.push(
       { texto: "🐢 Tortuga terrestre propiedad de alguien", siguiente: "tortugaPropiedad" },
@@ -272,7 +272,6 @@ function obtenerOpcionesPaso4() {
     );
   }
 
-  // 5. AVES
   if (esAve(especie)) {
     opciones.push({ texto: "🪟 Ave estrellada contra un cristal", siguiente: "cristal" });
     if (esRapaz(especie)) {
@@ -280,21 +279,19 @@ function obtenerOpcionesPaso4() {
       if (nombre.includes("lechuza") || nombre.includes("cernícalo")) {
         opciones.push({ texto: "🪶 Cría de rapaz (lechuza o cernícalo)", siguiente: "criaLechuzaCernicalo" });
       } else {
-        opciones.push({ texto: "🦅 Cría de rapaz (diferente de lechuza/cernícalo)", siguiente: "criaRapazOtra" });
+        opciones.push({ texto: " Cría de rapaz (diferente de lechuza/cernícalo)", siguiente: "criaRapazOtra" });
       }
     } else {
-      opciones.push({ texto: "🐣 Cría de pajarito (volantón o no)", siguiente: "criaAve" });
+      opciones.push({ texto: " Cría de pajarito (volantón o no)", siguiente: "criaAve" });
     }
   }
 
-  // 6. MAMÍFEROS (Conejos/Liebres)
   if (esMamifero(especie)) {
     if (esConejoLiebre(especie)) {
       opciones.push({ texto: "🐇 Cría de conejo o liebre", siguiente: "conejoLiebre" });
     }
   }
 
-  // 7. OPCIÓN FINAL: IR AL PASO 5
   opciones.push({ texto: "Ninguno de estos casos → Paso 5 (Animal herido/enfermo sin causa antropogénica)", siguiente: "paso5" });
   
   return opciones;
@@ -306,10 +303,10 @@ function obtenerTodasOpcionesPaso4() {
     { texto: "🦅 Animal no atrapado con problemas (fuera de vivienda)", siguiente: "animalProblemas" },
     { texto: "⚡ Problema por causa antropogénica probable", siguiente: "causaAntropogenica" },
     { texto: "🐢 Tortuga terrestre propiedad de alguien", siguiente: "tortugaPropiedad" },
-    { texto: "🐢 Tortuga terrestre o galápago autóctono en el campo", siguiente: "tortugaCampo" },
+    { texto: " Tortuga terrestre o galápago autóctono en el campo", siguiente: "tortugaCampo" },
     { texto: "🪟 Ave estrellada contra un cristal", siguiente: "cristal" },
     { texto: "🐇 Cría de conejo o liebre", siguiente: "conejoLiebre" },
-    { texto: "🐝 Panal de abejas o avispas", siguiente: "panal" },
+    { texto: " Panal de abejas o avispas", siguiente: "panal" },
     { texto: "🪰 Avispa asiática", siguiente: "avispaAsiatica" },
     { texto: "🪶 Cría de rapaz (lechuza o cernícalo)", siguiente: "criaLechuzaCernicalo" },
     { texto: "🦅 Cría de rapaz (diferente de lechuza/cernícalo)", siguiente: "criaRapazOtra" },
@@ -447,7 +444,6 @@ function renderContenidoPantalla(pantalla) {
         titulo.textContent = sig.titulo;
         app.appendChild(titulo);
 
-        // Muestra la ficha en TODAS las pantallas de preguntas si hay especie seleccionada
         if (especieSeleccionada && sig.tipo === "pregunta") {
           const ficha = document.createElement("div");
           ficha.className = "selected-species-card";
@@ -497,7 +493,7 @@ function renderContenidoPantalla(pantalla) {
     
     const fin = document.createElement("div");
     fin.className = "finish";
-    fin.innerHTML = `<div class="finish-icon">✔</div>`; // Check más grueso
+    fin.innerHTML = `<div class="finish-icon">✔</div>`;
     app.appendChild(fin);
     
     lanzarCelebracion();
@@ -563,7 +559,6 @@ function volverAtras() {
   app.innerHTML = "";
   actualizarProgreso();
 
-  // Dibujar la ficha del animal si corresponde al retroceder
   if (especieSeleccionada && pantalla.tipo === "pregunta") {
     const ficha = document.createElement("div");
     ficha.className = "selected-species-card";
@@ -725,29 +720,40 @@ const pantallas = {
 
   identificacion: {
     tipo: "resultado",
-    titulo: "📷 Identificación del animal",
+    titulo: " Identificación del animal",
     contenido: `
-      <h3>¿Tienes una fotografía del animal?</h3>
+      <h3>🅰️ Opción A: Identificación Rápida con el Móvil (Recomendado)</h3>
+      <p>1. Guarda la foto que te ha enviado el ciudadano.</p>
+      <p>2. Ábrela en tu galería y usa:</p>
+      <ul style="margin: 10px 0; padding-left: 20px; color: #475569;">
+        <li><strong>iPhone:</strong> Mantén pulsada la foto y selecciona "Buscar" (🔍).</li>
+        <li><strong>Android:</strong> Toca el botón "Google Lens" (📷) o "Circular Search".</li>
+      </ul>
+      <p>3. Anota el nombre que te dé y <strong>búscalo en el buscador de esta app</strong>.</p>
       
+      <hr style="margin: 25px 0; border: 0; border-top: 1px solid #e2e8f0;">
+      
+      <h3>🅱️ Opción B: Prueba la IA de la Web</h3>
       <div style="margin: 20px 0;">
         <input type="file" id="fotoIdentificacion" accept="image/*" capture="environment" 
                style="display: none;" onchange="procesarFoto(this)">
         <button class="btn btn-primary" onclick="document.getElementById('fotoIdentificacion').click()"
                 style="width: 100%; padding: 15px; font-size: 16px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 10px;">
-          📸 Tomar o subir foto para identificar
+          📸 Subir foto para identificar (IA Web)
         </button>
       </div>
-      
       <div id="resultadoIdentificacion" style="display: none; margin-top: 20px;"></div>
       
-      <p style="margin-top: 25px;">O pide al ciudadano que la envíe por:</p>
+      <hr style="margin: 25px 0; border: 0; border-top: 1px solid #e2e8f0;">
+      
+      <h3> Opción C: Consulta directa al equipo</h3>
       <div class="contact-box">
         <strong>📱 WhatsApp: 686 680 254</strong><br>
-        Identificación y ubicación.
+        Envía la foto al grupo de veterinarios del centro.
       </div>
       
       <p class="small-note">
-        Una vez identificado, el sistema te mostrará las especies posibles o te permitirá continuar.
+        💡 <strong>Consejo:</strong> La Opción A suele ser la más rápida y precisa para fauna local.
       </p>
     `
   },
@@ -759,7 +765,7 @@ const pantallas = {
     opciones: [
       { texto: "🦌 Caza mayor", siguiente: "cazaMayor" },
       { texto: "🐢 Tortuga marina o cetáceo", siguiente: "tortugaMarina" },
-      { texto: "🏠 Animal doméstico", siguiente: "domestico" },
+      { texto: " Animal doméstico", siguiente: "domestico" },
       { texto: "🦎 Animal exótico", siguiente: "exotico" },
       { texto: "🚨 Animal catalogado como invasor", siguiente: "invasor" },
       { texto: "🦇 Colonias de murciélagos o nidos", siguiente: "murcielagos" },
@@ -772,7 +778,7 @@ const pantallas = {
 
   listasReferencia: {
     tipo: "resultado",
-    titulo: "📚 Listas de referencia",
+    titulo: " Listas de referencia",
     contenido: `
       <div class="reference-list">
         <h4>🏠 Animales domésticos</h4>
@@ -820,7 +826,7 @@ const pantallas = {
     tipo: "pregunta",
     titulo: "¿Qué situación se presenta?",
     opciones: [
-      { texto: "🦎 Animal exótico CITES (posee o Policía Local consulta)", siguiente: "citesConsulta" },
+      { texto: " Animal exótico CITES (posee o Policía Local consulta)", siguiente: "citesConsulta" },
       { texto: "🦎 Animal exótico CITES encontrado", siguiente: "citesEncontrado" },
       { texto: "🏠 Animal exótico NO invasor (excepto galápagos)", siguiente: "exoticoNoInvasor" }
     ]
@@ -844,7 +850,7 @@ const pantallas = {
     descripcion: "Excepción: Esta especie CITES la gestionamos nosotros. ¿Es de su propiedad o la han encontrado?",
     opciones: [
       { texto: "📋 Es de su propiedad", siguiente: "citesGraptemysPosee" },
-      { texto: "🐢 La han encontrado", siguiente: "citesGraptemysEncontrado" }
+      { texto: " La han encontrado", siguiente: "citesGraptemysEncontrado" }
     ]
   },
 
@@ -856,13 +862,13 @@ const pantallas = {
 
   citesGraptemysEncontrado: {
     tipo: "fin",
-    titulo: "📜 Tortuga mapa (Graptemys) encontrada",
+    titulo: " Tortuga mapa (Graptemys) encontrada",
     contenido: `<h3>Pueden traerla al centro o llevarla a una unidad colaboradora.</h3><p>Si la llevan a una unidad colaboradora, <strong>se ha de apuntar como recogida pendiente</strong>. <strong>Los fines de semana no recogemos</strong>.</p><div class="contact-box"><strong>📱 WhatsApp: 686 680 254</strong></div>`
   },
 
   invasor: {
     tipo: "pregunta",
-    titulo: "🚨 Animal catalogado como invasor",
+    titulo: " Animal catalogado como invasor",
     descripcion: "¿Está cerca de alguna unidad colaboradora?",
     opciones: [
       { texto: "Sí, está cerca", siguiente: "invasorUnidad" },
@@ -888,8 +894,8 @@ const pantallas = {
 
   invasorPropiedad: {
     tipo: "fin",
-    titulo: "🚨 Animal invasor de su propiedad",
-    contenido: `<h3>Han de traerlo al centro.</h3><div class="contact-box"><strong>📱 686 680 254</strong></div>`
+    titulo: " Animal invasor de su propiedad",
+    contenido: `<h3>Han de traerlo al centro.</h3><div class="contact-box"><strong> 686 680 254</strong></div>`
   },
 
   invasorEncontrado: {
@@ -920,7 +926,7 @@ const pantallas = {
     tipo: "pregunta",
     titulo: "Paso 3 — ¿El animal está vivo o muerto?",
     opciones: [
-      { texto: "⚫ Está muerto", siguiente: "muerto" },
+      { texto: " Está muerto", siguiente: "muerto" },
       { texto: "🟢 Está vivo", siguiente: "casosEspeciales" }
     ]
   },
@@ -984,7 +990,7 @@ const pantallas = {
 
   causaAntropogenica: {
     tipo: "fin",
-    titulo: "⚡ Problema por causa antropogénica",
+    titulo: " Problema por causa antropogénica",
     contenido: `<h3>Llamar al CPIF.</h3><p class="small-note"><strong>NOTA CPIF:</strong> Si no envían agente, registrar incidencia.</p>`
   },
 
@@ -1058,7 +1064,7 @@ const pantallas = {
 
   conejoHerido: {
     tipo: "resultado",
-    titulo: "🐇 Cría herida",
+    titulo: " Cría herida",
     contenido: `
       <h3>Poner en caja con agujeros.</h3>
       <p>Mantener en ambiente tranquilo.</p>
@@ -1165,7 +1171,7 @@ const pantallas = {
 
   erizo: {
     tipo: "pregunta",
-    titulo: "🦔 Erizo",
+    titulo: " Erizo",
     opciones: [
       { texto: "Noche/últimas horas", siguiente: "erizoNoche" },
       { texto: "De día", siguiente: "erizoDia" }
@@ -1208,7 +1214,7 @@ const pantallas = {
 
   chotacabrasDescanso: {
     tipo: "pregunta",
-    titulo: "🌿 Chotacabras en posible descanso diurno",
+    titulo: " Chotacabras en posible descanso diurno",
     descripcion: "Los chotacabras descansan de día camuflados en el suelo. ¿Parece tener algún problema?",
     opciones: [
       { texto: "No, parece estar descansando", siguiente: "chotacabrasSano" },
@@ -1237,7 +1243,7 @@ const pantallas = {
 
   chotacabrasHerido: {
     tipo: "resultado",
-    titulo: "🤕 Chotacabras con heridas o signos de enfermedad",
+    titulo: " Chotacabras con heridas o signos de enfermedad",
     contenido: `
       <h3>Mételo en una caja con agujeros.</h3>
       <p>Mantenlo en un lugar <strong>oscuro y tranquilo</strong> para minimizar el estrés.</p>
@@ -1280,7 +1286,7 @@ const pantallas = {
 
   volantonMenos90: {
     tipo: "pregunta",
-    titulo: "🐣 Volantón — Menos de 1h 30min",
+    titulo: " Volantón — Menos de 1h 30min",
     descripcion: "¿Puede devolverlo?",
     opciones: [
       { texto: "Sí, puede devolverlo", siguiente: "volantonDevolver" },
@@ -1363,7 +1369,7 @@ const pantallas = {
 
   sinUnidad: {
     tipo: "fin",
-    titulo: "🚗 Recogida en domicilio",
+    titulo: " Recogida en domicilio",
     contenido: `<h3>Tomar datos para recogida.</h3><p>Anotar recogida pendiente.</p>`
   },
 
@@ -1385,7 +1391,7 @@ const pantallas = {
 
   finSemanaNoPuede: {
     tipo: "pregunta",
-    titulo: "🗓️ No puede traerlo",
+    titulo: "️ No puede traerlo",
     descripcion: "Llamamos al CPIF. ¿El agente puede recogerlo?",
     opciones: [
       { texto: "Sí, el agente puede", siguiente: "agentePuede" },
@@ -1410,7 +1416,7 @@ const pantallas = {
     titulo: "🐷 Cerdo vietnamita",
     descripcion: "Animal exótico invasor. ¿Es de su propiedad o lo han encontrado?",
     opciones: [
-      { texto: "🏠 Es de su propiedad", siguiente: "cerdoVietnamitaPropiedad" },
+      { texto: " Es de su propiedad", siguiente: "cerdoVietnamitaPropiedad" },
       { texto: "🌳 Lo han encontrado", siguiente: "cerdoVietnamitaEncontrado" }
     ]
   },
@@ -1433,7 +1439,7 @@ const pantallas = {
 
   cerdoVietnamitaRetenido: {
     tipo: "fin",
-    titulo: "🐷 Cerdo vietnamita retenido",
+    titulo: " Cerdo vietnamita retenido",
     contenido: `<h3>Es posible que podamos acudir a recogerlo.</h3><p>Hablar con la veterinaria para saber cómo proceder.</p><div class="contact-box"><strong>📱 WhatsApp: 686 680 254</strong></div>`
   },
 
