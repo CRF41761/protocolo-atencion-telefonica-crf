@@ -1350,10 +1350,10 @@ const pantallas = {
         <ul>
           <li>Tortuga de espolones africana</li>
           <li>Águila de Harris</li>
-          <li>Tortuga mapa (<em>Graptemys sp</em>)</li>
-          <li>Tortuga china de agua (<em>Mauremys sinensis sp</em>)</li>
-          <li>Galápago chino de tres crestas (<em>Mauremys reevesii sp</em>)</li>
-          <li>Tortuga mediterránea oriental (<em>Testudo hermanni boettgeri sp</em>)</li>
+          <li>Tortuga mapa (<em>Graptemys</em>)</li>
+          <li>Tortuga china de agua (<em>Mauremys sinensis</em>)</li>
+          <li>Galápago chino de tres crestas (<em>Mauremys reevesii</em>)</li>
+          <li>Tortuga mediterránea oriental (<em>Testudo hermanni boettgeri</em>)</li>
         </ul>
       </div>
     `
