@@ -1369,12 +1369,12 @@ const pantallas = {
     contenido: `<h3>Indicar que se dirija a su Ayuntamiento.</h3><p>Competencia municipal según art. 34 Ley 2/2023.</p>`
   },
 
-  exotico: {
+   exotico: {
     tipo: "pregunta",
     titulo: "¿Qué situación se presenta?",
     opciones: [
-      { texto: " Animal exótico CITES (posee o Policía Local consulta)", siguiente: "citesConsulta" },
-      { texto: "🦎 Animal exótico CITES encontrado", siguiente: "citesEncontrado" },
+      { texto: "📜 Animal exótico CITES (posee o Policía Local consulta)", siguiente: "citesConsulta" },
+      { texto: "🦎 Animal exótico CITES encontrado", siguiente: "exoticoNoInvasor" }, // ← CORREGIDO
       { texto: "🏠 Animal exótico NO invasor (excepto galápagos)", siguiente: "exoticoNoInvasor" }
     ]
   },
