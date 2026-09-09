@@ -899,25 +899,7 @@
     "cites": false,
     "gradoProteccion": "L.e.s.r.p.e"
   },
-  {
-    "nombreCientifico": "Mauremys reevesii",
-    "nombreComun": "Galápago chino de tres crestas",
-    "grupo": "REPTILES",
-    "origen": "Exótico",
-    "tipo": "exótico",
-    "cites": false,
-    "gradoProteccion": null
-  },
-  {
-    "nombreCientifico": "Mauremys sinensis",
-    "nombreComun": "Tortuga china de agua",
-    "grupo": "REPTILES",
-    "origen": "Exótico",
-    "tipo": "exótico",
-    "cites": false,
-    "gradoProteccion": null
-  },
-  {
+   {
     "nombreCientifico": "Meles meles",
     "nombreComun": "Tejón común, europeo o eurasiático",
     "grupo": "CARNÍVOROS",
