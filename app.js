@@ -685,10 +685,16 @@ async function cargarEspecies() {
     const respuesta = await fetch("especies.json");
     especiesLista = await respuesta.json();
     
+    // Inyectar casos especiales y nuevas especies CITES/Exóticas
     especiesLista.push(
       { nombreCientifico: "Apis mellifera / Vespidae", nombreComun: "Panal de abejas o avispas", grupo: "INSECTOS", origen: "Nativa", tipo: "silvestre_autóctono", cites: false, gradoProteccion: null },
       { nombreCientifico: "Vespa velutina", nombreComun: "Avispa asiática", grupo: "INSECTOS", origen: "Exótico", tipo: "invasor", cites: false, gradoProteccion: "Invasora" },
-      { nombreCientifico: "Sus scrofa domesticus", nombreComun: "Cerdo vietnamita", grupo: "MAMÍFEROS", origen: "Exótico", tipo: "invasor", cites: false, gradoProteccion: "Invasora" }
+      { nombreCientifico: "Sus scrofa domesticus", nombreComun: "Cerdo vietnamita", grupo: "MAMÍFEROS", origen: "Exótico", tipo: "invasor", cites: false, gradoProteccion: "Invasora" },
+      
+      // NUEVAS ESPECIES CITES AÑADIDAS:
+      { nombreCientifico: "Testudo hermanni boettgeri", nombreComun: "Tortuga mediterránea oriental", grupo: "REPTILES", origen: "Exótico", tipo: "exótico", cites: true, gradoProteccion: null },
+      { nombreCientifico: "Mauremys reevesii", nombreComun: "Galápago chino de tres crestas", grupo: "REPTILES", origen: "Exótico", tipo: "exótico", cites: true, gradoProteccion: null },
+      { nombreCientifico: "Mauremys sinensis", nombreComun: "Tortuga china de agua", grupo: "REPTILES", origen: "Exótico", tipo: "exótico", cites: true, gradoProteccion: null }
     );
     
     console.log("Especies cargadas:", especiesLista.length);
