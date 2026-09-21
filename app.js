@@ -722,6 +722,19 @@ function esTortuga(especie) {
   return tortugas.some(t => nombre.startsWith(t)) || comun.includes("tortuga") || comun.includes("galápago");
 }
 
+function esTortugaTerrestre(especie) {
+  const nombre = especie.nombreCientifico.toLowerCase();
+  return nombre.startsWith("testudo") || nombre.startsWith("centrochelys");
+}
+
+function esTortugaMora(especie) {
+  return especie.nombreCientifico.toLowerCase() === "testudo graeca";
+}
+
+function esTortugaMediterraneaAutoctona(especie) {
+  return especie.nombreCientifico.toLowerCase() === "testudo hermanni hermanni";
+}
+
 function esCazaMayor(especie) {
   const cazaMayor = ["Sus scrofa", "Capra pyrenaica", "Capreolus capreolus", "Cervus elaphus", "Dama dama"];
   return cazaMayor.includes(especie.nombreCientifico);
@@ -883,9 +896,14 @@ function obtenerTodasOpcionesPaso4() {
 EJECUTAR ATAJO
 =========================================================
 */
-function ejecutarAtajo(especie) {
+function ejecutarAtajo(especie, omitirFoto = false) {
   especieSeleccionada = especie;
   const nombre = especie.nombreComun.toLowerCase();
+
+  if (!omitirFoto && esTortugaTerrestre(especie)) {
+    mostrarPantalla("fotoTortugaTerrestre");
+    return;
+  }
 
   if (nombre.includes("panal") || nombre.includes("abeja") || nombre.includes("avispa")) {
     if (nombre.includes("asiática") || nombre.includes("velutina")) {
@@ -928,6 +946,25 @@ function ejecutarAtajo(especie) {
   }
 
   mostrarPantalla("tipoAnimal");
+}
+
+function continuarTrasFotoTortuga() {
+  if (!especieSeleccionada) {
+    mostrarPantalla("buscador");
+    return;
+  }
+
+  if (esTortugaMora(especieSeleccionada)) {
+    mostrarPantalla("tortugaMoraSituacion");
+    return;
+  }
+
+  if (esTortugaMediterraneaAutoctona(especieSeleccionada)) {
+    mostrarPantalla("tortugaMediterraneaProcedencia");
+    return;
+  }
+
+  ejecutarAtajo(especieSeleccionada, true);
 }
 
 function mostrarPantallaConEspecie(id) {
@@ -1417,9 +1454,13 @@ const pantallas = {
   },
 
   citesGraptemysEncontrado: {
-    tipo: "fin",
+    tipo: "pregunta",
     titulo: "📜 Tortuga mapa (Graptemys) encontrada",
-    contenido: `<h3>Pueden traerla al centro o llevarla a una unidad colaboradora.</h3><p>Si la llevan a una unidad colaboradora, <strong>se ha de apuntar como recogida pendiente</strong>. <strong>Los fines de semana no recogemos</strong>.</p><div class="contact-box"><strong>📱 WhatsApp: 686 680 254</strong></div>`
+    descripcion: "¿Puede traerla al Centro?",
+    opciones: [
+      { texto: "Sí, puede traerla", siguiente: "centroTraslado" },
+      { texto: "No puede traerla", siguiente: "trasladoDia" }
+    ]
   },
 
   invasor: {
@@ -1554,6 +1595,45 @@ const pantallas = {
     tipo: "fin",
     titulo: "🐢 Tortuga terrestre propiedad de alguien",
     contenido: `<h3>Solicitar fotografía antes de traerla.</h3><div class="contact-box"><strong>📱 WhatsApp: 686 680 254</strong></div>`
+  },
+
+  fotoTortugaTerrestre: {
+    tipo: "resultado",
+    titulo: "🐢 Confirmación de tortuga terrestre",
+    contenido: `<h3>Necesitamos una fotografía para confirmar la especie de la tortuga.</h3><p>Envíe una fotografía por WhatsApp al <a href="https://wa.me/34686680254" target="_blank" rel="noopener">686 680 254</a>.</p><div style="text-align: center; margin-top: 25px;"><button class="btn btn-primary" onclick="continuarTrasFotoTortuga()">➡️ Continuar tras confirmar la especie</button></div>`
+  },
+
+  tortugaMoraSituacion: {
+    tipo: "pregunta",
+    titulo: "🐢 Tortuga mora",
+    descripcion: "¿La tortuga mora es de su propiedad o la han encontrado?",
+    opciones: [
+      { texto: "Es de su propiedad", siguiente: "tortugaMoraPropiedad" },
+      { texto: "La han encontrado", siguiente: "trasladoCentro" }
+    ]
+  },
+
+  tortugaMoraPropiedad: {
+    tipo: "fin",
+    titulo: "🐢 Tortuga mora en propiedad",
+    contenido: `<h3>Han de traerla al Centro.</h3>`
+  },
+
+  tortugaMediterraneaProcedencia: {
+    tipo: "pregunta",
+    titulo: "🐢 Tortuga mediterránea",
+    descripcion: "¿Dónde la han encontrado?",
+    opciones: [
+      { texto: "Encontrada en Sierra de Irta, Devesa del Saler o el Desert de les Palmes", siguiente: "tortugaMediterraneaHabitat" },
+      { texto: "Encontrada en otro lugar", siguiente: "trasladoCentro" },
+      { texto: "Ninguno de estos casos → Paso 5 (Animal herido/enfermo sin causa antropogénica)", siguiente: "paso5" }
+    ]
+  },
+
+  tortugaMediterraneaHabitat: {
+    tipo: "fin",
+    titulo: "🐢 Tortuga mediterránea en su hábitat",
+    contenido: `<h3>No llevársela, está en su hábitat natural, no es necesario recogerla.</h3>`
   },
 
   tortugaCampo: {
@@ -1859,30 +1939,30 @@ const pantallas = {
   volantonNoDevolver: {
     tipo: "pregunta",
     titulo: "🐣 Volantón — No puede devolver",
-    descripcion: "¿Está cerca de unidad colaboradora?",
+    descripcion: "¿Puede traerlo al Centro?",
     opciones: [
-      { texto: "Sí, cerca de unidad", siguiente: "criaUnidad" },
-      { texto: "No está cerca", siguiente: "criaCentro" }
+      { texto: "Sí, puede traerlo", siguiente: "centroTraslado" },
+      { texto: "No puede traerlo", siguiente: "trasladoDia" }
     ]
   },
 
   volantonMas90: {
     tipo: "pregunta",
     titulo: "🐣 Volantón — Más de 1h 30min",
-    descripcion: "¿Está cerca de unidad colaboradora?",
+    descripcion: "¿Puede traerlo al Centro?",
     opciones: [
-      { texto: "Sí, cerca de unidad", siguiente: "criaUnidad" },
-      { texto: "No está cerca", siguiente: "criaCentro" }
+      { texto: "Sí, puede traerlo", siguiente: "centroTraslado" },
+      { texto: "No puede traerlo", siguiente: "trasladoDia" }
     ]
   },
 
   criaAveNoVolanton: {
     tipo: "pregunta",
     titulo: "🐣 Cría no volantón",
-    descripcion: "Vencejo, golondrina, avión, sin plumas o herido.",
+    descripcion: "Vencejo, golondrina, avión, sin plumas o herido. ¿Puede traerlo al Centro?",
     opciones: [
-      { texto: "Cerca de unidad", siguiente: "criaUnidad" },
-      { texto: "No cerca", siguiente: "criaCentro" }
+      { texto: "Sí, puede traerlo", siguiente: "centroTraslado" },
+      { texto: "No puede traerlo", siguiente: "trasladoDia" }
     ]
   },
 
@@ -1896,6 +1976,32 @@ const pantallas = {
     tipo: "fin",
     titulo: "🐣 Traer al centro",
     contenido: `<h3>No hacemos recogidas de crías.</h3><p>Traer al centro en caja sin comida/agua.</p>`
+  },
+
+  trasladoCentro: {
+    tipo: "pregunta",
+    titulo: "🚗 Traslado al Centro",
+    descripcion: "¿Puede traerlo al Centro?",
+    opciones: [
+      { texto: "Sí, puede traerlo", siguiente: "centroTraslado" },
+      { texto: "No puede traerlo", siguiente: "trasladoDia" }
+    ]
+  },
+
+  centroTraslado: {
+    tipo: "fin",
+    titulo: "🏠 Traslado al Centro",
+    contenido: `<h3>Puede traer el animal al Centro.</h3>`
+  },
+
+  trasladoDia: {
+    tipo: "pregunta",
+    titulo: "Disponibilidad de alternativa",
+    descripcion: "¿Qué día es?",
+    opciones: [
+      { texto: "📅 Entre semana", siguiente: "entreSemana" },
+      { texto: "🗓️ Fin de semana", siguiente: "finSemanaNoPuede" }
+    ]
   },
 
   paso5: {
