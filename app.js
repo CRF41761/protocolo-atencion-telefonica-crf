@@ -789,6 +789,10 @@ function esChotacabras(especie) {
   return especie.nombreComun.toLowerCase().includes("chotacabras");
 }
 
+function esTortolaTurca(especie) {
+  return especie && especie.nombreCientifico === "Streptopelia decaocto";
+}
+
 function tieneCasoEspecialAviso(especie) {
   const nombre = especie.nombreComun.toLowerCase();
   return nombre.includes("lechuza") || nombre.includes("cernícalo") || nombre.includes("vencejo") ||
@@ -1019,6 +1023,12 @@ RENDERIZADO
 */
 function renderContenidoPantalla(pantalla) {
   if (pantalla.tipo === "pregunta") {
+    if (pantallaActual === "vivoMuerto" && esTortolaTurca(especieSeleccionada)) {
+      const aviso = document.createElement("div");
+      aviso.className = "result warning";
+      aviso.innerHTML = `<h3>⚠️ AVISO — TÓRTOLA TURCA</h3><p>Si está viva y entra en el Centro, va directamente a Triaje.</p><p>Si está muerta, no entra en el Centro.</p>`;
+      app.appendChild(aviso);
+    }
     const opciones = document.createElement("div");
     opciones.className = "options";
     let opcionesAMostrar = pantalla.opciones;
