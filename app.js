@@ -861,7 +861,12 @@ function obtenerOpcionesPaso4() {
         opciones.push({ texto: " Cría de rapaz (diferente de lechuza/cernícalo)", siguiente: "criaRapazOtra" });
       }
     } else {
-      opciones.push({ texto: " Cría de pajarito (volantón o no)", siguiente: "criaAve" });
+      const nombreAve = especie.nombreComun.toLowerCase();
+      if (nombreAve.includes("vencejo") || nombreAve.includes("avión") || nombreAve.includes("golondrina")) {
+        opciones.push({ texto: "🐣 Cría de pajarito", siguiente: "criaDia" });
+      } else {
+        opciones.push({ texto: " Cría de pajarito (volantón o no)", siguiente: "criaAve" });
+      }
     }
   }
 
@@ -1916,8 +1921,8 @@ const pantallas = {
     titulo: "🐣 Cría de pajarito",
     descripcion: "¿Es un volantón?",
     opciones: [
-      { texto: "Sí, es volantón", siguiente: "volanton" },
-      { texto: "No es volantón", siguiente: "criaAveNoVolanton" }
+      { texto: `Sí, es volantón<span class="option-subtext">(Excepto Vencejos, Aviones y Golondrinas)</span>`, siguiente: "volanton" },
+      { texto: `No es volantón<span class="option-subtext">(Vencejos, golondrinas y aviones, u otra especie sin plumas o herida)</span>`, siguiente: "criaDia" }
     ]
   },
 
@@ -1926,7 +1931,7 @@ const pantallas = {
     titulo: "🐣 Volantón — ¿Cuánto tiempo?",
     opciones: [
       { texto: "Menos de 1h 30min", siguiente: "volantonMenos90" },
-      { texto: "Más de 1h 30min", siguiente: "volantonMas90" }
+      { texto: "Más de 1h 30min", siguiente: "criaDia" }
     ]
   },
 
@@ -1936,7 +1941,7 @@ const pantallas = {
     descripcion: "¿Puede devolverlo?",
     opciones: [
       { texto: "Sí, puede devolverlo", siguiente: "volantonDevolver" },
-      { texto: "No puede", siguiente: "volantonNoDevolver" }
+      { texto: "No puede", siguiente: "criaDia" }
     ]
   },
 
@@ -1946,33 +1951,22 @@ const pantallas = {
     contenido: `<h3>Dejarlo donde lo encontró.</h3>`
   },
 
-  volantonNoDevolver: {
+  criaDia: {
     tipo: "pregunta",
-    titulo: "🐣 Volantón — No puede devolver",
-    descripcion: "¿Puede traerlo al Centro?",
+    titulo: "📅 ¿Qué día es?",
+    descripcion: "Protocolo de crías de pajaritos.",
     opciones: [
-      { texto: "Sí, puede traerlo", siguiente: "centroTraslado" },
-      { texto: "No puede traerlo", siguiente: "trasladoDia" }
+      { texto: "📅 Entre semana", siguiente: "criaUnidadCerca" },
+      { texto: "🗓️ Fin de semana", siguiente: "criaCentro" }
     ]
   },
 
-  volantonMas90: {
+  criaUnidadCerca: {
     tipo: "pregunta",
-    titulo: "🐣 Volantón — Más de 1h 30min",
-    descripcion: "¿Puede traerlo al Centro?",
+    titulo: "¿Hay unidad colaboradora cerca?",
     opciones: [
-      { texto: "Sí, puede traerlo", siguiente: "centroTraslado" },
-      { texto: "No puede traerlo", siguiente: "trasladoDia" }
-    ]
-  },
-
-  criaAveNoVolanton: {
-    tipo: "pregunta",
-    titulo: "🐣 Cría no volantón",
-    descripcion: "Vencejo, golondrina, avión, sin plumas o herido. ¿Puede traerlo al Centro?",
-    opciones: [
-      { texto: "Sí, puede traerlo", siguiente: "centroTraslado" },
-      { texto: "No puede traerlo", siguiente: "trasladoDia" }
+      { texto: "Sí, hay unidad", siguiente: "criaUnidad" },
+      { texto: "No hay unidad", siguiente: "criaCentro" }
     ]
   },
 
@@ -1985,7 +1979,7 @@ const pantallas = {
   criaCentro: {
     tipo: "fin",
     titulo: "🐣 Traer al centro",
-    contenido: `<h3>No hacemos recogidas de crías.</h3><p>Traer al centro en caja sin comida/agua.</p>`
+    contenido: `<h3>No podemos ir a recoger crías de pajaritos debido al elevado número de animales que se encuentran en las mismas circunstancias.</h3><p>Nos hacemos cargo de ellas si las traen al Centro. Mientras las transportan, deben mantenerlas en una caja, sin comida ni agua.</p>`
   },
 
   trasladoCentro: {
