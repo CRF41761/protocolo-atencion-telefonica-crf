@@ -715,6 +715,15 @@ function esGalapagoInvasor(especie) {
   return false;
 }
 
+function esGalapagoExotico(especie) {
+  const nombre = especie.nombreCientifico.toLowerCase();
+  if (especie.origen !== "Exótico") return false;
+  if (nombre.startsWith("testudo") || nombre.startsWith("centrochelys")) return false;
+  if (nombre === "caretta caretta") return false;
+  const galapagos = ["mauremys", "trachemys", "pseudemys", "graptemys", "kinosternon", "emys"];
+  return galapagos.some(g => nombre.startsWith(g));
+}
+
 function esTortuga(especie) {
   const nombre = especie.nombreCientifico.toLowerCase();
   const comun = especie.nombreComun.toLowerCase();
@@ -803,8 +812,10 @@ function tieneCasoEspecialAviso(especie) {
 function obtenerEtiquetaTipo(especie) {
   if (especie.cites) return { texto: "CITES", clase: "badge-cites" };
   if (especie.tipo === "doméstico") return { texto: "Doméstico", clase: "badge-domestico" };
+  if (esGalapagoExotico(especie)) return { texto: "Exótico", clase: "badge-exotico" };
   if (especie.tipo === "invasor") return { texto: "Invasor", clase: "badge-invasor" };
   if (especie.tipo === "exótico") {
+    if (esGalapagoExotico(especie)) return { texto: "Exótico", clase: "badge-exotico" };
     if (esGalapagoInvasor(especie)) return { texto: "Invasor", clase: "badge-invasor" };
     return { texto: "Exótico", clase: "badge-exotico" };
   }
@@ -929,6 +940,8 @@ function ejecutarAtajo(especie, omitirFoto = false) {
   }
 
   if (especie.tipo === "doméstico") { mostrarPantalla("domestico"); return; }
+
+  if (esGalapagoExotico(especie)) { mostrarPantalla("galapagoExotico"); return; }
 
   if (especie.cites === true) {
     const nombreCientifico = especie.nombreCientifico.toLowerCase();
@@ -1373,6 +1386,7 @@ const pantallas = {
       { texto: " Animal doméstico", siguiente: "domestico" },
       { texto: "🦎 Animal exótico", siguiente: "exotico" },
       { texto: "🚨 Animal catalogado como invasor", siguiente: "invasor" },
+      { texto: "🐢 Galápago exótico", siguiente: "galapagoExotico" },
       { texto: "🦇 Colonias de murciélagos o nidos", siguiente: "murcielagos" },
       { texto: "⚠️ Daños a la fauna o destrucción de nidos", siguiente: "danos" },
       { texto: "🥚 Huevos en la playa", siguiente: "huevosPlaya" },
@@ -1443,7 +1457,7 @@ const pantallas = {
   exoticoNoInvasor: {
     tipo: "fin",
     titulo: "🏠 Animal exótico no invasor",
-    contenido: `<h3>Indicar que se dirija a su Ayuntamiento.</h3><p class="small-note">⚠️ <strong>Excepción:</strong> los galápagos exóticos se tratan como invasores.</p>`
+    contenido: `<h3>Indicar que se dirija a su Ayuntamiento.</h3><p class="small-note">⚠️ <strong>Excepción:</strong> los galápagos exóticos tienen su propia rama y no se tratan como exóticos no invasores.</p>`
   },
 
   citesConsulta: {
@@ -1491,7 +1505,7 @@ const pantallas = {
   invasorUnidad: {
     tipo: "fin",
     titulo: "🚨 Animal invasor — Unidad colaboradora",
-    contenido: `<h3>Puede llevarlo a una unidad colaboradora entre semana.</h3><p>Apuntar como <strong>recogida pendiente</strong>.</p>`
+    contenido: `<h3>Si no puede traerlo al Centro, puede llevarlo a una unidad colaboradora entre semana.</h3><p>Apuntar como <strong>recogida pendiente</strong>.</p>`
   },
 
   invasorNoUnidad: {
@@ -1513,7 +1527,45 @@ const pantallas = {
   invasorEncontrado: {
     tipo: "fin",
     titulo: "🚨 Animal invasor encontrado",
-    contenido: `<h3>Llevarlo a la policía local del municipio.</h3><p>Avisar al centro para recogerlo allí.</p><div class="contact-box"><strong>📱 686 680 254</strong></div>`
+    contenido: `<h3>Si no puede traerlo al Centro, llevarlo a la policía local del municipio.</h3><p>Avisar al Centro para recogerlo allí.</p><div class="contact-box"><strong>📱 686 680 254</strong></div>`
+  },
+
+  galapagoExotico: {
+    tipo: "pregunta",
+    titulo: "🐢 Galápago exótico",
+    descripcion: "¿Está cerca de alguna unidad colaboradora?",
+    opciones: [
+      { texto: "Sí, está cerca", siguiente: "galapagoExoticoUnidad" },
+      { texto: "No está cerca", siguiente: "galapagoExoticoNoUnidad" }
+    ]
+  },
+
+  galapagoExoticoUnidad: {
+    tipo: "fin",
+    titulo: "🐢 Galápago exótico — Unidad colaboradora",
+    contenido: `<h3>Si no puede traerlo al Centro, puede llevarlo a una unidad colaboradora entre semana.</h3><p>Apuntar como <strong>recogida pendiente</strong>.</p>`
+  },
+
+  galapagoExoticoNoUnidad: {
+    tipo: "pregunta",
+    titulo: "🐢 Galápago exótico — Sin unidad cerca",
+    descripcion: "¿El animal es de su propiedad o lo ha encontrado?",
+    opciones: [
+      { texto: "Es de su propiedad", siguiente: "galapagoExoticoPropiedad" },
+      { texto: "Lo ha encontrado", siguiente: "galapagoExoticoEncontrado" }
+    ]
+  },
+
+  galapagoExoticoPropiedad: {
+    tipo: "fin",
+    titulo: "🐢 Galápago exótico en propiedad",
+    contenido: `<h3>Han de traerlo al centro.</h3><div class="contact-box"><strong>📱 686 680 254</strong></div>`
+  },
+
+  galapagoExoticoEncontrado: {
+    tipo: "fin",
+    titulo: "🐢 Galápago exótico encontrado",
+    contenido: `<h3>Si no puede traerlo al Centro, llevarlo a la policía local del municipio.</h3><p>Avisar al Centro para recogerlo allí.</p><div class="contact-box"><strong>📱 686 680 254</strong></div>`
   },
 
   murcielagos: {
