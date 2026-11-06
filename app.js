@@ -812,7 +812,10 @@ function tieneCasoEspecialAviso(especie) {
 function obtenerEtiquetaTipo(especie) {
   if (especie.cites) return { texto: "CITES", clase: "badge-cites" };
   if (especie.tipo === "doméstico") return { texto: "Doméstico", clase: "badge-domestico" };
-  if (esGalapagoExotico(especie)) return { texto: "Exótico", clase: "badge-exotico" };
+  if (esGalapagoExotico(especie)) {
+    if (especie.tipo === "invasor") return { texto: "Exótico invasor", clase: "badge-exotico-invasor" };
+    return { texto: "Exótico", clase: "badge-exotico" };
+  }
   if (especie.tipo === "invasor") return { texto: "Invasor", clase: "badge-invasor" };
   if (especie.tipo === "exótico") {
     if (esGalapagoExotico(especie)) return { texto: "Exótico", clase: "badge-exotico" };
