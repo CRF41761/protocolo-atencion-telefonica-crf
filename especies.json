@@ -311,7 +311,7 @@
     "grupo": "REPTILES",
     "origen": "Exótico",
     "tipo": "exótico",
-    "cites": false,
+    "cites": true,
     "gradoProteccion": null
   },
   {
